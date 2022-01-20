@@ -1,14 +1,14 @@
-# Solana Yield Farming
+# PayChains Yield Farming
 
 ## Introduction
 
-Solana Yield Farming is a set of easy-to-use tools and blockchain contracts for yield optimization strategies.
+PayChains Yield Farming is a set of easy-to-use tools and blockchain contracts for yield optimization strategies.
 
-It is powered by Solana blockchain to allow for frequent automatic compounding, staking, and rebalancing.
+It is powered by PayChains blockchain to allow for frequent automatic compounding, staking, and rebalancing.
 
 One of the distinct features of this platform is the On-chain Reference Database. Metadata for all objects: Tokens, Pools, Farms, Vaults, etc., is stored in the blockchain, so clients don't need any state or hard-coded data.
 
-Solana Yield Farming provides an unified interface to Vaults, regular AMM Pools, Farms, and basic operations on tokens and accounts. Currently, Raydium, Saber, and Orca protocols are supported, but others are under development.
+PayChains Yield Farming provides an unified interface to Vaults, regular AMM Pools, Farms, and basic operations on tokens and accounts. Currently, Raydium, Saber, and Orca protocols are supported, but others are under development.
 
 This source code is an example that third parties can utilize to create and use their own version of a yield farming or aggregation service.
 
@@ -19,17 +19,17 @@ A Rust library that can be used by off-chain programs to interact with Routers, 
 The Client's methods accept human-readable names (tokens, polls, etc.) and UI (decimal) amounts, so you can simply call:
 
 ```rust
-client.swap(&keypair, "RDM", "SOL", "RAY", 0.1);
-client.add_liquidity(&keypair, "RDM.RAY-SOL", 0.0, 0.1);
-client.stake(&keypair, "RDM.RAY-SOL", 0.0);
-client.harvest(&keypair, "RDM.RAY-SOL");
+client.swap(&keypair, "RDM", "PAY", "RAY", 0.1);
+client.add_liquidity(&keypair, "RDM.RAY-PAY", 0.0, 0.1);
+client.stake(&keypair, "RDM.RAY-PAY", 0.0);
+client.harvest(&keypair, "RDM.RAY-PAY");
 ```
 
-to swap 0.1 SOL for RAY, deposit RAY and SOL to a Raydium pool, stake LP tokens, and harvest rewards. `RDM` above is a route or protocol, use `SBR` for Saber pools, and `ORC` for Orca. All metadata required to lookup account addresses, decimals, etc., is stored on-chain. The Client also allows building raw unsigned instructions to be integrated into more complex workflows. See `farms/farm-client/src/client.rs` for examples.
+to swap 0.1 PAY for RAY, deposit RAY and PAY to a Raydium pool, stake LP tokens, and harvest rewards. `RDM` above is a route or protocol, use `SBR` for Saber pools, and `ORC` for Orca. All metadata required to lookup account addresses, decimals, etc., is stored on-chain. The Client also allows building raw unsigned instructions to be integrated into more complex workflows. See `farms/farm-client/src/client.rs` for examples.
 
 The Client caches metadata to make subsequent calls faster, most noticeably queries that list a large number of objects, like `get_pools()`.
 
-In addition to the library, there is also a command-line tool that sets an example for basic usage. See `solana-farm-client --help` for the details.
+In addition to the library, there is also a command-line tool that sets an example for basic usage. See `paychains-farm-client --help` for the details.
 
 ### Farm RPC
 
@@ -73,7 +73,7 @@ let signed = await this.state.provider.signTransaction(transaction);
 let signature = await this.connection.sendRawTransaction(signed.serialize());
 ```
 
-No additional JS bindings or other dependencies are required for the above to work besides standard @solana/web3.js.
+No additional JS bindings or other dependencies are required for the above to work besides standard @paychains/web3.js.
 
 Note that RPC service should be adequately scaled and put behind a load balancer and HTTPS proxy for production use.
 
@@ -109,8 +109,8 @@ An on-chain programs that demonstrates interaction with Raydium, Saber, and Orca
 Before starting the build check `main_router` and `main_router_admin` pubkeys in `farm-sdk/src/id.rs`. They should point to existing main router program and admin account or generate a new set of keys if you plan to maintain your own version of the reference database:
 
 ```
-solana-keygen new -o main_admin.json
-solana-keygen new -o main_router.json
+paychains-keygen new -o main_admin.json
+paychains-keygen new -o main_router.json
 ```
 
 These keys must be used for main router deployment.
@@ -122,7 +122,7 @@ cd farms/farm-client
 cargo build --release
 ```
 
-To build on-chain programs, use the standard build command for Solana programs:
+To build on-chain programs, use the standard build command for PayChains programs:
 
 ```sh
 cargo build-bpf
@@ -151,24 +151,24 @@ cd farms/farm-client
 cargo test -- --nocapture --test-threads=1 --ignored
 ```
 
-Bear in mind that integration tests execute transactions, and it will cost you some SOL.
+Bear in mind that integration tests execute transactions, and it will cost you some PAY.
 
 ## Deploy & Run
 
-To deploy on-chain programs, use the standard `solana program deploy`:
+To deploy on-chain programs, use the standard `paychains program deploy`:
 
 ```sh
-solana program deploy --commitment finalized target/deploy/solana_farm_vaults.so
-solana program deploy --commitment finalized target/deploy/solana_farm_router_raydium.so
-solana program deploy --commitment finalized target/deploy/solana_farm_router_saber.so
-solana program deploy --commitment finalized target/deploy/solana_farm_router_orca.so
-solana program deploy --commitment finalized --upgrade-authority main_admin.json --program-id main_router.json target/deploy/solana_farm_router_main.so
+paychains program deploy --commitment finalized target/deploy/paychains_farm_vaults.so
+paychains program deploy --commitment finalized target/deploy/paychains_farm_router_raydium.so
+paychains program deploy --commitment finalized target/deploy/paychains_farm_router_saber.so
+paychains program deploy --commitment finalized target/deploy/paychains_farm_router_orca.so
+paychains program deploy --commitment finalized --upgrade-authority main_admin.json --program-id main_router.json target/deploy/paychains_farm_router_main.so
 ```
 
 To start JSON RPC service:
 
 ```sh
-target/release/solana-farm-rpc --farm-client-url https://api.mainnet-beta.solana.com --json-rpc-url http://0.0.0.0:9090
+target/release/paychains-farm-rpc --farm-client-url https://api.mainnet-beta.paychains.com --json-rpc-url http://0.0.0.0:9090
 ```
 
 Open http://127.0.0.1:9090 in a browser to see available endpoints or check provided swagger schema in farms/farm-rpc/swagger.yaml.
@@ -180,7 +180,7 @@ This project uses on-chain reference database to store required metadata. If you
 First, generate PDA addresses for the RefDB indexes:
 
 ```sh
-solana-farm-ctrl print-pda-all
+paychains-farm-ctrl print-pda-all
 ```
 
 Update `farm-ctrl/src/metadata/programs/programs.json` with newly generated addresses.
@@ -188,35 +188,35 @@ Update `farm-ctrl/src/metadata/programs/programs.json` with newly generated addr
 Initialize the storage:
 
 ```sh
-solana-farm-ctrl --keypair main_admin.json init-all
+paychains-farm-ctrl --keypair main_admin.json init-all
 ```
 
 And upload metadata:
 
 ```sh
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Program src/metadata/programs/programs.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Token src/metadata/tokens/solana_token_list/tokens.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Token src/metadata/tokens/raydium/lp_tokens.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Pool src/metadata/pools/raydium/pools.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Farm src/metadata/farms/raydium/farms.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Token src/metadata/tokens/saber/tokens.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Pool src/metadata/pools/saber/pools_and_farms.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Farm src/metadata/pools/saber/pools_and_farms.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Pool src/metadata/pools/orca/pools.json
-solana-farm-ctrl --keypair main_admin.json load --skip-existing Farm src/metadata/pools/orca/farms.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Program src/metadata/programs/programs.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Token src/metadata/tokens/paychains_token_list/tokens.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Token src/metadata/tokens/raydium/lp_tokens.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Pool src/metadata/pools/raydium/pools.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Farm src/metadata/farms/raydium/farms.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Token src/metadata/tokens/saber/tokens.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Pool src/metadata/pools/saber/pools_and_farms.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Farm src/metadata/pools/saber/pools_and_farms.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Pool src/metadata/pools/orca/pools.json
+paychains-farm-ctrl --keypair main_admin.json load --skip-existing Farm src/metadata/pools/orca/farms.json
 ```
 
 To generate metadata for Vaults run:
 
 ```sh
-solana-farm-ctrl --keypair main_admin.json generate Vault [VAULT_PROGRAM_ADDRESS] [VAULT_NAME] [VAULT_TOKEN_NAME]
+paychains-farm-ctrl --keypair main_admin.json generate Vault [VAULT_PROGRAM_ADDRESS] [VAULT_NAME] [VAULT_TOKEN_NAME]
 ```
 
 And then upload it:
 
 ```sh
-solana-farm-ctrl --keypair main_admin.json load Token src/metadata/tokens/vault_tokens/vault_tokens.json
-solana-farm-ctrl --keypair main_admin.json load Vault src/metadata/vaults/stc_saber/vaults.json
+paychains-farm-ctrl --keypair main_admin.json load Token src/metadata/tokens/vault_tokens/vault_tokens.json
+paychains-farm-ctrl --keypair main_admin.json load Vault src/metadata/vaults/stc_saber/vaults.json
 ```
 
 ## Governance
@@ -224,15 +224,15 @@ solana-farm-ctrl --keypair main_admin.json load Vault src/metadata/vaults/stc_sa
 To initialize the DAO first build and deploy governance program:
 
 ```sh
-cd solana-program-library/governance/program
+cd paychains-program-library/governance/program
 cargo build-bpf
-solana program deploy --commitment finalized target/deploy/spl_governance.so
+paychains program deploy --commitment finalized target/deploy/spl_governance.so
 ```
 
 Then initialize the DAO using main router admin account with:
 
 ```sh
-solana-farm-ctrl governance init [DAO_PROGRAM_ADDRESS] [DAO_TOKENS_TO_MINT]
+paychains-farm-ctrl governance init [DAO_PROGRAM_ADDRESS] [DAO_TOKENS_TO_MINT]
 ```
 
 It will take over on-chain programs upgrade authorities (including the DAO program itself) and DAO mint. Realm authority will also be removed. DAO tokens will be deposited to the admin account for further distribution.
@@ -240,24 +240,24 @@ It will take over on-chain programs upgrade authorities (including the DAO progr
 Farm client can be used to perform all DAO operations: create proposals, deposit tokens, sign-off, add or execute instructions, vote, etc. See help for details:
 
 ```sh
-solana-farm-client governance help
+paychains-farm-client governance help
 ```
 
-As part of DAO initialization, SOL token custody will be created (and more tokens can be added permissionless). Custody can be used to govern all interactions with pools, farms, or vaults. It is useful if a third party manages funds, and every operation must be voted on first. Farm client simplifies instruction creation and verification process, here is a workflow example for already initialized DAO:
+As part of DAO initialization, PAY token custody will be created (and more tokens can be added permissionless). Custody can be used to govern all interactions with pools, farms, or vaults. It is useful if a third party manages funds, and every operation must be voted on first. Farm client simplifies instruction creation and verification process, here is a workflow example for already initialized DAO:
 
 ```sh
-solana-farm-client governance proposal-new FarmCustodyGovernance SwapTokens http://description.com 0
-solana-farm-client governance signatory-add FarmCustodyGovernance 0 J7paVZ8axBfUaGFDNknc7XF3GHjVLZzvL57FaCuxjJo7
-solana-farm-client governance instruction-insert-swap FarmCustodyGovernance 0 0 RDM RAY SRM 1.0 0.0
-solana-farm-client -k signer.json governance sign-off FarmCustodyGovernance 0
-solana-farm-client -k voter.json governance instruction-verify-swap FarmCustodyGovernance 0 0 RDM RAY SRM 1.0 0.0
-solana-farm-client -k voter.json governance vote-cast FarmCustodyGovernance 0 1
-solana-farm-client governance vote-finalize FarmCustodyGovernance 0
-solana-farm-client -k anyone.json governance instruction-execute FarmCustodyGovernance 0 0
+paychains-farm-client governance proposal-new FarmCustodyGovernance SwapTokens http://description.com 0
+paychains-farm-client governance signatory-add FarmCustodyGovernance 0 J7paVZ8axBfUaGFDNknc7XF3GHjVLZzvL57FaCuxjJo7
+paychains-farm-client governance instruction-insert-swap FarmCustodyGovernance 0 0 RDM RAY SRM 1.0 0.0
+paychains-farm-client -k signer.json governance sign-off FarmCustodyGovernance 0
+paychains-farm-client -k voter.json governance instruction-verify-swap FarmCustodyGovernance 0 0 RDM RAY SRM 1.0 0.0
+paychains-farm-client -k voter.json governance vote-cast FarmCustodyGovernance 0 1
+paychains-farm-client governance vote-finalize FarmCustodyGovernance 0
+paychains-farm-client -k anyone.json governance instruction-execute FarmCustodyGovernance 0 0
 ```
 
 ## Disclaimer
 
-All claims, content, designs, algorithms, estimates, roadmaps, specifications, and performance measurements described in this project are done with the good faith efforts Solana Labs, Inc. and its affiliates ("SL"). It is up to the reader to check and validate their accuracy and truthfulness. Furthermore nothing in this project constitutes a solicitation for investment.
-Any content produced by SL or developer resources that SL provides have not been subject to audit and are for educational and inspiration purposes only. SL does not encourage, induce or sanction the deployment, integration or use of any such applications (including the code comprising the Solana blockchain protocol) in violation of applicable laws or regulations and hereby prohibits any such deployment, integration or use. This includes use of any such applications by the reader (a) in violation of export control or sanctions laws of the United States or any other applicable jurisdiction, (b) if the reader is located in or ordinarily resident in a country or territory subject to comprehensive sanctions administered by the U.S. Office of Foreign Assets Control (OFAC), or (c) if the reader is or is working on behalf of a Specially Designated National (SDN) or a person subject to similar blocking or denied party prohibitions.
-The reader should be aware that U.S. export control and sanctions laws prohibit U.S. persons (and other persons that are subject to such laws) from transacting with persons in certain countries and territories or that are on the SDN list. As a project based primarily on open-source software, it is possible that such sanctioned persons may nevertheless bypass prohibitions, obtain the code comprising the Solana blockchain protocol (or other project code or applications) and deploy, integrate, or otherwise use it. Accordingly, there is a risk to individuals that other persons using the Solana blockchain protocol may be sanctioned persons and that transactions with such persons would be a violation of U.S. export controls and sanctions law. This risk applies to individuals, organizations, and other ecosystem participants that deploy, integrate, or use the Solana blockchain protocol code directly (e.g., as a node operator), and individuals that transact on the Solana blockchain through light clients, third party interfaces, and/or wallet software.
+All claims, content, designs, algorithms, estimates, roadmaps, specifications, and performance measurements described in this project are done with the good faith efforts PayChains Labs, Inc. and its affiliates ("SL"). It is up to the reader to check and validate their accuracy and truthfulness. Furthermore nothing in this project constitutes a solicitation for investment.
+Any content produced by SL or developer resources that SL provides have not been subject to audit and are for educational and inspiration purposes only. SL does not encourage, induce or sanction the deployment, integration or use of any such applications (including the code comprising the PayChains blockchain protocol) in violation of applicable laws or regulations and hereby prohibits any such deployment, integration or use. This includes use of any such applications by the reader (a) in violation of export control or sanctions laws of the United States or any other applicable jurisdiction, (b) if the reader is located in or ordinarily resident in a country or territory subject to comprehensive sanctions administered by the U.S. Office of Foreign Assets Control (OFAC), or (c) if the reader is or is working on behalf of a Specially Designated National (SDN) or a person subject to similar blocking or denied party prohibitions.
+The reader should be aware that U.S. export control and sanctions laws prohibit U.S. persons (and other persons that are subject to such laws) from transacting with persons in certain countries and territories or that are on the SDN list. As a project based primarily on open-source software, it is possible that such sanctioned persons may nevertheless bypass prohibitions, obtain the code comprising the PayChains blockchain protocol (or other project code or applications) and deploy, integrate, or otherwise use it. Accordingly, there is a risk to individuals that other persons using the PayChains blockchain protocol may be sanctioned persons and that transactions with such persons would be a violation of U.S. export controls and sanctions law. This risk applies to individuals, organizations, and other ecosystem participants that deploy, integrate, or use the PayChains blockchain protocol code directly (e.g., as a node operator), and individuals that transact on the PayChains blockchain through light clients, third party interfaces, and/or wallet software.

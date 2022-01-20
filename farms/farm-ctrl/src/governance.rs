@@ -3,8 +3,8 @@
 use {
     crate::config::Config,
     log::info,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{
         id::{
             main_router_admin, ProgramIDType, DAO_CUSTODY_NAME, DAO_MINT_NAME, DAO_PROGRAM_NAME,
             DAO_TOKEN_NAME,
@@ -13,7 +13,7 @@ use {
         string::str_to_as64,
         token::{Token, TokenType},
     },
-    solana_sdk::{program_pack::Pack, pubkey::Pubkey},
+    paychains_sdk::{program_pack::Pack, pubkey::Pubkey},
     spl_associated_token_account::{create_associated_token_account, get_associated_token_address},
     spl_governance::instruction as dao_instruction,
     spl_governance::state::{
@@ -76,7 +76,7 @@ pub fn init(client: &FarmClient, config: &Config, dao_program: &Pubkey, mint_ui_
         };
         let token = Token {
             name: str_to_as64(DAO_TOKEN_NAME).unwrap(),
-            description: str_to_as64("Solana Farms Governance Token").unwrap(),
+            description: str_to_as64("PayChains Farms Governance Token").unwrap(),
             token_type: TokenType::SplToken,
             refdb_index: index,
             refdb_counter: counter,
@@ -289,12 +289,12 @@ pub fn init(client: &FarmClient, config: &Config, dao_program: &Pubkey, mint_ui_
         get_account_governance_address(dao_program, &realm_address, &governed_account);
 
     // create wsol account for custody authority
-    if !client.has_active_token_account(&custody_authority, "SOL") {
-        let wsol_token = client.get_token("SOL").unwrap();
+    if !client.has_active_token_account(&custody_authority, "PAY") {
+        let wpay_token = client.get_token("PAY").unwrap();
         inst.push(create_associated_token_account(
             &wallet,
             &custody_authority,
-            &wsol_token.mint,
+            &wpay_token.mint,
         ));
     }
 

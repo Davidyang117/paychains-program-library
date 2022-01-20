@@ -1,5 +1,5 @@
-use solana_program::pubkey::Pubkey;
-use solana_sdk::account::Account;
+use paychains_program::pubkey::Pubkey;
+use paychains_sdk::account::Account;
 
 #[derive(Debug)]
 pub struct TokenAccountCookie {

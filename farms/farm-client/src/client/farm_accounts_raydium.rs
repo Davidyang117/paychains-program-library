@@ -1,9 +1,9 @@
-//! Solana Farm Client Raydium Farms accounts builder
+//! PayChains Farm Client Raydium Farms accounts builder
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{farm::FarmRoute, id::zero},
-    solana_sdk::{instruction::AccountMeta, program_error::ProgramError, pubkey::Pubkey, sysvar},
+    paychains_farm_sdk::{farm::FarmRoute, id::zero},
+    paychains_sdk::{instruction::AccountMeta, program_error::ProgramError, pubkey::Pubkey, sysvar},
     std::vec::Vec,
 };
 

@@ -1,6 +1,6 @@
 # SPL Token Lending client library
 
-This is a JavaScript + TypeScript library for interacting with the [SPL Token Lending](https://github.com/solana-labs/solana-program-library/tree/master/token-lending) program.
+This is a JavaScript + TypeScript library for interacting with the [SPL Token Lending](https://github.com/paychains-labs/paychains-program-library/tree/master/token-lending) program.
 
 ## Install
 
@@ -8,16 +8,16 @@ Install the library and its peer dependencies in your app:
 
 ### Yarn
 ```shell
-yarn add @solana/spl-token-lending @solana/spl-token @solana/web3.js
+yarn add @paychains/spl-token-lending @paychains/spl-token @paychains/web3.js
 ```
 
 ### NPM
 ```shell
-npm install @solana/spl-token-lending @solana/spl-token @solana/web3.js
+npm install @paychains/spl-token-lending @paychains/spl-token @paychains/web3.js
 ```
 
 ## Documentation
 
-- [Client library docs](https://solana-labs.github.io/solana-program-library/token-lending/)
-- [Program docs](https://github.com/solana-labs/solana-program-library/tree/master/token-lending)
-- [CLI docs](https://github.com/solana-labs/solana-program-library/tree/master/token-lending/cli)
+- [Client library docs](https://paychains-labs.github.io/paychains-program-library/token-lending/)
+- [Program docs](https://github.com/paychains-labs/paychains-program-library/tree/master/token-lending)
+- [CLI docs](https://github.com/paychains-labs/paychains-program-library/tree/master/token-lending/cli)

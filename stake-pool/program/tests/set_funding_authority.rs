@@ -5,13 +5,13 @@ mod helpers;
 use {
     borsh::BorshSerialize,
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked,
         hash::Hash,
         instruction::{AccountMeta, Instruction},
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         instruction::InstructionError, signature::Keypair, signature::Signer,
         transaction::Transaction, transaction::TransactionError, transport::TransportError,
     },
@@ -166,8 +166,8 @@ async fn fail_without_signature() {
 }
 
 #[tokio::test]
-async fn success_set_sol_deposit_authority() {
-    let (mut banks_client, payer, recent_blockhash, stake_pool_accounts, new_sol_deposit_authority) =
+async fn success_set_pay_deposit_authority() {
+    let (mut banks_client, payer, recent_blockhash, stake_pool_accounts, new_pay_deposit_authority) =
         setup().await;
 
     let mut transaction = Transaction::new_with_payer(
@@ -175,8 +175,8 @@ async fn success_set_sol_deposit_authority() {
             &id(),
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
-            Some(&new_sol_deposit_authority.pubkey()),
-            FundingType::SolDeposit,
+            Some(&new_pay_deposit_authority.pubkey()),
+            FundingType::PayDeposit,
         )],
         Some(&payer.pubkey()),
     );
@@ -188,8 +188,8 @@ async fn success_set_sol_deposit_authority() {
         try_from_slice_unchecked::<state::StakePool>(stake_pool.data.as_slice()).unwrap();
 
     assert_eq!(
-        stake_pool.sol_deposit_authority,
-        Some(new_sol_deposit_authority.pubkey())
+        stake_pool.pay_deposit_authority,
+        Some(new_pay_deposit_authority.pubkey())
     );
 
     let mut transaction = Transaction::new_with_payer(
@@ -198,7 +198,7 @@ async fn success_set_sol_deposit_authority() {
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
             None,
-            FundingType::SolDeposit,
+            FundingType::PayDeposit,
         )],
         Some(&payer.pubkey()),
     );
@@ -209,7 +209,7 @@ async fn success_set_sol_deposit_authority() {
     let stake_pool =
         try_from_slice_unchecked::<state::StakePool>(stake_pool.data.as_slice()).unwrap();
 
-    assert_eq!(stake_pool.sol_deposit_authority, None);
+    assert_eq!(stake_pool.pay_deposit_authority, None);
 }
 
 #[tokio::test]
@@ -223,7 +223,7 @@ async fn success_set_withdraw_authority() {
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
             Some(&new_authority.pubkey()),
-            FundingType::SolWithdraw,
+            FundingType::PayWithdraw,
         )],
         Some(&payer.pubkey()),
     );
@@ -235,7 +235,7 @@ async fn success_set_withdraw_authority() {
         try_from_slice_unchecked::<state::StakePool>(stake_pool.data.as_slice()).unwrap();
 
     assert_eq!(
-        stake_pool.sol_withdraw_authority,
+        stake_pool.pay_withdraw_authority,
         Some(new_authority.pubkey())
     );
 
@@ -245,7 +245,7 @@ async fn success_set_withdraw_authority() {
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
             None,
-            FundingType::SolWithdraw,
+            FundingType::PayWithdraw,
         )],
         Some(&payer.pubkey()),
     );
@@ -256,5 +256,5 @@ async fn success_set_withdraw_authority() {
     let stake_pool =
         try_from_slice_unchecked::<state::StakePool>(stake_pool.data.as_slice()).unwrap();
 
-    assert_eq!(stake_pool.sol_withdraw_authority, None);
+    assert_eq!(stake_pool.pay_withdraw_authority, None);
 }

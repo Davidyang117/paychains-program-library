@@ -11,7 +11,7 @@ use crate::{
     PROGRAM_AUTHORITY_SEED,
 };
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo,
     borsh::try_from_slice_unchecked,
     clock::UnixTimestamp,
@@ -230,7 +230,7 @@ mod test {
 
     use std::str::FromStr;
 
-    use solana_program::{bpf_loader_upgradeable, clock::Epoch};
+    use paychains_program::{bpf_loader_upgradeable, clock::Epoch};
 
     use super::*;
 

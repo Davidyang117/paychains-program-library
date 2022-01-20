@@ -2,18 +2,18 @@ import argparse
 import asyncio
 import json
 
-from solana.keypair import Keypair
-from solana.publickey import PublicKey
-from solana.rpc.async_api import AsyncClient
-from solana.rpc.commitment import Confirmed
+from paychains.keypair import Keypair
+from paychains.publickey import PublicKey
+from paychains.rpc.async_api import AsyncClient
+from paychains.rpc.commitment import Confirmed
 
 from stake.constants import STAKE_LEN
 from stake_pool.actions import decrease_validator_stake, increase_validator_stake, update_stake_pool
 from stake_pool.state import StakePool, ValidatorList
 
 
-LAMPORTS_PER_SOL: int = 1_000_000_000
-MINIMUM_INCREASE_LAMPORTS: int = LAMPORTS_PER_SOL // 100
+LAMPORTS_PER_PAY: int = 1_000_000_000
+MINIMUM_INCREASE_LAMPORTS: int = LAMPORTS_PER_PAY // 100
 
 
 async def get_client(endpoint: str) -> AsyncClient:
@@ -49,7 +49,7 @@ async def rebalance(endpoint: str, stake_pool_address: PublicKey, staker: Keypai
 
     resp = await async_client.get_minimum_balance_for_rent_exemption(STAKE_LEN)
     stake_rent_exemption = resp['result']
-    retained_reserve_lamports = int(retained_reserve_amount * LAMPORTS_PER_SOL)
+    retained_reserve_lamports = int(retained_reserve_amount * LAMPORTS_PER_PAY)
 
     resp = await async_client.get_account_info(stake_pool.validator_list, commitment=Confirmed)
     data = resp['result']['value']['data']
@@ -121,15 +121,15 @@ if __name__ == "__main__":
     parser.add_argument('staker', metavar='STAKER_KEYPAIR', type=str,
                         help='Staker for the stake pool, given by a keypair file, e.g. staker.json')
     parser.add_argument('reserve_amount', metavar='RESERVE_AMOUNT', type=float,
-                        help='Amount of SOL to keep in the reserve, e.g. 10.5')
+                        help='Amount of PAY to keep in the reserve, e.g. 10.5')
     parser.add_argument('--endpoint', metavar='ENDPOINT_URL', type=str,
-                        default='https://api.mainnet-beta.solana.com',
-                        help='RPC endpoint to use, e.g. https://api.mainnet-beta.solana.com')
+                        default='https://api.mainnet-beta.paychains.com',
+                        help='RPC endpoint to use, e.g. https://api.mainnet-beta.paychains.com')
 
     args = parser.parse_args()
     stake_pool = PublicKey(args.stake_pool)
     staker = keypair_from_file(args.staker)
     print(f'Rebalancing stake pool {stake_pool}')
     print(f'Staker public key: {staker.public_key}')
-    print(f'Amount to leave in the reserve: {args.reserve_amount} SOL')
+    print(f'Amount to leave in the reserve: {args.reserve_amount} PAY')
     asyncio.run(rebalance(args.endpoint, stake_pool, staker, args.reserve_amount))

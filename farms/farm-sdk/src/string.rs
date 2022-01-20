@@ -4,7 +4,7 @@
 use {
     arraystring::{typenum::U64, ArrayString},
     serde::Serialize,
-    solana_program::{instruction::Instruction, program_error::ProgramError, pubkey::Pubkey},
+    paychains_program::{instruction::Instruction, program_error::ProgramError, pubkey::Pubkey},
     std::collections::HashMap,
 };
 

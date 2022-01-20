@@ -5,11 +5,11 @@ mod helpers;
 use {
     bincode::deserialize,
     helpers::*,
-    solana_program::{
+    paychains_program::{
         clock::Epoch, hash::Hash, instruction::InstructionError, pubkey::Pubkey, stake,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::{Transaction, TransactionError},
     },

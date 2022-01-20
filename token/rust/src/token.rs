@@ -1,5 +1,5 @@
 use super::client::{ProgramClient, ProgramClientError, SendTransaction};
-use solana_sdk::{
+use paychains_sdk::{
     instruction::Instruction,
     program_error::ProgramError,
     program_pack::Pack,

@@ -1,12 +1,12 @@
 use clap::ArgMatches;
-use solana_clap_utils::{
+use paychains_clap_utils::{
     input_parsers::pubkey_of_signer,
     keypair::{pubkey_from_path, signer_from_path_with_config, SignerFromPathConfig},
 };
-use solana_cli_output::OutputFormat;
-use solana_client::{blockhash_query::BlockhashQuery, rpc_client::RpcClient};
-use solana_remote_wallet::remote_wallet::RemoteWalletManager;
-use solana_sdk::{pubkey::Pubkey, signature::Signer};
+use paychains_cli_output::OutputFormat;
+use paychains_client::{blockhash_query::BlockhashQuery, rpc_client::RpcClient};
+use paychains_remote_wallet::remote_wallet::RemoteWalletManager;
+use paychains_sdk::{pubkey::Pubkey, signature::Signer};
 use spl_associated_token_account::*;
 use std::{process::exit, sync::Arc};
 

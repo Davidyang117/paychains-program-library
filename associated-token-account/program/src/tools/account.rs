@@ -1,6 +1,6 @@
 //! Account utility functions
 
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo,
     entrypoint::ProgramResult,
     program::{invoke, invoke_signed},

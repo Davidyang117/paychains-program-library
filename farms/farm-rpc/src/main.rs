@@ -1,4 +1,4 @@
-//! Solana Farms RPC Backend.
+//! PayChains Farms RPC Backend.
 
 #[macro_use]
 extern crate lazy_static;
@@ -12,7 +12,7 @@ mod json_rpc;
 use {
     clap::{crate_description, crate_name, App, Arg},
     log::{debug, info},
-    solana_clap_utils::input_validators::is_url,
+    paychains_clap_utils::input_validators::is_url,
     url::Url,
 };
 
@@ -20,7 +20,7 @@ use {
 async fn main() {
     let matches = App::new(crate_name!())
         .about(crate_description!())
-        .version(solana_version::version!())
+        .version(paychains_version::version!())
         .arg(
             Arg::with_name("config_file")
                 .short("C")
@@ -89,7 +89,7 @@ async fn main() {
                 .value_name("STR")
                 .takes_value(true)
                 .validator(is_url)
-                .help("URL for Solana's tokens list"),
+                .help("URL for PayChains's tokens list"),
         )
         .arg(
             Arg::with_name("farm_client_url")
@@ -103,11 +103,11 @@ async fn main() {
         .get_matches();
 
     // set log verbosity level
-    let mut log_level = String::from("solana=info");
+    let mut log_level = String::from("paychains=info");
     if let Some(level) = matches.value_of("log_level") {
-        log_level = "solana=".to_string() + level;
+        log_level = "paychains=".to_string() + level;
     }
-    solana_logger::setup_with_default(log_level.as_str());
+    paychains_logger::setup_with_default(log_level.as_str());
 
     info!("Loading configuration...");
 

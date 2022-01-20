@@ -4,9 +4,9 @@ mod helpers;
 
 use {
     helpers::*,
-    solana_program::hash::Hash,
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program::hash::Hash,
+    paychains_program_test::*,
+    paychains_sdk::{
         borsh::try_from_slice_unchecked,
         instruction::InstructionError,
         pubkey::Pubkey,

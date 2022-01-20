@@ -2,7 +2,7 @@
 
 use std::cmp::Ordering;
 
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     entrypoint::ProgramResult,
     pubkey::Pubkey,

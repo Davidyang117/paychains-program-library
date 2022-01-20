@@ -10,15 +10,15 @@ use {
         },
         vault_info::VaultInfo,
     },
-    solana_farm_sdk::{
-        id::main_router, instruction::vault::VaultInstruction, log::sol_log_params_short,
+    paychains_farm_sdk::{
+        id::main_router, instruction::vault::VaultInstruction, log::pay_log_params_short,
         program::pda, refdb, string::ArrayString64, vault::Vault,
     },
-    solana_program::{
+    paychains_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint,
         entrypoint::ProgramResult,
-        log::sol_log_compute_units,
+        log::pay_log_compute_units,
         msg,
         program_error::ProgramError,
         pubkey::Pubkey,
@@ -31,11 +31,11 @@ fn log_start(instruction: &str, vault_name: &ArrayString64) {
         instruction,
         vault_name.as_str()
     );
-    sol_log_compute_units();
+    pay_log_compute_units();
 }
 
 fn log_end(vault_name: &ArrayString64) {
-    sol_log_compute_units();
+    pay_log_compute_units();
     msg!("Vault {} end of instruction", vault_name.as_str());
 }
 
@@ -67,7 +67,7 @@ pub fn process_instruction(
 ) -> ProgramResult {
     msg!("Vault entrypoint");
     if cfg!(feature = "debug") {
-        sol_log_params_short(accounts, instruction_data);
+        pay_log_params_short(accounts, instruction_data);
     }
 
     let account_info_iter = &mut accounts.iter();

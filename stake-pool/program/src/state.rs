@@ -9,12 +9,12 @@ use {
     borsh::{BorshDeserialize, BorshSchema, BorshSerialize},
     num_derive::FromPrimitive,
     num_traits::FromPrimitive,
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         borsh::get_instance_packed_len,
         msg,
         program_error::ProgramError,
-        program_memory::sol_memcmp,
+        program_memory::pay_memcmp,
         program_pack::{Pack, Sealed},
         pubkey::{Pubkey, PUBKEY_BYTES},
         stake::state::Lockup,
@@ -125,28 +125,28 @@ pub struct StakePool {
     /// and `stake_referral_fee`% of the collected stake deposit fees is paid out to the referrer
     pub stake_referral_fee: u8,
 
-    /// Toggles whether the `DepositSol` instruction requires a signature from
-    /// this `sol_deposit_authority`
-    pub sol_deposit_authority: Option<Pubkey>,
+    /// Toggles whether the `DepositPay` instruction requires a signature from
+    /// this `pay_deposit_authority`
+    pub pay_deposit_authority: Option<Pubkey>,
 
-    /// Fee assessed on SOL deposits
-    pub sol_deposit_fee: Fee,
+    /// Fee assessed on PAY deposits
+    pub pay_deposit_fee: Fee,
 
-    /// Fees paid out to referrers on referred SOL deposits.
-    /// Expressed as a percentage (0 - 100) of SOL deposit fees.
-    /// i.e. `sol_deposit_fee`% of SOL deposited is collected as deposit fees for every deposit
-    /// and `sol_referral_fee`% of the collected SOL deposit fees is paid out to the referrer
-    pub sol_referral_fee: u8,
+    /// Fees paid out to referrers on referred PAY deposits.
+    /// Expressed as a percentage (0 - 100) of PAY deposit fees.
+    /// i.e. `pay_deposit_fee`% of PAY deposited is collected as deposit fees for every deposit
+    /// and `pay_referral_fee`% of the collected PAY deposit fees is paid out to the referrer
+    pub pay_referral_fee: u8,
 
-    /// Toggles whether the `WithdrawSol` instruction requires a signature from
+    /// Toggles whether the `WithdrawPay` instruction requires a signature from
     /// the `deposit_authority`
-    pub sol_withdraw_authority: Option<Pubkey>,
+    pub pay_withdraw_authority: Option<Pubkey>,
 
-    /// Fee assessed on SOL withdrawals
-    pub sol_withdrawal_fee: Fee,
+    /// Fee assessed on PAY withdrawals
+    pub pay_withdrawal_fee: Fee,
 
-    /// Future SOL withdrawal fee, to be set for the following epoch
-    pub next_sol_withdrawal_fee: Option<Fee>,
+    /// Future PAY withdrawal fee, to be set for the following epoch
+    pub next_pay_withdrawal_fee: Option<Fee>,
 
     /// Last epoch's total pool tokens, used only for APR estimation
     pub last_epoch_pool_token_supply: u64,
@@ -193,8 +193,8 @@ impl StakePool {
 
     /// calculate pool tokens to be deducted as withdrawal fees
     #[inline]
-    pub fn calc_pool_tokens_sol_withdrawal_fee(&self, pool_tokens: u64) -> Option<u64> {
-        u64::try_from(self.sol_withdrawal_fee.apply(pool_tokens)?).ok()
+    pub fn calc_pool_tokens_pay_withdrawal_fee(&self, pool_tokens: u64) -> Option<u64> {
+        u64::try_from(self.pay_withdrawal_fee.apply(pool_tokens)?).ok()
     }
 
     /// calculate pool tokens to be deducted as stake deposit fees
@@ -214,18 +214,18 @@ impl StakePool {
         .ok()
     }
 
-    /// calculate pool tokens to be deducted as SOL deposit fees
+    /// calculate pool tokens to be deducted as PAY deposit fees
     #[inline]
-    pub fn calc_pool_tokens_sol_deposit_fee(&self, pool_tokens_minted: u64) -> Option<u64> {
-        u64::try_from(self.sol_deposit_fee.apply(pool_tokens_minted)?).ok()
+    pub fn calc_pool_tokens_pay_deposit_fee(&self, pool_tokens_minted: u64) -> Option<u64> {
+        u64::try_from(self.pay_deposit_fee.apply(pool_tokens_minted)?).ok()
     }
 
-    /// calculate pool tokens to be deducted from SOL deposit fees as referral fees
+    /// calculate pool tokens to be deducted from PAY deposit fees as referral fees
     #[inline]
-    pub fn calc_pool_tokens_sol_referral_fee(&self, sol_deposit_fee: u64) -> Option<u64> {
+    pub fn calc_pool_tokens_pay_referral_fee(&self, pay_deposit_fee: u64) -> Option<u64> {
         u64::try_from(
-            (sol_deposit_fee as u128)
-                .checked_mul(self.sol_referral_fee as u128)?
+            (pay_deposit_fee as u128)
+                .checked_mul(self.pay_referral_fee as u128)?
                 .checked_div(100u128)?,
         )
         .ok()
@@ -330,20 +330,20 @@ impl StakePool {
     }
 
     /// Checks that the deposit authority is valid
-    /// Does nothing if `sol_deposit_authority` is currently not set
+    /// Does nothing if `pay_deposit_authority` is currently not set
     #[inline]
-    pub(crate) fn check_sol_deposit_authority(
+    pub(crate) fn check_pay_deposit_authority(
         &self,
-        maybe_sol_deposit_authority: Result<&AccountInfo, ProgramError>,
+        maybe_pay_deposit_authority: Result<&AccountInfo, ProgramError>,
     ) -> Result<(), ProgramError> {
-        if let Some(auth) = self.sol_deposit_authority {
-            let sol_deposit_authority = maybe_sol_deposit_authority?;
-            if auth != *sol_deposit_authority.key {
-                msg!("Expected {}, received {}", auth, sol_deposit_authority.key);
-                return Err(StakePoolError::InvalidSolDepositAuthority.into());
+        if let Some(auth) = self.pay_deposit_authority {
+            let pay_deposit_authority = maybe_pay_deposit_authority?;
+            if auth != *pay_deposit_authority.key {
+                msg!("Expected {}, received {}", auth, pay_deposit_authority.key);
+                return Err(StakePoolError::InvalidPayDepositAuthority.into());
             }
-            if !sol_deposit_authority.is_signer {
-                msg!("SOL Deposit authority signature missing");
+            if !pay_deposit_authority.is_signer {
+                msg!("PAY Deposit authority signature missing");
                 return Err(StakePoolError::SignatureMissing.into());
             }
         }
@@ -351,19 +351,19 @@ impl StakePool {
     }
 
     /// Checks that the sol withdraw authority is valid
-    /// Does nothing if `sol_withdraw_authority` is currently not set
+    /// Does nothing if `pay_withdraw_authority` is currently not set
     #[inline]
-    pub(crate) fn check_sol_withdraw_authority(
+    pub(crate) fn check_pay_withdraw_authority(
         &self,
-        maybe_sol_withdraw_authority: Result<&AccountInfo, ProgramError>,
+        maybe_pay_withdraw_authority: Result<&AccountInfo, ProgramError>,
     ) -> Result<(), ProgramError> {
-        if let Some(auth) = self.sol_withdraw_authority {
-            let sol_withdraw_authority = maybe_sol_withdraw_authority?;
-            if auth != *sol_withdraw_authority.key {
-                return Err(StakePoolError::InvalidSolWithdrawAuthority.into());
+        if let Some(auth) = self.pay_withdraw_authority {
+            let pay_withdraw_authority = maybe_pay_withdraw_authority?;
+            if auth != *pay_withdraw_authority.key {
+                return Err(StakePoolError::InvalidPayWithdrawAuthority.into());
             }
-            if !sol_withdraw_authority.is_signer {
-                msg!("SOL withdraw authority signature missing");
+            if !pay_withdraw_authority.is_signer {
+                msg!("PAY withdraw authority signature missing");
                 return Err(StakePoolError::SignatureMissing.into());
             }
         }
@@ -461,18 +461,18 @@ impl StakePool {
     /// Updates one of the StakePool's fees.
     pub fn update_fee(&mut self, fee: &FeeType) -> Result<(), StakePoolError> {
         match fee {
-            FeeType::SolReferral(new_fee) => self.sol_referral_fee = *new_fee,
+            FeeType::PayReferral(new_fee) => self.pay_referral_fee = *new_fee,
             FeeType::StakeReferral(new_fee) => self.stake_referral_fee = *new_fee,
             FeeType::Epoch(new_fee) => self.next_epoch_fee = Some(*new_fee),
             FeeType::StakeWithdrawal(new_fee) => {
                 new_fee.check_withdrawal(&self.stake_withdrawal_fee)?;
                 self.next_stake_withdrawal_fee = Some(*new_fee)
             }
-            FeeType::SolWithdrawal(new_fee) => {
-                new_fee.check_withdrawal(&self.sol_withdrawal_fee)?;
-                self.next_sol_withdrawal_fee = Some(*new_fee)
+            FeeType::PayWithdrawal(new_fee) => {
+                new_fee.check_withdrawal(&self.pay_withdrawal_fee)?;
+                self.next_pay_withdrawal_fee = Some(*new_fee)
             }
-            FeeType::SolDeposit(new_fee) => self.sol_deposit_fee = *new_fee,
+            FeeType::PayDeposit(new_fee) => self.pay_deposit_fee = *new_fee,
             FeeType::StakeDeposit(new_fee) => self.stake_deposit_fee = *new_fee,
         };
         Ok(())
@@ -535,7 +535,7 @@ impl Default for StakeStatus {
 pub struct ValidatorStakeInfo {
     /// Amount of active stake delegated to this validator, minus the minimum
     /// required stake amount of rent-exemption + `crate::MINIMUM_ACTIVE_STAKE`
-    /// (currently 0.001 SOL).
+    /// (currently 0.001 PAY).
     ///
     /// Note that if `last_update_epoch` does not match the current epoch then
     /// this field may not be accurate
@@ -574,7 +574,7 @@ impl ValidatorStakeInfo {
     /// Performs a very cheap comparison, for checking if this validator stake
     /// info matches the vote account address
     pub fn memcmp_pubkey(data: &[u8], vote_address_bytes: &[u8]) -> bool {
-        sol_memcmp(
+        pay_memcmp(
             &data[41..41 + PUBKEY_BYTES],
             vote_address_bytes,
             PUBKEY_BYTES,
@@ -584,13 +584,13 @@ impl ValidatorStakeInfo {
     /// Performs a very cheap comparison, for checking if this validator stake
     /// info does not have active lamports equal to the given bytes
     pub fn active_lamports_not_equal(data: &[u8], lamports_le_bytes: &[u8]) -> bool {
-        sol_memcmp(&data[0..8], lamports_le_bytes, 8) != 0
+        pay_memcmp(&data[0..8], lamports_le_bytes, 8) != 0
     }
 
     /// Performs a very cheap comparison, for checking if this validator stake
     /// info does not have lamports equal to the given bytes
     pub fn transient_lamports_not_equal(data: &[u8], lamports_le_bytes: &[u8]) -> bool {
-        sol_memcmp(&data[8..16], lamports_le_bytes, 8) != 0
+        pay_memcmp(&data[8..16], lamports_le_bytes, 8) != 0
     }
 
     /// Check that the validator stake info is valid
@@ -773,32 +773,32 @@ impl fmt::Display for Fee {
 /// The type of fees that can be set on the stake pool
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
 pub enum FeeType {
-    /// Referral fees for SOL deposits
-    SolReferral(u8),
+    /// Referral fees for PAY deposits
+    PayReferral(u8),
     /// Referral fees for stake deposits
     StakeReferral(u8),
     /// Management fee paid per epoch
     Epoch(Fee),
     /// Stake withdrawal fee
     StakeWithdrawal(Fee),
-    /// Deposit fee for SOL deposits
-    SolDeposit(Fee),
+    /// Deposit fee for PAY deposits
+    PayDeposit(Fee),
     /// Deposit fee for stake deposits
     StakeDeposit(Fee),
-    /// SOL withdrawal fee
-    SolWithdrawal(Fee),
+    /// PAY withdrawal fee
+    PayWithdrawal(Fee),
 }
 
 impl FeeType {
     /// Checks if the provided fee is too high, returning an error if so
     pub fn check_too_high(&self) -> Result<(), StakePoolError> {
         let too_high = match self {
-            Self::SolReferral(pct) => *pct > 100u8,
+            Self::PayReferral(pct) => *pct > 100u8,
             Self::StakeReferral(pct) => *pct > 100u8,
             Self::Epoch(fee) => fee.numerator > fee.denominator,
             Self::StakeWithdrawal(fee) => fee.numerator > fee.denominator,
-            Self::SolWithdrawal(fee) => fee.numerator > fee.denominator,
-            Self::SolDeposit(fee) => fee.numerator > fee.denominator,
+            Self::PayWithdrawal(fee) => fee.numerator > fee.denominator,
+            Self::PayDeposit(fee) => fee.numerator > fee.denominator,
             Self::StakeDeposit(fee) => fee.numerator > fee.denominator,
         };
         if too_high {
@@ -813,7 +813,7 @@ impl FeeType {
     pub fn can_only_change_next_epoch(&self) -> bool {
         matches!(
             self,
-            Self::StakeWithdrawal(_) | Self::SolWithdrawal(_) | Self::Epoch(_)
+            Self::StakeWithdrawal(_) | Self::PayWithdrawal(_) | Self::Epoch(_)
         )
     }
 }
@@ -823,12 +823,12 @@ mod test {
     use {
         super::*,
         proptest::prelude::*,
-        solana_program::borsh::{
+        paychains_program::borsh::{
             get_instance_packed_len, get_packed_len, try_from_slice_unchecked,
         },
-        solana_program::{
+        paychains_program::{
             clock::{DEFAULT_SLOTS_PER_EPOCH, DEFAULT_S_PER_SLOT, SECONDS_PER_DAY},
-            native_token::LAMPORTS_PER_SOL,
+            native_token::LAMPORTS_PER_PAY,
         },
     };
 
@@ -1015,18 +1015,18 @@ mod test {
 
     #[test]
     fn specific_fee_calculation() {
-        // 10% of 10 SOL in rewards should be 1 SOL in fees
+        // 10% of 10 PAY in rewards should be 1 PAY in fees
         let epoch_fee = Fee {
             numerator: 1,
             denominator: 10,
         };
         let mut stake_pool = StakePool {
-            total_lamports: 100 * LAMPORTS_PER_SOL,
-            pool_token_supply: 100 * LAMPORTS_PER_SOL,
+            total_lamports: 100 * LAMPORTS_PER_PAY,
+            pool_token_supply: 100 * LAMPORTS_PER_PAY,
             epoch_fee,
             ..StakePool::default()
         };
-        let reward_lamports = 10 * LAMPORTS_PER_SOL;
+        let reward_lamports = 10 * LAMPORTS_PER_PAY;
         let pool_token_fee = stake_pool.calc_epoch_fee_amount(reward_lamports).unwrap();
 
         stake_pool.total_lamports += reward_lamports;
@@ -1035,7 +1035,7 @@ mod test {
         let fee_lamports = stake_pool
             .calc_lamports_withdraw_amount(pool_token_fee)
             .unwrap();
-        assert_eq!(fee_lamports, LAMPORTS_PER_SOL);
+        assert_eq!(fee_lamports, LAMPORTS_PER_PAY);
     }
 
     #[test]

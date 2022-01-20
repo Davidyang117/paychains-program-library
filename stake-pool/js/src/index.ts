@@ -7,12 +7,12 @@ import {
   StakeProgram,
   SystemProgram,
   TransactionInstruction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
   Token,
-} from '@solana/spl-token';
+} from '@paychains/spl-token';
 import {
   addAssociatedTokenAccount,
   calcLamportsWithdrawAmount,
@@ -21,7 +21,7 @@ import {
   getTokenAccount,
   newStakeAccount,
   prepareWithdrawAccounts,
-  lamportsToSol,
+  lamportsToPay,
   solToLamports,
 } from './utils';
 import {StakePoolInstruction} from './instructions';
@@ -143,7 +143,7 @@ export async function getStakePoolAccounts(
 /**
  * Creates instructions required to deposit sol to stake pool.
  */
-export async function depositSol(
+export async function depositPay(
   connection: Connection,
   stakePoolAddress: PublicKey,
   from: PublicKey,
@@ -155,9 +155,9 @@ export async function depositSol(
   const fromBalance = await connection.getBalance(from, 'confirmed');
   if (fromBalance < lamports) {
     throw new Error(
-      `Not enough SOL to deposit into pool. Maximum deposit amount is ${lamportsToSol(
+      `Not enough PAY to deposit into pool. Maximum deposit amount is ${lamportsToPay(
         fromBalance,
-      )} SOL.`,
+      )} PAY.`,
     );
   }
 
@@ -167,16 +167,16 @@ export async function depositSol(
   );
   const stakePool = stakePoolAccount.account.data;
 
-  // Ephemeral SOL account just to do the transfer
-  const userSolTransfer = new Keypair();
-  const signers: Signer[] = [userSolTransfer];
+  // Ephemeral PAY account just to do the transfer
+  const userPayTransfer = new Keypair();
+  const signers: Signer[] = [userPayTransfer];
   const instructions: TransactionInstruction[] = [];
 
-  // Create the ephemeral SOL account
+  // Create the ephemeral PAY account
   instructions.push(
     SystemProgram.transfer({
       fromPubkey: from,
-      toPubkey: userSolTransfer.publicKey,
+      toPubkey: userPayTransfer.publicKey,
       lamports,
     }),
   );
@@ -197,10 +197,10 @@ export async function depositSol(
   );
 
   instructions.push(
-    StakePoolInstruction.depositSol({
+    StakePoolInstruction.depositPay({
       stakePool: stakePoolAddress,
       reserveStake: stakePool.reserveStake,
-      fundingAccount: userSolTransfer.publicKey,
+      fundingAccount: userPayTransfer.publicKey,
       destinationPoolAccount: destinationTokenAccount,
       managerFeeAccount: stakePool.managerFeeAccount,
       referralPoolAccount: referrerTokenAccount ?? destinationTokenAccount,
@@ -254,10 +254,10 @@ export async function withdrawStake(
   // Check withdrawFrom balance
   if (tokenAccount.amount.toNumber() < poolAmount) {
     throw new Error(
-      `Not enough token balance to withdraw ${lamportsToSol(
+      `Not enough token balance to withdraw ${lamportsToPay(
         poolAmount,
       )} pool tokens.
-        Maximum withdraw amount is ${lamportsToSol(
+        Maximum withdraw amount is ${lamportsToPay(
           tokenAccount.amount.toNumber(),
         )} pool tokens.`,
     );
@@ -406,9 +406,9 @@ export async function withdrawStake(
 }
 
 /**
- * Creates instructions required to withdraw SOL directly from a stake pool.
+ * Creates instructions required to withdraw PAY directly from a stake pool.
  */
-export async function withdrawSol(
+export async function withdrawPay(
   connection: Connection,
   stakePoolAddress: PublicKey,
   tokenOwner: PublicKey,
@@ -438,10 +438,10 @@ export async function withdrawSol(
   // Check withdrawFrom balance
   if (tokenAccount.amount.toNumber() < poolAmount) {
     throw new Error(
-      `Not enough token balance to withdraw ${lamportsToSol(
+      `Not enough token balance to withdraw ${lamportsToPay(
         poolAmount,
       )} pool tokens.
-          Maximum withdraw amount is ${lamportsToSol(
+          Maximum withdraw amount is ${lamportsToPay(
             tokenAccount.amount.toNumber(),
           )} pool tokens.`,
     );
@@ -469,23 +469,23 @@ export async function withdrawSol(
   );
 
   if (solWithdrawAuthority) {
-    const expectedSolWithdrawAuthority =
+    const expectedPayWithdrawAuthority =
       stakePool.account.data.solWithdrawAuthority;
-    if (!expectedSolWithdrawAuthority) {
+    if (!expectedPayWithdrawAuthority) {
       throw new Error(
-        'SOL withdraw authority specified in arguments but stake pool has none',
+        'PAY withdraw authority specified in arguments but stake pool has none',
       );
     }
     if (
-      solWithdrawAuthority.toBase58() != expectedSolWithdrawAuthority.toBase58()
+      solWithdrawAuthority.toBase58() != expectedPayWithdrawAuthority.toBase58()
     ) {
       throw new Error(
-        `Invalid deposit withdraw specified, expected ${expectedSolWithdrawAuthority.toBase58()}, received ${solWithdrawAuthority.toBase58()}`,
+        `Invalid deposit withdraw specified, expected ${expectedPayWithdrawAuthority.toBase58()}, received ${solWithdrawAuthority.toBase58()}`,
       );
     }
   }
 
-  const withdrawTransaction = StakePoolInstruction.withdrawSol({
+  const withdrawTransaction = StakePoolInstruction.withdrawPay({
     stakePool: stakePoolAddress,
     withdrawAuthority: poolWithdrawAuthority,
     reserveStake: stakePool.account.data.reserveStake,

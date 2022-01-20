@@ -1,6 +1,6 @@
 import pytest
-from solana.rpc.commitment import Confirmed
-from solana.keypair import Keypair
+from paychains.rpc.commitment import Confirmed
+from paychains.keypair import Keypair
 from spl.token.instructions import get_associated_token_address
 
 from stake.actions import create_stake, delegate_stake

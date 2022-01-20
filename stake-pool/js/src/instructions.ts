@@ -1,11 +1,11 @@
 /**
- * Based on https://github.com/solana-labs/solana-web3.js/blob/master/src/stake-program.ts
+ * Based on https://github.com/paychains-labs/paychains-web3.js/blob/master/src/stake-program.ts
  */
 import {
   encodeData,
   decodeData,
   InstructionType,
-} from './copied-from-solana-web3/instruction';
+} from './copied-from-paychains-web3/instruction';
 import {
   PublicKey,
   TransactionInstruction,
@@ -13,9 +13,9 @@ import {
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
   SYSVAR_STAKE_HISTORY_PUBKEY,
-} from '@solana/web3.js';
-import {struct, u8, nu64} from '@solana/buffer-layout';
-import {TOKEN_PROGRAM_ID} from '@solana/spl-token';
+} from '@paychains/web3.js';
+import {struct, u8, nu64} from '@paychains/buffer-layout';
+import {TOKEN_PROGRAM_ID} from '@paychains/spl-token';
 import {STAKE_POOL_PROGRAM_ID} from './constants';
 
 /**
@@ -23,9 +23,9 @@ import {STAKE_POOL_PROGRAM_ID} from './constants';
  */
 export type StakePoolInstructionType =
   | 'DepositStake'
-  | 'DepositSol'
+  | 'DepositPay'
   | 'WithdrawStake'
-  | 'WithdrawSol';
+  | 'WithdrawPay';
 
 /**
  * An enumeration of valid stake InstructionType's
@@ -46,18 +46,18 @@ export const STAKE_POOL_INSTRUCTION_LAYOUTS: {
       nu64('poolTokens'),
     ]),
   },
-  /// Deposit SOL directly into the pool's reserve account. The output is a "pool" token
+  /// Deposit PAY directly into the pool's reserve account. The output is a "pool" token
   /// representing ownership into the pool. Inputs are converted to the current ratio.
-  DepositSol: {
+  DepositPay: {
     index: 14,
     layout: struct([
       u8('instruction') as any, // NOTE do this better
       nu64('lamports'),
     ]),
   },
-  /// Withdraw SOL directly from the pool's reserve account. Fails if the
-  /// reserve does not have enough SOL.
-  WithdrawSol: {
+  /// Withdraw PAY directly from the pool's reserve account. Fails if the
+  /// reserve does not have enough PAY.
+  WithdrawPay: {
     index: 16,
     layout: struct([u8('instruction') as any, nu64('poolTokens')]),
   },
@@ -100,7 +100,7 @@ export type WithdrawStakeParams = {
 /**
  * Withdraw sol instruction params
  */
-export type WithdrawSolParams = {
+export type WithdrawPayParams = {
   stakePool: PublicKey;
   sourcePoolAccount: PublicKey;
   withdrawAuthority: PublicKey;
@@ -116,7 +116,7 @@ export type WithdrawSolParams = {
 /**
  * Deposit sol instruction params
  */
-export type DepositSolParams = {
+export type DepositPayParams = {
   stakePool: PublicKey;
   depositAuthority?: PublicKey | undefined;
   withdrawAuthority: PublicKey;
@@ -134,7 +134,7 @@ export type DepositSolParams = {
  */
 export class StakePoolInstruction {
   /**
-   * Creates a transaction instruction to deposit SOL into a stake pool.
+   * Creates a transaction instruction to deposit PAY into a stake pool.
    */
   static depositStake(params: DepositStakeParams): TransactionInstruction {
     const {
@@ -180,9 +180,9 @@ export class StakePoolInstruction {
   }
 
   /**
-   * Creates a transaction instruction to withdraw SOL from a stake pool.
+   * Creates a transaction instruction to withdraw PAY from a stake pool.
    */
-  static depositSol(params: DepositSolParams): TransactionInstruction {
+  static depositPay(params: DepositPayParams): TransactionInstruction {
     const {
       stakePool,
       withdrawAuthority,
@@ -196,7 +196,7 @@ export class StakePoolInstruction {
       lamports,
     } = params;
 
-    const type = STAKE_POOL_INSTRUCTION_LAYOUTS.DepositSol;
+    const type = STAKE_POOL_INSTRUCTION_LAYOUTS.DepositPay;
     const data = encodeData(type, {lamports});
 
     const keys = [
@@ -228,7 +228,7 @@ export class StakePoolInstruction {
   }
 
   /**
-   * Creates a transaction instruction to withdraw SOL from a stake pool.
+   * Creates a transaction instruction to withdraw PAY from a stake pool.
    */
   static withdrawStake(params: WithdrawStakeParams): TransactionInstruction {
     const {
@@ -272,9 +272,9 @@ export class StakePoolInstruction {
   }
 
   /**
-   * Creates a transaction instruction to withdraw SOL from a stake pool.
+   * Creates a transaction instruction to withdraw PAY from a stake pool.
    */
-  static withdrawSol(params: WithdrawSolParams): TransactionInstruction {
+  static withdrawPay(params: WithdrawPayParams): TransactionInstruction {
     const {
       stakePool,
       withdrawAuthority,
@@ -288,7 +288,7 @@ export class StakePoolInstruction {
       poolTokens,
     } = params;
 
-    const type = STAKE_POOL_INSTRUCTION_LAYOUTS.WithdrawSol;
+    const type = STAKE_POOL_INSTRUCTION_LAYOUTS.WithdrawPay;
     const data = encodeData(type, {poolTokens});
 
     const keys = [
@@ -350,14 +350,14 @@ export class StakePoolInstruction {
   /**
    * Decode a deposit sol instruction and retrieve the instruction params.
    */
-  static decodeDepositSol(
+  static decodeDepositPay(
     instruction: TransactionInstruction,
-  ): DepositSolParams {
+  ): DepositPayParams {
     this.checkProgramId(instruction.programId);
     this.checkKeyLength(instruction.keys, 9);
 
     const {amount} = decodeData(
-      STAKE_POOL_INSTRUCTION_LAYOUTS.DepositSol,
+      STAKE_POOL_INSTRUCTION_LAYOUTS.DepositPay,
       instruction.data,
     );
 

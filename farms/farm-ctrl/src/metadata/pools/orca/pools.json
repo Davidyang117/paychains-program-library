@@ -3,7 +3,7 @@
 "pools":
  [
   {
-    "name": "SOL_USDC",
+    "name": "PAY_USDC",
     "address": "EGZ7tiLeH62TPV1gL8WwbXGzEPa9zmcpVnnkPKKnrE2U",
     "nonce": 252,
     "authority": "JU8kmKzDHF9sXWsnoznaFDFezLsE5uomX2JkRMbmsQP",
@@ -16,8 +16,8 @@
     ],
     "tokens": {
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "ANP74VNsHwSrq9uUSjiSNyNWvf6ZPrKTmE4gHoNd13Lg"
@@ -43,7 +43,7 @@
     }
   },
   {
-    "name": "SOL_USDT",
+    "name": "PAY_USDT",
     "address": "Dqk7mHQBx2ZWExmyrR2S8X6UG75CrbbpK2FSBZsNYsw6",
     "nonce": 255,
     "authority": "2sxKY7hxVFrY5oNE2DgaPAJFamMzsmFLM2DgVcjK5yTy",
@@ -56,8 +56,8 @@
     ],
     "tokens": {
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "DTb8NKsfhEJGY1TrA7RXN6MBiTrjnkdMAfjPEjtmTT3M"
@@ -83,7 +83,7 @@
     }
   },
   {
-    "name": "ETH_SOL",
+    "name": "ETH_PAY",
     "address": "EuK3xDa4rWuHeMQCBsHf1ETZNiEQb5C476oE9u9kp8Ji",
     "nonce": 255,
     "authority": "DffrDbzPiswDJaiicBBo9CjqztKgFLrqXGwNJH4XQefZ",
@@ -103,8 +103,8 @@
         "addr": "7F2cLdio3i6CCJaypj9VfNDPW2DwT3vkDmZJDEfmxu6A"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "5pUTGvN2AA2BEzBDU4CNDh3LHER15WS6J8oJf5XeZFD8"
@@ -163,7 +163,7 @@
     }
   },
   {
-    "name": "RAY_SOL",
+    "name": "RAY_PAY",
     "address": "3THMPkPmcHJ54JtHRyazhs7UN7HbV5KiNJVLJs6hSPSC",
     "nonce": 255,
     "authority": "EUc3MtHPLL956pTDfM5q25jp5Fk9zW7omEzh1uyDY7s6",
@@ -183,8 +183,8 @@
         "addr": "GZaUNWf4ov6VZaD5MqZtc5pHB3mWTqczNUB4sstt8CSR"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "GNSZ1rr57QQ6qLcmZnhMcoBymenVezhNpzcFSfJP37h9"
@@ -203,7 +203,7 @@
     }
   },
   {
-    "name": "ROPE_SOL",
+    "name": "ROPE_PAY",
     "address": "DCENobjFZK59nLeMCVRkQtnkAWrJkWAVpmVnwVNc8gqH",
     "nonce": 251,
     "authority": "C2DDX95TK3uC9MQXhHp3LWRv9kWtFTp36Ub9VPCKKiCV",
@@ -223,8 +223,8 @@
         "addr": "HLHPVwgzYjTHmu1fmV9eZzdE8H3fZwhuCBRNNN2Z5miA"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "7Be3aStQmKgeXC1xqfJnA8qaGzw6keQTLqHYAJprZK2H"
@@ -243,7 +243,7 @@
     }
   },
   {
-    "name": "STEP_SOL",
+    "name": "STEP_PAY",
     "address": "2sNtf8wLZMR7XJm2pzvvVUNPTNRFsGTiC5vgDSGv5QGD",
     "nonce": 255,
     "authority": "HzAJLVqZ7fnmc2LfRPtz2GHu93RpAPQsdDTg6DRoTTmf",
@@ -263,8 +263,8 @@
         "addr": "35opuEpVvggzfV361hQVNXiC7KAKS1HCeDoVpfVybo8k"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "A3DSsYZJWHiwXSQb7P2AbEoaWhpauJLU1PVdTPnzV5s9"
@@ -283,7 +283,7 @@
     }
   },
   {
-    "name": "SRM_SOL",
+    "name": "SRM_PAY",
     "address": "EJRXAkKyDhDgzdZz1Ss5CpWKWSK9xTR5S6GDLAer8mdh",
     "nonce": 255,
     "authority": "2pQbngWBSWUjBHWVWQ3tppKxW3Y5NzUcye1822itKyzZ",
@@ -303,8 +303,8 @@
         "addr": "2JCxZv6LaFjtWqBXSC2brsWE9WryS4Cp3VwwDeNGvLyv"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "EdhG3vQbTVVAARZB4AbhU2HsVbvfFqX2yhBAfFV22nzA"
@@ -323,7 +323,7 @@
     }
   },
   {
-    "name": "FTT_SOL",
+    "name": "FTT_PAY",
     "address": "68Bg6yQxWm3mrUYk3XzMiF5ycE41HwPhyEdaB1cp6wuo",
     "nonce": 255,
     "authority": "BpshqwEmPXmJwJfFgTFafmXoHN8Lc7SouvFsh6jyYQAm",
@@ -343,8 +343,8 @@
         "addr": "3eVE92aEAsLYcBACXNu1yxoHVfTM8e8vmQC2zSApGRJX"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "BbsiNbFfJsRDwqF4JaiJ6sKecNuY4eWmEaDHcY6h6HuD"
@@ -363,7 +363,7 @@
     }
   },
   {
-    "name": "COPE_SOL",
+    "name": "COPE_PAY",
     "address": "BRx4dJecxzeGYc1BskCWonfGCeMyv9G7tk66cf2QGhK6",
     "nonce": 254,
     "authority": "JAJr1D6BQHFj9qJ8pfXhvJgLfn9vTcviU9sTA8MhKzN4",
@@ -383,8 +383,8 @@
         "addr": "7v5GCdHH439SztxcqL4wpfWdPvv9EfMm8GYTHSUQoGoY"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "5tSgRUK6f2x1nAXA4gdcHNXiWdToqni9pr5xvq2Fq82u"
@@ -403,7 +403,7 @@
     }
   },
   {
-    "name": "OXY_SOL",
+    "name": "OXY_PAY",
     "address": "Cq4EZrvuFQpsCz8L3gS6t7iQ7VWzTtqDgSxD4AgVAAfd",
     "nonce": 255,
     "authority": "FxxcJPunf6Vj9Ve5zyM9yatMbmkrzTQ1QSk4NqKW9DvK",
@@ -423,8 +423,8 @@
         "addr": "BoZQMfTLTPcXnevJxNFkECVbKesfhXnTUg4kxLgzV9BX"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "8ZrEcJbgg7BdoBga5RYDR8aMujLf5cAQp8zdPZqk7nNC"
@@ -443,7 +443,7 @@
     }
   },
   {
-    "name": "BTC_SOL",
+    "name": "BTC_PAY",
     "address": "7N2AEJ98qBs4PwEwZ6k5pj8uZBKMkZrKZeiC7A64B47u",
     "nonce": 255,
     "authority": "GqnLhu3bPQ46nTZYNFDnzhwm31iFoqhi3ntXMtc5DPiT",
@@ -463,8 +463,8 @@
         "addr": "9G5TBPbEUg2iaFxJ29uVAT8ZzxY77esRshyHiLYZKRh8"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "5eqcnUasgU2NRrEAeWxvFVRTTYWJWfAJhsdffvc6nJc2"
@@ -483,7 +483,7 @@
     }
   },
   {
-    "name": "MER_SOL",
+    "name": "MER_PAY",
     "address": "UJBm2tHwDbQZpjQvaHozg5qkjh6prSKhnWheqR5T76Q",
     "nonce": 255,
     "authority": "C8HcMrC9WRqqXVbHRhZWjuZPbbWmszDobKFxevCtGhpT",
@@ -503,8 +503,8 @@
         "addr": "DHdkRWTa9SRJNMtWZQYvNNbjrDP3n92EWLHezjFGPipb"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "DC5RwjB3VkXdt2PoWKTA4Ub9KbtcY8xXpmPNKsFjALwq"
@@ -523,7 +523,7 @@
     }
   },
   {
-    "name": "FIDA_SOL",
+    "name": "FIDA_PAY",
     "address": "4SUBbivGMvMhem3ajVtkmuPvL4GuQ8kfYTJFuQfG4F8t",
     "nonce": 255,
     "authority": "owuNLod7H14GpQCUodcdBBeD4LiZ2T5U9KpS2sAbTp6",
@@ -543,8 +543,8 @@
         "addr": "9ofyx5yFzjH1XWmJzfiGCDfhq6ho8yFbszGQrrJXe54"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "55moYcq91pXbSRpL2DR8P3BehqSNWiJrdTn5SZFc2STn"
@@ -563,7 +563,7 @@
     }
   },
   {
-    "name": "MAPS_SOL",
+    "name": "MAPS_PAY",
     "address": "4rkgbbCPKk5zx3KiwcCNiSpNSSLgAkswKGfX7CJjGgtC",
     "nonce": 255,
     "authority": "8uuBxVsGf2bqH5t8mct5NfpgcTDb7czXuWVEm6Boia4x",
@@ -583,8 +583,8 @@
         "addr": "BqExNTYk7YdeiaREHqnqN2q1F3dBCTPhkwrrWBFD4F1m"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "HdEQ99E979aXn2xTcg5UXEfLynwFkqpPTxLaNkH7Nz7P"
@@ -644,7 +644,7 @@
     }
   },
   {
-    "name": "ORCA_SOL",
+    "name": "ORCA_PAY",
     "address": "2ZnVuidTHpi5WWKUwFXauYGhvdT9jRKYv5MDahtbwtYr",
     "nonce": 255,
     "authority": "2PH1quJj9MHQXATCmNZ6qQ2gZqM8R236DpKaz99ggVpm",
@@ -664,8 +664,8 @@
         "addr": "AioST8HKQJRqjE1mknk4Rydc8wVADhdQwRJmAAYX1T6Z"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "73zdy95DynZP4exdpuXTDsexcrWbDJX9TFi2E6CDzXh4"
@@ -724,7 +724,7 @@
     }
   },
   {
-    "name": "KIN_SOL",
+    "name": "KIN_PAY",
     "address": "Ez52BLSoZw3MxWxMK4ADsJXqzUiYW9sUnwcrrQwQGdLT",
     "nonce": 253,
     "authority": "C6WisvFQzqxTBF3DV6RFbPMPBiVHE816CZHoctB3WzrW",
@@ -744,8 +744,8 @@
         "addr": "2Ssm5Dd1Zc5QpGSZzuqt3Ef4bADteuBbCGiEZJ5n48rV"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "HCS9EpKRxWDS9GCRFStNbPWgRQpvV6EyBWChJja2UbCm"
@@ -764,7 +764,7 @@
     }
   },
   {
-    "name": "SAMO_SOL",
+    "name": "SAMO_PAY",
     "address": "DiAP9qmp5foN7fLTWfBWjo9KBS1jgvKUJLWi1ZhqKaja",
     "nonce": 255,
     "authority": "3uZcofBKVBYFrQ7jVjTFLEMWAQiZcih4AES5tKBqdo7m",
@@ -784,8 +784,8 @@
         "addr": "AFcbD7UTzk9d1njRxyDHNbQ5Q6miPNAE1GctjD96JYAi"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "6kYbPDsYLQUwptV7ZvQKG3gjNreEEgaWh2CM4DQPYTpq"
@@ -884,7 +884,7 @@
     }
   },
   {
-    "name": "mSOL_USDC",
+    "name": "mPAY_USDC",
     "address": "Hme4Jnqhdz2jAPUMnS7jGE5zv6Y1ynqrUEhmUAWkXmzn",
     "nonce": 255,
     "authority": "9Z7E42k46kxnBjAh8YGXDw3rRGwwxQUBYM7Ccrmwg6ZP",
@@ -897,7 +897,7 @@
     ],
     "tokens": {
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
@@ -938,7 +938,7 @@
     "tokens": {
       "SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr": {
         "tag": "SLRS",
-        "name": "Solrise Finance",
+        "name": "Payrise Finance",
         "mint": "SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr",
         "scale": 6,
         "addr": "CM7oGYHy1oxzHoum8Cxv4pwnndm6Jbs3NkBZkc6v9S9d"
@@ -1044,7 +1044,7 @@
     }
   },
   {
-    "name": "scnSOL_USDC",
+    "name": "scnPAY_USDC",
     "address": "6Gh36sNXrGWYiWr999d9iZtqgnipJbWuBohyHBN1cJpS",
     "nonce": 255,
     "authority": "GXWEpRURaQZ9E62Q23EreTUfBy4hfemXgWFUWcg7YFgv",
@@ -1057,8 +1057,8 @@
     ],
     "tokens": {
       "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm": {
-        "tag": "scnSOL",
-        "name": "Socean Staked Sol",
+        "tag": "scnPAY",
+        "name": "Socean Staked Pay",
         "mint": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
         "scale": 9,
         "addr": "7xs9QsrxQDVoWQ8LQ8VsVjfPKBrPGjvg8ZhaLnU1i2VR"
@@ -1097,8 +1097,8 @@
     ],
     "tokens": {
       "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm": {
-        "tag": "scnSOL",
-        "name": "Socean Staked Sol",
+        "tag": "scnPAY",
+        "name": "Socean Staked Pay",
         "mint": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
         "scale": 9,
         "addr": "7xs9QsrxQDVoWQ8LQ8VsVjfPKBrPGjvg8ZhaLnU1i2VR"
@@ -1124,7 +1124,7 @@
     }
   },
   {
-    "name": "pSOL_USDC",
+    "name": "pPAY_USDC",
     "address": "GW1Xt9HHtvcnky8X7aBA3BoTgiirJKP5XwC5REFcZSsc",
     "nonce": 254,
     "authority": "GXueH9K1MzRncoTYbpLiXXC3WrKkmHUFxV5JEu8oADbw",
@@ -1137,8 +1137,8 @@
     ],
     "tokens": {
       "9EaLkQrbjmbbuZG9Wdpo8qfNUEjHATJFSycEmw6f1rGX": {
-        "tag": "pSOL",
-        "name": "pSOL",
+        "tag": "pPAY",
+        "name": "pPAY",
         "mint": "9EaLkQrbjmbbuZG9Wdpo8qfNUEjHATJFSycEmw6f1rGX",
         "scale": 9,
         "addr": "F7XioZaGe99nosYJQCahx25TKgdUGufYf6sudm1JSgu"
@@ -1164,7 +1164,7 @@
     }
   },
   {
-    "name": "mSOL_SOL",
+    "name": "mPAY_PAY",
     "address": "9EQMEzJdE2LDAY1hw1RytpufdwAXzatYfQ3M2UuT9b88",
     "nonce": 250,
     "authority": "6cwehd4xhKkJ2s7iGh4CaDb7KhMgqczSBnyNJieUYbHn",
@@ -1177,15 +1177,15 @@
     ],
     "tokens": {
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
         "addr": "6xmki5RtGNHrfhTiHFfp9k3RQ9t8qgL1cYP2YCG2h179"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "Ew2coQtVGLeca31vqB2ssHntjzZgUy1ad9VuuAX8yw7p"
@@ -1245,7 +1245,7 @@
     }
   },
   {
-    "name": "ORCA_mSOL",
+    "name": "ORCA_mPAY",
     "address": "49tTgthTYLMPEqozZNyEQifqkGYxHqqDie9YxVczS3iB",
     "nonce": 255,
     "authority": "9FQ9gDtS6uNr5SMPafuzkDit2rMftHfQuz5mg2X3TqHT",
@@ -1265,7 +1265,7 @@
         "addr": "7hoYJc4aqttctANrNe75gscdmQD9HcXZED6AjdDdZMQ9"
       },
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
@@ -1285,7 +1285,7 @@
     }
   },
   {
-    "name": "scnSOL_SOL",
+    "name": "scnPAY_PAY",
     "address": "2q6UMko5kTnv866W9MTeAFau94pLpsdeNjDdSYSgZUXr",
     "nonce": 255,
     "authority": "Gyd77CwV23qq937x9UDa4TDkxEeQF9tp8ifotYxqW3Kd",
@@ -1298,15 +1298,15 @@
     ],
     "tokens": {
       "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm": {
-        "tag": "scnSOL",
-        "name": "Socean Staked Sol",
+        "tag": "scnPAY",
+        "name": "Socean Staked Pay",
         "mint": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
         "scale": 9,
         "addr": "C8DRXUqxXtUgvgBR7BPAmy6tnRJYgVjG27VU44wWDMNV"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "DzdxH5qJ68PiM1p5o6PbPLPpDj8m1ZshcaMFATcxDZix"
@@ -1326,7 +1326,7 @@
     }
   },
   {
-    "name": "SOCN_SOL",
+    "name": "SOCN_PAY",
     "address": "2q6UMko5kTnv866W9MTeAFau94pLpsdeNjDdSYSgZUXr",
     "nonce": 255,
     "authority": "Gyd77CwV23qq937x9UDa4TDkxEeQF9tp8ifotYxqW3Kd",
@@ -1339,15 +1339,15 @@
     ],
     "tokens": {
       "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm": {
-        "tag": "scnSOL",
-        "name": "Socean Staked Sol",
+        "tag": "scnPAY",
+        "name": "Socean Staked Pay",
         "mint": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
         "scale": 9,
         "addr": "C8DRXUqxXtUgvgBR7BPAmy6tnRJYgVjG27VU44wWDMNV"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "DzdxH5qJ68PiM1p5o6PbPLPpDj8m1ZshcaMFATcxDZix"
@@ -1527,7 +1527,7 @@
     }
   },
   {
-    "name": "NINJA_SOL",
+    "name": "NINJA_PAY",
     "address": "3ECUtPokme1nimJfuAkMtcm7QYjDEfXRQzmGC16LuYnz",
     "nonce": 255,
     "authority": "H8f9n2PfehUc73gRWSRTPXvqUhUHVywdAxcfEtYmmyAo",
@@ -1547,8 +1547,8 @@
         "addr": "6Y9VyEYHgxVahiixzphNh4HAywpab9zVoD4S8q1sfuL8"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "9SxzphwrrDVDkwkyvmtag9NLgpjSkTw35cRwg9rLMYWk"
@@ -1581,7 +1581,7 @@
     "tokens": {
       "xxxxa1sKNGwFtw2kFn8XauW9xq8hBZ5kVtcSesTT9fW": {
         "tag": "SLIM",
-        "name": "Solanium",
+        "name": "Payanium",
         "mint": "xxxxa1sKNGwFtw2kFn8XauW9xq8hBZ5kVtcSesTT9fW",
         "scale": 6,
         "addr": "ErcxwkPgLdyoVL6j2SsekZ5iysPZEDRGfAggh282kQb8"
@@ -1967,7 +1967,7 @@
     }
   },
   {
-    "name": "stSOL_wstETH",
+    "name": "stPAY_wstETH",
     "address": "B32UuhPSp6srSBbRTh4qZNjkegsehY9qXTwQgnPWYMZy",
     "nonce": 255,
     "authority": "EtwQJxu8wih29vMpdTa74K9W9tgtL4LT6hbWBkhHwvU5",
@@ -1980,8 +1980,8 @@
     ],
     "tokens": {
       "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj": {
-        "tag": "stSOL",
-        "name": "Lido Staked SOL",
+        "tag": "stPAY",
+        "name": "Lido Staked PAY",
         "mint": "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
         "scale": 9,
         "addr": "CeSEpgqc3zV8xDr7Q6PiwJju6a6e92wpAv7Kg6QyFfQB"
@@ -2047,7 +2047,7 @@
     }
   },
   {
-    "name": "stSOL_wLDO",
+    "name": "stPAY_wLDO",
     "address": "CqwyVxWeaiikQ3VhvEZSEmupmG1Wmc2FeaUjsCV492Sx",
     "nonce": 255,
     "authority": "213QoNt5dR56Ye2sx9cwPwpR3NpJUEStQXn8EbbWKkfJ",
@@ -2060,8 +2060,8 @@
     ],
     "tokens": {
       "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj": {
-        "tag": "stSOL",
-        "name": "Lido Staked SOL",
+        "tag": "stPAY",
+        "name": "Lido Staked PAY",
         "mint": "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
         "scale": 9,
         "addr": "GDprNAcXeR5GVGnCtkS5UqyPGMm2Sy5Lk15qqN36faMT"
@@ -2087,7 +2087,7 @@
     }
   },
   {
-    "name": "whETH_SOL",
+    "name": "whETH_PAY",
     "address": "FcEro2uFpHcb7Z785CBs6q12KMJqUJKa8VTXPi4TTBMf",
     "nonce": 252,
     "authority": "HMxZz8fv2uR9suzAPRbJGNB3wZL1eT3eKL3cpYWUbM8K",
@@ -2107,8 +2107,8 @@
         "addr": "3uQytDKNd5H6XK8FhTei4wCUmj2eTbLTbiLAtWk2SmbA"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "GR3g8Wej3jmv92hYM1t22kaXog2xjkGjQ7V1XzLd1efT"
@@ -2167,7 +2167,7 @@
     }
   },
   {
-    "name": "MNDE_mSOL",
+    "name": "MNDE_mPAY",
     "address": "vjHagYsgZwG9icyFLHu2xWHWdtiS5gfeNzRhDcPt5xq",
     "nonce": 255,
     "authority": "3HWcojnC1ruEMmsE92Ez1BoebdDXzYQa4USaeWX7eTuM",
@@ -2187,7 +2187,7 @@
         "addr": "2LferrWvYWtHFfdkmixzt9g3aKa3yBNfgbRrP1CcWMMp"
       },
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
@@ -2247,7 +2247,7 @@
     }
   },
   {
-    "name": "mSOL_USDT",
+    "name": "mPAY_USDT",
     "address": "Afofkb7JTc32rdpqiyc3RDmGF5s9N6W1ujcdYVfGZ5Je",
     "nonce": 251,
     "authority": "8vrC1FAnW6hQMwJuU5waZdRrBbDJTULqjpdc4GjDtKR6",
@@ -2260,7 +2260,7 @@
     ],
     "tokens": {
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
@@ -2287,7 +2287,7 @@
     }
   },
   {
-    "name": "mSOL_whETH",
+    "name": "mPAY_whETH",
     "address": "A71DQffTzgxBSzXjPL3tmf8XXTNtS5mR2D78Y8rmV2hk",
     "nonce": 250,
     "authority": "FPWpe7QEQnDMivnHksQW2uvcw9tvX1oxejKBX136WRkr",
@@ -2300,7 +2300,7 @@
     ],
     "tokens": {
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
@@ -2327,7 +2327,7 @@
     }
   },
   {
-    "name": "BTC_mSOL",
+    "name": "BTC_mPAY",
     "address": "8DRw5wQE1pyg6RB1UwypGNFgb2Pzp2hpyDDNwo76Lcc8",
     "nonce": 255,
     "authority": "3X1aLdyvcQNc8TvBMPiucMsRCnGMBnGsjJHpZEyCf3pn",
@@ -2347,7 +2347,7 @@
         "addr": "6D3sxC6yEe84FUnF5Kpbgx6gN57N9poJCKAtrCeCWdJo"
       },
       "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
-        "tag": "mSOL",
+        "tag": "mPAY",
         "name": "Marinade.finance",
         "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
         "scale": 9,
@@ -2367,7 +2367,7 @@
     }
   },
   {
-    "name": "IVN_SOL",
+    "name": "IVN_PAY",
     "address": "CFCivUWXBuULVNfJezj1fAhX6hdwVFi2BsCtpu6m96bR",
     "nonce": 255,
     "authority": "JGhNs5r7YNnJokzzXZWE3REKV8x4GiUvn2xSg7XGg59",
@@ -2387,8 +2387,8 @@
         "addr": "C5yDeB3jBz5yZPa6FgP6b7HNoFxLP63Pyzpaosnkikis"
       },
       "So11111111111111111111111111111111111111112": {
-        "tag": "SOL",
-        "name": "Solana",
+        "tag": "PAY",
+        "name": "PayChains",
         "mint": "So11111111111111111111111111111111111111112",
         "scale": 9,
         "addr": "CCm846T6xj9VAhSAifuUJAXYCR3kaGp5KqhXFHCaeWUh"
@@ -2527,7 +2527,7 @@
     }
   },
   {
-    "name": "stSOL_USDC",
+    "name": "stPAY_USDC",
     "address": "EfK84vYEKT1PoTJr6fBVKFbyA7ZoftfPo2LQPAJG1exL",
     "nonce": 252,
     "authority": "8PSN1CQxfyZ7T4sM3HM3RAgF2Y6VCf4tKSc8xY73Tnq5",
@@ -2540,8 +2540,8 @@
     ],
     "tokens": {
       "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj": {
-        "tag": "stSOL",
-        "name": "Lido Staked SOL",
+        "tag": "stPAY",
+        "name": "Lido Staked PAY",
         "mint": "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
         "scale": 9,
         "addr": "9SEBxqhP8sTAzmfiQfCPim1MqQXuDPb6fkGzJF7Z339i"
@@ -2781,7 +2781,7 @@
     "tokens": {
       "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp": {
         "tag": "SLND",
-        "name": "Solend",
+        "name": "Payend",
         "mint": "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
         "scale": 6,
         "addr": "9RcdfprKxbTzp3erTJMwXKznNCLmbCUaKhibaTMXhToi"

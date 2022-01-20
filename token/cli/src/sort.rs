@@ -1,8 +1,8 @@
 use crate::{get_associated_token_address, output::CliTokenAccount};
 use serde::{Deserialize, Serialize};
-use solana_account_decoder::{parse_token::TokenAccountType, UiAccountData};
-use solana_client::rpc_response::RpcKeyedAccount;
-use solana_sdk::pubkey::Pubkey;
+use paychains_account_decoder::{parse_token::TokenAccountType, UiAccountData};
+use paychains_client::rpc_response::RpcKeyedAccount;
+use paychains_sdk::pubkey::Pubkey;
 use std::{
     collections::{btree_map::Entry, BTreeMap},
     str::FromStr,

@@ -15,7 +15,7 @@ use crate::{
     state::{SwapState, SwapV1, SwapVersion},
 };
 use num_traits::FromPrimitive;
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     decode_error::DecodeError,
     entrypoint::ProgramResult,
@@ -1159,8 +1159,8 @@ mod tests {
             withdraw_all_token_types, withdraw_single_token_type_exact_amount_out,
         },
     };
-    use solana_program::{instruction::Instruction, program_stubs, rent::Rent};
-    use solana_sdk::account::{create_account_for_test, create_is_signer_account_infos, Account};
+    use paychains_program::{instruction::Instruction, program_stubs, rent::Rent};
+    use paychains_sdk::account::{create_account_for_test, create_is_signer_account_infos, Account};
     use spl_token::{
         error::TokenError,
         instruction::{
@@ -1174,13 +1174,13 @@ mod tests {
 
     struct TestSyscallStubs {}
     impl program_stubs::SyscallStubs for TestSyscallStubs {
-        fn sol_invoke_signed(
+        fn pay_invoke_signed(
             &self,
             instruction: &Instruction,
             account_infos: &[AccountInfo],
             signers_seeds: &[&[&[u8]]],
         ) -> ProgramResult {
-            msg!("TestSyscallStubs::sol_invoke_signed()");
+            msg!("TestSyscallStubs::pay_invoke_signed()");
 
             let mut new_account_infos = vec![];
 

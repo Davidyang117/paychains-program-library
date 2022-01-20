@@ -1,11 +1,11 @@
 import {Buffer} from 'buffer';
-import {Layout} from '@solana/buffer-layout';
+import {Layout} from '@paychains/buffer-layout';
 
 /**
  * @internal
  */
 export type InstructionType = {
-  /** The Instruction index (from solana upstream program) */
+  /** The Instruction index (from paychains upstream program) */
   index: number;
   /** The BufferLayout to use to build data */
   layout: Layout<any>; // NOTE do this better

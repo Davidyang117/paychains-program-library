@@ -1,12 +1,12 @@
-//! Solana Farm Client Vault Instructions
+//! PayChains Farm Client Vault Instructions
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::vault::VaultInstruction, pool::PoolRoute, token::TokenSelector,
         vault::VaultStrategy,
     },
-    solana_sdk::{
+    paychains_sdk::{
         instruction::{AccountMeta, Instruction},
         program_error::ProgramError,
         pubkey::Pubkey,

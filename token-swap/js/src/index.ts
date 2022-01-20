@@ -1,15 +1,15 @@
 import assert from 'assert';
 import BN from 'bn.js';
 import {Buffer} from 'buffer';
-import * as BufferLayout from '@solana/buffer-layout';
-import type {Connection, TransactionSignature} from '@solana/web3.js';
+import * as BufferLayout from '@paychains/buffer-layout';
+import type {Connection, TransactionSignature} from '@paychains/web3.js';
 import {
   Account,
   PublicKey,
   SystemProgram,
   Transaction,
   TransactionInstruction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 
 import * as Layout from './layout';
 import {sendAndConfirmTransaction} from './util/send-and-confirm-transaction';

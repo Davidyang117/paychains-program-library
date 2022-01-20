@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use solana_program::{
+use paychains_program::{
     bpf_loader_upgradeable::{self, UpgradeableLoaderState},
     clock::UnixTimestamp,
     instruction::{AccountMeta, Instruction},
@@ -10,9 +10,9 @@ use solana_program::{
     system_instruction, system_program,
 };
 
-use solana_program_test::*;
+use paychains_program_test::*;
 
-use solana_sdk::signature::{Keypair, Signer};
+use paychains_sdk::signature::{Keypair, Signer};
 
 use spl_governance::{
     addins::voter_weight::{VoterWeightAccountType, VoterWeightRecord},
@@ -1108,8 +1108,8 @@ impl GovernanceProgramTest {
 
         let program_data_address = get_program_data_address(&program_keypair.pubkey());
 
-        // Load solana_bpf_rust_upgradeable program taken from solana test programs
-        let path_buf = find_file("solana_bpf_rust_upgradeable.so").unwrap();
+        // Load paychains_bpf_rust_upgradeable program taken from paychains test programs
+        let path_buf = find_file("paychains_bpf_rust_upgradeable.so").unwrap();
         let program_data = read_file(path_buf);
 
         let program_buffer_rent = self
@@ -2060,8 +2060,8 @@ impl GovernanceProgramTest {
         let program_buffer_keypair = Keypair::new();
         let buffer_authority_keypair = Keypair::new();
 
-        // Load solana_bpf_rust_upgraded program taken from solana test programs
-        let path_buf = find_file("solana_bpf_rust_upgraded.so").unwrap();
+        // Load paychains_bpf_rust_upgraded program taken from paychains test programs
+        let path_buf = find_file("paychains_bpf_rust_upgraded.so").unwrap();
         let program_data = read_file(path_buf);
 
         let program_buffer_rent = self

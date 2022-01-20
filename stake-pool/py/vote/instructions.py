@@ -5,10 +5,10 @@ from typing import NamedTuple
 
 from construct import Struct, Switch, Int8ul, Int32ul, Pass  # type: ignore
 
-from solana.publickey import PublicKey
-from solana.sysvar import SYSVAR_CLOCK_PUBKEY, SYSVAR_RENT_PUBKEY
-from solana.transaction import AccountMeta, TransactionInstruction
-from solana._layouts.shared import PUBLIC_KEY_LAYOUT
+from paychains.publickey import PublicKey
+from paychains.sysvar import SYSVAR_CLOCK_PUBKEY, SYSVAR_RENT_PUBKEY
+from paychains.transaction import AccountMeta, TransactionInstruction
+from paychains._layouts.shared import PUBLIC_KEY_LAYOUT
 
 from vote.constants import VOTE_PROGRAM_ID
 

@@ -1,6 +1,6 @@
 use {
     crate::{error::TokenError, id, instruction::TokenInstruction},
-    solana_program::{
+    paychains_program::{
         instruction::{AccountMeta, Instruction},
         program_error::ProgramError,
         program_option::COption,

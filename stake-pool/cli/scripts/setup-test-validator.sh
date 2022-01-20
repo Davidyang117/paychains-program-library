@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Script to setup a local solana-test-validator with the stake pool program
+# Script to setup a local paychains-test-validator with the stake pool program
 # given a maximum number of validators and a file path to store the list of
 # test validator vote accounts.
 
@@ -11,16 +11,16 @@ validator_file=$2
 create_keypair () {
   if test ! -f "$1"
   then
-    solana-keygen new --no-passphrase -s -o "$1"
+    paychains-keygen new --no-passphrase -s -o "$1"
   fi
 }
 
 setup_test_validator() {
-  solana-test-validator -c SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy -c EmiU8AQkB2sswTxVB6aCmsAJftoowZGGDXuytm6X65R3 --url devnet --slots-per-epoch 32 --quiet --reset &
+  paychains-test-validator -c SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy -c EmiU8AQkB2sswTxVB6aCmsAJftoowZGGDXuytm6X65R3 --url devnet --slots-per-epoch 32 --quiet --reset &
   pid=$!
-  solana config set --url http://127.0.0.1:8899
-  solana config set --commitment confirmed
-  echo "waiting for solana-test-validator, pid: $pid"
+  paychains config set --url http://127.0.0.1:8899
+  paychains config set --commitment confirmed
+  echo "waiting for paychains-test-validator, pid: $pid"
   sleep 5
 }
 
@@ -32,8 +32,8 @@ create_vote_accounts () {
     create_keypair "$keys_dir/identity_$number.json"
     create_keypair "$keys_dir/vote_$number.json"
     create_keypair "$keys_dir/withdrawer_$number.json"
-    solana create-vote-account "$keys_dir/vote_$number.json" "$keys_dir/identity_$number.json" "$keys_dir/withdrawer_$number.json" --commission 1
-    vote_pubkey=$(solana-keygen pubkey "$keys_dir/vote_$number.json")
+    paychains create-vote-account "$keys_dir/vote_$number.json" "$keys_dir/identity_$number.json" "$keys_dir/withdrawer_$number.json" --commission 1
+    vote_pubkey=$(paychains-keygen pubkey "$keys_dir/vote_$number.json")
     echo "$vote_pubkey" >> "$validator_file"
   done
 }

@@ -8,7 +8,7 @@ use {
         },
         error::SwapError,
     },
-    solana_program::{
+    paychains_program::{
         program_error::ProgramError,
         program_pack::{IsInitialized, Pack, Sealed},
     },

@@ -4,8 +4,8 @@ use {
     crate::config::Config,
     log::info,
     serde_json::Value,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{
         farm::{FarmRoute, FarmType},
         git_token::GitToken,
         id::main_router_admin,
@@ -14,7 +14,7 @@ use {
         string::{str_to_as64, to_pretty_json},
         vault::{Vault, VaultStrategy, VaultType},
     },
-    solana_sdk::pubkey::Pubkey,
+    paychains_sdk::pubkey::Pubkey,
     std::collections::HashMap,
     std::str::FromStr,
 };

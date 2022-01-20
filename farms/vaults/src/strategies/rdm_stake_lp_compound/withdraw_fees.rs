@@ -2,10 +2,10 @@
 
 use {
     crate::traits::WithdrawFees,
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::vault::VaultInstruction, program::account, program::pda, vault::Vault,
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
     },
 };

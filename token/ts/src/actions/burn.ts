@@ -6,7 +6,7 @@ import {
     Signer,
     Transaction,
     TransactionSignature,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import { TOKEN_PROGRAM_ID } from '../constants';
 import { createBurnInstruction } from '../instructions';
 import { getSigners } from './internal';

@@ -1,6 +1,6 @@
 import pytest
-from solana.keypair import Keypair
-from solana.rpc.commitment import Confirmed
+from paychains.keypair import Keypair
+from paychains.rpc.commitment import Confirmed
 from spl.token.constants import TOKEN_PROGRAM_ID
 
 from stake_pool.constants import find_withdraw_authority_program_address, STAKE_POOL_PROGRAM_ID
@@ -58,11 +58,11 @@ async def test_create_stake_pool(async_client, payer):
     assert pool_data.stake_withdrawal_fee == fee
     assert pool_data.next_stake_withdrawal_fee is None
     assert pool_data.stake_referral_fee == referral_fee
-    assert pool_data.sol_deposit_authority is None
-    assert pool_data.sol_deposit_fee == fee
-    assert pool_data.sol_referral_fee == referral_fee
-    assert pool_data.sol_withdraw_authority is None
-    assert pool_data.sol_withdrawal_fee == fee
-    assert pool_data.next_sol_withdrawal_fee is None
+    assert pool_data.pay_deposit_authority is None
+    assert pool_data.pay_deposit_fee == fee
+    assert pool_data.pay_referral_fee == referral_fee
+    assert pool_data.pay_withdraw_authority is None
+    assert pool_data.pay_withdrawal_fee == fee
+    assert pool_data.next_pay_withdrawal_fee is None
     assert pool_data.last_epoch_pool_token_supply == 0
     assert pool_data.last_epoch_total_lamports == 0

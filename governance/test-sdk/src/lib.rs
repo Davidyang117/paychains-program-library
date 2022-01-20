@@ -2,13 +2,13 @@ use std::borrow::Borrow;
 
 use borsh::BorshDeserialize;
 use cookies::{TokenAccountCookie, WalletCookie};
-use solana_program::{
+use paychains_program::{
     borsh::try_from_slice_unchecked, clock::Clock, instruction::Instruction,
     program_error::ProgramError, program_pack::Pack, pubkey::Pubkey, rent::Rent,
     system_instruction, system_program, sysvar,
 };
-use solana_program_test::{ProgramTest, ProgramTestContext};
-use solana_sdk::{account::Account, signature::Keypair, signer::Signer, transaction::Transaction};
+use paychains_program_test::{ProgramTest, ProgramTestContext};
+use paychains_sdk::{account::Account, signature::Keypair, signer::Signer, transaction::Transaction};
 
 use bincode::deserialize;
 

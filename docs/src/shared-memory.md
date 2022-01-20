@@ -7,16 +7,16 @@ the provided account's data
 
 ## Background
 
-Solana's programming model and the definitions of the Solana terms used in this
+PayChains' programming model and the definitions of the PayChains terms used in this
 document are available at:
 
-- https://docs.solana.com/apps
-- https://docs.solana.com/terminology
+- https://docs.paychains.com/apps
+- https://docs.paychains.com/terminology
 
 ## Source
 
 The Shared memory Program's source is available on
-[github](https://github.com/solana-labs/solana-program-library)
+[github](https://github.com/paychains-labs/paychains-program-library)
 
 ## Interface
 

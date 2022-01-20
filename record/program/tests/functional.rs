@@ -2,15 +2,15 @@
 
 use {
     borsh::BorshSerialize,
-    solana_program::{
+    paychains_program::{
         borsh::get_packed_len,
         instruction::{AccountMeta, Instruction, InstructionError},
         pubkey::Pubkey,
         rent::Rent,
         system_instruction,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::{Transaction, TransactionError},
     },

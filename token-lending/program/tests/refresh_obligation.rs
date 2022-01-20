@@ -3,8 +3,8 @@
 mod helpers;
 
 use helpers::*;
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program_test::*;
+use paychains_sdk::{
     signature::{Keypair, Signer},
     transaction::Transaction,
 };
@@ -28,12 +28,12 @@ async fn test_success() {
     // limit to track compute unit increase
     test.set_compute_max_units(45_000);
 
-    const SOL_DEPOSIT_AMOUNT: u64 = 100;
+    const PAY_DEPOSIT_AMOUNT: u64 = 100;
     const USDC_BORROW_AMOUNT: u64 = 1_000;
-    const SOL_DEPOSIT_AMOUNT_LAMPORTS: u64 =
-        SOL_DEPOSIT_AMOUNT * LAMPORTS_TO_SOL * INITIAL_COLLATERAL_RATIO;
+    const PAY_DEPOSIT_AMOUNT_LAMPORTS: u64 =
+        PAY_DEPOSIT_AMOUNT * LAMPORTS_TO_PAY * INITIAL_COLLATERAL_RATIO;
     const USDC_BORROW_AMOUNT_FRACTIONAL: u64 = USDC_BORROW_AMOUNT * FRACTIONAL_TO_USDC;
-    const SOL_RESERVE_COLLATERAL_LAMPORTS: u64 = 2 * SOL_DEPOSIT_AMOUNT_LAMPORTS;
+    const PAY_RESERVE_COLLATERAL_LAMPORTS: u64 = 2 * PAY_DEPOSIT_AMOUNT_LAMPORTS;
     const USDC_RESERVE_LIQUIDITY_FRACTIONAL: u64 = 2 * USDC_BORROW_AMOUNT_FRACTIONAL;
 
     let user_accounts_owner = Keypair::new();
@@ -48,14 +48,14 @@ async fn test_success() {
     reserve_config.optimal_borrow_rate = BORROW_RATE;
     reserve_config.optimal_utilization_rate = 100;
 
-    let sol_oracle = add_sol_oracle(&mut test);
-    let sol_test_reserve = add_reserve(
+    let pay_oracle = add_pay_oracle(&mut test);
+    let pay_test_reserve = add_reserve(
         &mut test,
         &lending_market,
-        &sol_oracle,
+        &pay_oracle,
         &user_accounts_owner,
         AddReserveArgs {
-            collateral_amount: SOL_RESERVE_COLLATERAL_LAMPORTS,
+            collateral_amount: PAY_RESERVE_COLLATERAL_LAMPORTS,
             liquidity_mint_decimals: 9,
             liquidity_mint_pubkey: spl_token::native_mint::id(),
             config: reserve_config,
@@ -87,7 +87,7 @@ async fn test_success() {
         &lending_market,
         &user_accounts_owner,
         AddObligationArgs {
-            deposits: &[(&sol_test_reserve, SOL_DEPOSIT_AMOUNT_LAMPORTS)],
+            deposits: &[(&pay_test_reserve, PAY_DEPOSIT_AMOUNT_LAMPORTS)],
             borrows: &[(&usdc_test_reserve, USDC_BORROW_AMOUNT_FRACTIONAL)],
             slots_elapsed: 1, // elapsed from 1; clock.slot = 2
             ..AddObligationArgs::default()
@@ -113,13 +113,13 @@ async fn test_success() {
             ),
             refresh_reserve(
                 spl_token_lending::id(),
-                sol_test_reserve.pubkey,
-                sol_oracle.price_pubkey,
+                pay_test_reserve.pubkey,
+                pay_oracle.price_pubkey,
             ),
             refresh_obligation(
                 spl_token_lending::id(),
                 test_obligation.pubkey,
-                vec![sol_test_reserve.pubkey, usdc_test_reserve.pubkey],
+                vec![pay_test_reserve.pubkey, usdc_test_reserve.pubkey],
             ),
         ],
         Some(&payer.pubkey()),
@@ -128,14 +128,14 @@ async fn test_success() {
     transaction.sign(&[&payer], recent_blockhash);
     assert!(banks_client.process_transaction(transaction).await.is_ok());
 
-    let sol_reserve = sol_test_reserve.get_state(&mut banks_client).await;
+    let pay_reserve = pay_test_reserve.get_state(&mut banks_client).await;
     let usdc_reserve = usdc_test_reserve.get_state(&mut banks_client).await;
     let obligation = test_obligation.get_state(&mut banks_client).await;
 
     let collateral = &obligation.deposits[0];
     let liquidity = &obligation.borrows[0];
 
-    let collateral_price = collateral.market_value.try_div(SOL_DEPOSIT_AMOUNT).unwrap();
+    let collateral_price = collateral.market_value.try_div(PAY_DEPOSIT_AMOUNT).unwrap();
 
     let slot_rate = Rate::from_percent(BORROW_RATE)
         .try_div(SLOTS_PER_YEAR)
@@ -160,6 +160,6 @@ async fn test_success() {
         liquidity.borrowed_amount_wads
     );
     assert_eq!(liquidity.borrowed_amount_wads, compound_borrow_wads);
-    assert_eq!(sol_reserve.liquidity.market_price, collateral_price,);
+    assert_eq!(pay_reserve.liquidity.market_price, collateral_price,);
     assert_eq!(usdc_reserve.liquidity.market_price, liquidity_price,);
 }

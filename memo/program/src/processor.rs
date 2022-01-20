@@ -1,6 +1,6 @@
 //! Program state processor
 
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
     pubkey::Pubkey,
 };
@@ -37,10 +37,10 @@ pub fn process_instruction(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use solana_program::{
+    use paychains_program::{
         account_info::IntoAccountInfo, program_error::ProgramError, pubkey::Pubkey,
     };
-    use solana_sdk::account::Account;
+    use paychains_sdk::account::Account;
 
     #[test]
     fn test_utf8_memo() {

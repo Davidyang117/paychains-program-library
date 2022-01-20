@@ -1,13 +1,13 @@
 from typing import Tuple
 
-from solana.keypair import Keypair
-from solana.publickey import PublicKey
-from solana.rpc.async_api import AsyncClient
-from solana.rpc.commitment import Confirmed
-from solana.rpc.types import TxOpts
-from solana.sysvar import SYSVAR_CLOCK_PUBKEY, SYSVAR_RENT_PUBKEY, SYSVAR_STAKE_HISTORY_PUBKEY
-from solana.transaction import Transaction
-import solana.system_program as sys
+from paychains.keypair import Keypair
+from paychains.publickey import PublicKey
+from paychains.rpc.async_api import AsyncClient
+from paychains.rpc.commitment import Confirmed
+from paychains.rpc.types import TxOpts
+from paychains.sysvar import SYSVAR_CLOCK_PUBKEY, SYSVAR_RENT_PUBKEY, SYSVAR_STAKE_HISTORY_PUBKEY
+from paychains.transaction import Transaction
+import paychains.system_program as sys
 
 from spl.token.constants import TOKEN_PROGRAM_ID
 
@@ -194,7 +194,7 @@ async def deposit_sol(
     txn = Transaction()
     txn.add(
         sp.deposit_sol(
-            sp.DepositSolParams(
+            sp.DepositPayParams(
                 program_id=STAKE_POOL_PROGRAM_ID,
                 stake_pool=stake_pool_address,
                 withdraw_authority=withdraw_authority,
@@ -228,7 +228,7 @@ async def withdraw_sol(
     txn = Transaction()
     txn.add(
         sp.withdraw_sol(
-            sp.WithdrawSolParams(
+            sp.WithdrawPayParams(
                 program_id=STAKE_POOL_PROGRAM_ID,
                 stake_pool=stake_pool_address,
                 withdraw_authority=withdraw_authority,
@@ -243,7 +243,7 @@ async def withdraw_sol(
                 stake_program_id=STAKE_PROGRAM_ID,
                 token_program_id=stake_pool.token_program_id,
                 amount=amount,
-                sol_withdraw_authority=None,
+                pay_withdraw_authority=None,
             )
         )
     )

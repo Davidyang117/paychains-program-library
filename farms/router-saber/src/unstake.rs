@@ -1,8 +1,8 @@
 //! Unstake LP tokens from a Saber farm instruction
 
 use {
-    solana_farm_sdk::program::{account, protocol::saber},
-    solana_program::{
+    paychains_farm_sdk::program::{account, protocol::saber},
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         hash::Hasher,

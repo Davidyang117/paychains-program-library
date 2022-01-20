@@ -84,7 +84,7 @@
     },
     "saber-market-sol": {
       "name": "saber-market-sol",
-      "description": "Token which trades against other representations of SOL."
+      "description": "Token which trades against other representations of PAY."
     },
     "saber-market-eth": {
       "name": "saber-market-eth",

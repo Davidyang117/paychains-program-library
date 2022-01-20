@@ -1,5 +1,5 @@
-const web3 = require('@solana/web3.js');
-const splToken = require('@solana/spl-token');
+const web3 = require('@paychains/web3.js');
+const splToken = require('@paychains/spl-token');
 
 (async () => {
   // Connect to cluster
@@ -8,11 +8,11 @@ const splToken = require('@solana/spl-token');
     'confirmed',
   );
 
-  // Generate a new wallet keypair and airdrop SOL
+  // Generate a new wallet keypair and airdrop PAY
   var fromWallet = web3.Keypair.generate();
   var fromAirdropSignature = await connection.requestAirdrop(
     fromWallet.publicKey,
-    web3.LAMPORTS_PER_SOL,
+    web3.LAMPORTS_PER_PAY,
   );
   // Wait for airdrop confirmation
   await connection.confirmTransaction(fromAirdropSignature);
@@ -30,12 +30,12 @@ const splToken = require('@solana/spl-token');
     splToken.TOKEN_PROGRAM_ID,
   );
 
-  // Get the token account of the fromWallet Solana address, if it does not exist, create it
+  // Get the token account of the fromWallet PayChains address, if it does not exist, create it
   const fromTokenAccount = await mint.getOrCreateAssociatedAccountInfo(
     fromWallet.publicKey,
   );
 
-  //get the token account of the toWallet Solana address, if it does not exist, create it
+  //get the token account of the toWallet PayChains address, if it does not exist, create it
   const toTokenAccount = await mint.getOrCreateAssociatedAccountInfo(
     toWallet.publicKey,
   );

@@ -1,4 +1,4 @@
-import {AccountInfo, LAMPORTS_PER_SOL, PublicKey} from '@solana/web3.js';
+import {AccountInfo, LAMPORTS_PER_PAY, PublicKey} from '@paychains/web3.js';
 import BN from 'bn.js';
 import {ValidatorStakeInfo} from '../src';
 import {
@@ -18,8 +18,8 @@ export const stakePoolMock = {
   poolMint: new PublicKey(16),
   managerFeeAccount: new PublicKey(17),
   tokenProgramId: new PublicKey(18),
-  totalLamports: new BN(LAMPORTS_PER_SOL * 999),
-  poolTokenSupply: new BN(LAMPORTS_PER_SOL * 100),
+  totalLamports: new BN(LAMPORTS_PER_PAY * 999),
+  poolTokenSupply: new BN(LAMPORTS_PER_PAY * 100),
   lastUpdateEpoch: new BN('7c', 'hex'),
   lockup: {
     unixTimestamp: new BN(Date.now()),
@@ -60,7 +60,7 @@ export const stakePoolMock = {
     denominator: new BN(0),
     numerator: new BN(0),
   },
-  nextSolWithdrawalFee: {
+  nextPayWithdrawalFee: {
     denominator: new BN(0),
     numerator: new BN(0),
   },
@@ -95,7 +95,7 @@ export const validatorListMock = {
         ),
       ),
       lastUpdateEpoch: new BN('c3', 'hex'),
-      activeStakeLamports: new BN(LAMPORTS_PER_SOL * 100),
+      activeStakeLamports: new BN(LAMPORTS_PER_PAY * 100),
       transientStakeLamports: new BN(22),
       transientSeedSuffixStart: new BN(0),
       transientSeedSuffixEnd: new BN(0),

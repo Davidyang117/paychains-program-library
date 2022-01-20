@@ -1,7 +1,7 @@
 //! Common math routines.
 
 use {
-    solana_program::{msg, program_error::ProgramError},
+    paychains_program::{msg, program_error::ProgramError},
     std::fmt::Display,
 };
 

@@ -5,7 +5,7 @@
 use {
     crate::pack::check_data_len,
     arrayref::{array_mut_ref, mut_array_refs},
-    solana_program::program_error::ProgramError,
+    paychains_program::program_error::ProgramError,
 };
 
 #[repr(u8)]

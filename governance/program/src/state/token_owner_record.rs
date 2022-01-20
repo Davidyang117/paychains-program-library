@@ -13,7 +13,7 @@ use crate::{
 };
 
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     program_error::ProgramError,
     program_pack::IsInitialized,
@@ -307,7 +307,7 @@ pub fn get_token_owner_record_data_for_proposal_owner(
 
 #[cfg(test)]
 mod test {
-    use solana_program::borsh::{get_packed_len, try_from_slice_unchecked};
+    use paychains_program::borsh::{get_packed_len, try_from_slice_unchecked};
 
     use super::*;
 

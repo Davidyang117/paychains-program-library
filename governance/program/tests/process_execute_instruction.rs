@@ -2,12 +2,12 @@
 
 mod program_test;
 
-use solana_program::{
+use paychains_program::{
     instruction::{AccountMeta, Instruction},
     program_error::ProgramError,
     sysvar::clock,
 };
-use solana_program_test::tokio;
+use paychains_program_test::tokio;
 
 use program_test::*;
 use spl_governance::{
@@ -284,7 +284,7 @@ async fn test_execute_upgrade_program_instruction() {
         .err()
         .unwrap();
 
-    // solana_bpf_rust_upgradable returns CustomError == 42
+    // paychains_bpf_rust_upgradable returns CustomError == 42
     assert_eq!(ProgramError::Custom(42), err);
 
     let clock = governance_test.bench.get_clock().await;
@@ -333,7 +333,7 @@ async fn test_execute_upgrade_program_instruction() {
         .err()
         .unwrap();
 
-    // solana_bpf_rust_upgraded returns CustomError == 43
+    // paychains_bpf_rust_upgraded returns CustomError == 43
     assert_eq!(ProgramError::Custom(43), err);
 
     // --------------------------- !!! Voila  !!! -----------------------------

@@ -1,6 +1,6 @@
 use {
     crate::{check_program_account, extension::transfer_fee::instruction::TransferFeeInstruction},
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, program_option::COption,
         pubkey::Pubkey,
     },

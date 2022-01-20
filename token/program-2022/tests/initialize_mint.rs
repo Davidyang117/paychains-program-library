@@ -3,8 +3,8 @@
 mod program_test;
 use {
     program_test::TestContext,
-    solana_program_test::tokio,
-    solana_sdk::{signature::Signer, signer::keypair::Keypair},
+    paychains_program_test::tokio,
+    paychains_sdk::{signature::Signer, signer::keypair::Keypair},
 };
 
 #[tokio::test]

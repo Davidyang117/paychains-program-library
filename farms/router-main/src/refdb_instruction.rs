@@ -1,13 +1,13 @@
 //! Processes raw RefDB instruction
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::refdb::RefDbInstruction,
         program::{account, pda},
         refdb,
         refdb::RefDB,
     },
-    solana_program::{
+    paychains_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint::ProgramResult,
         msg,

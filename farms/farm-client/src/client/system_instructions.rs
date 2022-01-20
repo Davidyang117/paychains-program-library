@@ -1,8 +1,8 @@
-//! Solana Farm Client System Instructions
+//! PayChains Farm Client System Instructions
 
 use {
     crate::error::FarmClientError,
-    solana_sdk::{instruction::Instruction, pubkey::Pubkey, system_instruction},
+    paychains_sdk::{instruction::Instruction, pubkey::Pubkey, system_instruction},
     spl_associated_token_account::create_associated_token_account,
     spl_token::instruction as spl_token_instruction,
 };
@@ -84,17 +84,17 @@ impl FarmClient {
         Ok(system_instruction::assign(wallet_address, program_address))
     }
 
-    /// Creates the native SOL transfer instruction
+    /// Creates the native PAY transfer instruction
     pub fn new_instruction_transfer(
         &self,
         wallet_address: &Pubkey,
         destination_wallet: &Pubkey,
-        sol_ui_amount: f64,
+        pay_ui_amount: f64,
     ) -> Result<Instruction, FarmClientError> {
         Ok(system_instruction::transfer(
             wallet_address,
             destination_wallet,
-            self.ui_amount_to_tokens_with_decimals(sol_ui_amount, spl_token::native_mint::DECIMALS),
+            self.ui_amount_to_tokens_with_decimals(pay_ui_amount, spl_token::native_mint::DECIMALS),
         ))
     }
 

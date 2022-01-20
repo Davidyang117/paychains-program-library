@@ -1,6 +1,6 @@
-import { struct, u32, u8 } from '@solana/buffer-layout';
-import { bool, publicKey, u64 } from '@solana/buffer-layout-utils';
-import { Commitment, Connection, PublicKey } from '@solana/web3.js';
+import { struct, u32, u8 } from '@paychains/buffer-layout';
+import { bool, publicKey, u64 } from '@paychains/buffer-layout-utils';
+import { Commitment, Connection, PublicKey } from '@paychains/web3.js';
 import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } from '../constants';
 import {
     TokenAccountNotFoundError,

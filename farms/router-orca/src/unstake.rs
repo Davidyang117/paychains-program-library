@@ -1,11 +1,11 @@
 //! Unstake LP tokens from an Orca farm instruction
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::orca::OrcaUnstake,
         program::{account, protocol::orca},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         instruction::{AccountMeta, Instruction},

@@ -8,7 +8,7 @@ use crate::state::{
     proposal_instruction::InstructionData,
 };
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     clock::{Slot, UnixTimestamp},
     program_pack::IsInitialized,
     pubkey::Pubkey,

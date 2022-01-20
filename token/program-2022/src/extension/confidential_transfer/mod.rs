@@ -5,8 +5,8 @@ use {
         pod::*,
     },
     bytemuck::{Pod, Zeroable},
-    solana_program::{entrypoint::ProgramResult, pubkey::Pubkey},
-    solana_zk_token_sdk::zk_token_elgamal::pod,
+    paychains_program::{entrypoint::ProgramResult, pubkey::Pubkey},
+    paychains_zk_token_sdk::zk_token_elgamal::pod,
 };
 
 /// Confidential Transfer Extension instructions

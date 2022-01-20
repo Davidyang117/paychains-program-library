@@ -20,7 +20,7 @@ use crate::{
     tools::bpf_loader_upgradeable::get_program_data_address,
 };
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     bpf_loader_upgradeable,
     instruction::{AccountMeta, Instruction},
     pubkey::Pubkey,
@@ -454,8 +454,8 @@ pub enum GovernanceInstruction {
     ///  2. `[]` System
     UpdateProgramMetadata {},
 
-    /// Creates native SOL treasury account for a Governance account
-    /// The account has no data and can be used as a payer for instructions signed by Governance PDAs or as a native SOL treasury
+    /// Creates native PAY treasury account for a Governance account
+    /// The account has no data and can be used as a payer for instructions signed by Governance PDAs or as a native PAY treasury
     ///
     ///  0. `[]` Governance account the treasury account is for
     ///  1. `[writable]` NativeTreasury account. PDA seeds: ['treasury', governance]

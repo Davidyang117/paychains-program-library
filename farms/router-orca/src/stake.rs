@@ -1,11 +1,11 @@
 //! Stake LP tokens to an Orca farm instruction
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::orca::OrcaStake,
         program::{account, protocol::orca},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         instruction::{AccountMeta, Instruction},

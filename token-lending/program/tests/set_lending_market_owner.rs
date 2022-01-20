@@ -3,9 +3,9 @@
 mod helpers;
 
 use helpers::*;
-use solana_program::instruction::{AccountMeta, Instruction};
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program::instruction::{AccountMeta, Instruction};
+use paychains_program_test::*;
+use paychains_sdk::{
     instruction::InstructionError,
     pubkey::Pubkey,
     signature::{Keypair, Signer},

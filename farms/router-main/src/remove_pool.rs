@@ -2,10 +2,10 @@
 
 use {
     crate::refdb_init::{check_or_init_refdb, check_or_init_refdb_target},
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         program::account::close_system_account, refdb, refdb::RefDB, string::ArrayString64,
     },
-    solana_program::{
+    paychains_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint::ProgramResult,
         msg,

@@ -54,8 +54,8 @@ function generateConfig(configType, format) {
             // Bundled for `Buffer` consistency
             // 'bs58',
             // 'buffer',
-            // '@solana/buffer-layout',
-            '@solana/web3.js',
+            // '@paychains/buffer-layout',
+            '@paychains/web3.js',
           ];
 
           break;
@@ -110,8 +110,8 @@ function generateConfig(configType, format) {
         /@babel\/runtime/,
         'assert',
         'bn.js',
-        '@solana/buffer-layout',
-        '@solana/web3.js',
+        '@paychains/buffer-layout',
+        '@paychains/web3.js',
       ];
       break;
     default:

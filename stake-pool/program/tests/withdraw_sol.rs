@@ -4,11 +4,11 @@ mod helpers;
 
 use {
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked, instruction::InstructionError, pubkey::Pubkey, stake,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::Transaction,
         transaction::TransactionError,
@@ -222,23 +222,23 @@ async fn fail_overdraw_reserve() {
         error,
         TransactionError::InstructionError(
             0,
-            InstructionError::Custom(StakePoolError::SolWithdrawalTooLarge as u32)
+            InstructionError::Custom(StakePoolError::PayWithdrawalTooLarge as u32)
         )
     );
 }
 
 #[tokio::test]
-async fn success_with_sol_withdraw_authority() {
+async fn success_with_pay_withdraw_authority() {
     let (mut context, stake_pool_accounts, user, pool_token_account, pool_tokens) = setup().await;
-    let sol_withdraw_authority = Keypair::new();
+    let pay_withdraw_authority = Keypair::new();
 
     let transaction = Transaction::new_signed_with_payer(
         &[instruction::set_funding_authority(
             &id(),
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
-            Some(&sol_withdraw_authority.pubkey()),
-            FundingType::SolWithdraw,
+            Some(&pay_withdraw_authority.pubkey()),
+            FundingType::PayWithdraw,
         )],
         Some(&context.payer.pubkey()),
         &[&context.payer, &stake_pool_accounts.manager],
@@ -258,24 +258,24 @@ async fn success_with_sol_withdraw_authority() {
             &user,
             &pool_token_account,
             pool_tokens,
-            Some(&sol_withdraw_authority),
+            Some(&pay_withdraw_authority),
         )
         .await;
     assert!(error.is_none());
 }
 
 #[tokio::test]
-async fn fail_without_sol_withdraw_authority_signature() {
+async fn fail_without_pay_withdraw_authority_signature() {
     let (mut context, stake_pool_accounts, user, pool_token_account, pool_tokens) = setup().await;
-    let sol_withdraw_authority = Keypair::new();
+    let pay_withdraw_authority = Keypair::new();
 
     let transaction = Transaction::new_signed_with_payer(
         &[instruction::set_funding_authority(
             &id(),
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
-            Some(&sol_withdraw_authority.pubkey()),
-            FundingType::SolWithdraw,
+            Some(&pay_withdraw_authority.pubkey()),
+            FundingType::PayWithdraw,
         )],
         Some(&context.payer.pubkey()),
         &[&context.payer, &stake_pool_accounts.manager],
@@ -306,7 +306,7 @@ async fn fail_without_sol_withdraw_authority_signature() {
         error,
         TransactionError::InstructionError(
             0,
-            InstructionError::Custom(StakePoolError::InvalidSolWithdrawAuthority as u32)
+            InstructionError::Custom(StakePoolError::InvalidPayWithdrawAuthority as u32)
         )
     );
 }

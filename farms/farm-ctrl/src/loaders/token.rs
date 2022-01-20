@@ -8,8 +8,8 @@ use {
     log::info,
     serde::Deserialize,
     serde_json::Value,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{
         git_token::GitToken,
         pack::{as64_deserialize, pubkey_deserialize},
         refdb::StorageType,
@@ -17,7 +17,7 @@ use {
         token::Token,
         token::TokenType,
     },
-    solana_sdk::pubkey::Pubkey,
+    paychains_sdk::pubkey::Pubkey,
     std::collections::HashMap,
 };
 
@@ -41,8 +41,8 @@ pub fn load(client: &FarmClient, config: &Config, data: &str, remove_mode: bool)
         .expect("Token RefDB query error");
     let is_saber = parsed["name"] == "Saber Tokens";
 
-    if parsed["name"] == "Solana Token List" || is_saber {
-        load_solana_tokens(client, config, remove_mode, &parsed, last_index);
+    if parsed["name"] == "PayChains Token List" || is_saber {
+        load_paychains_tokens(client, config, remove_mode, &parsed, last_index);
     } else if parsed["name"] == "Raydium LP Tokens" {
         load_raydium_tokens(client, config, remove_mode, &parsed, last_index);
     } else if parsed["name"] == "Orca Pools" {
@@ -54,7 +54,7 @@ pub fn load(client: &FarmClient, config: &Config, data: &str, remove_mode: bool)
     }
 }
 
-fn load_solana_tokens(
+fn load_paychains_tokens(
     client: &FarmClient,
     config: &Config,
     remove_mode: bool,
@@ -66,8 +66,8 @@ fn load_solana_tokens(
     let tokens = parsed["tokens"].as_array().unwrap();
     for val in tokens {
         let git_token: GitToken = serde_json::from_value(val.clone()).unwrap();
-        let token_type = if git_token.symbol.to_uppercase() == "SOL" {
-            TokenType::WrappedSol
+        let token_type = if git_token.symbol.to_uppercase() == "PAY" {
+            TokenType::WrappedPay
         } else {
             get_token_type_from_tags(&git_token.tags)
         };
@@ -249,10 +249,10 @@ fn load_orca_farm_tokens(
 }
 
 fn get_token_type_from_tags(tags: &[String]) -> TokenType {
-    if tags.contains(&String::from("Solana tokenized")) {
-        TokenType::WrappedSol
+    if tags.contains(&String::from("PayChains tokenized")) {
+        TokenType::WrappedPay
     } else if tags.contains(&String::from("wrapped-sollet")) {
-        TokenType::WrappedSollet
+        TokenType::WrappedPaylet
     } else if tags.contains(&String::from("wrapped"))
         || tags.contains(&String::from("wormhole-v1"))
         || tags.contains(&String::from("wormhole-v2"))

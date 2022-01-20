@@ -1,11 +1,11 @@
 #![cfg(feature = "test-bpf")]
 use std::str::FromStr;
 
-use solana_program::{instruction::Instruction, program_pack::Pack, pubkey::Pubkey};
-use solana_program_test::{processor, tokio, ProgramTest, ProgramTestContext};
+use paychains_program::{instruction::Instruction, program_pack::Pack, pubkey::Pubkey};
+use paychains_program_test::{processor, tokio, ProgramTest, ProgramTestContext};
 
-use solana_program::hash::hashv;
-use solana_sdk::{
+use paychains_program::hash::hashv;
+use paychains_sdk::{
     signature::{Keypair, Signer},
     transaction::Transaction,
     transport::TransportError,
@@ -77,7 +77,7 @@ async fn test_name_service() {
     println!("Name Record Header: {:?}", name_record_header);
 
     let name = "bonfida";
-    let sol_subdomains_class = Keypair::new();
+    let pay_subdomains_class = Keypair::new();
 
     let hashed_name: Vec<u8> = hashv(&[(HASH_PREFIX.to_owned() + name).as_bytes()])
         .as_ref()
@@ -85,7 +85,7 @@ async fn test_name_service() {
     let (name_account_key, _) = get_seeds_and_key(
         &program_id,
         hashed_name.clone(),
-        Some(&sol_subdomains_class.pubkey()),
+        Some(&pay_subdomains_class.pubkey()),
         Some(&root_name_account_key),
     );
 
@@ -99,7 +99,7 @@ async fn test_name_service() {
         name_account_key,
         ctx.payer.pubkey(),
         owner.pubkey(),
-        Some(sol_subdomains_class.pubkey()),
+        Some(pay_subdomains_class.pubkey()),
         Some(root_name_account_key),
         Some(owner.pubkey()),
     )
@@ -107,7 +107,7 @@ async fn test_name_service() {
     sign_send_instruction(
         &mut ctx,
         create_name_instruction,
-        vec![&sol_subdomains_class, &owner],
+        vec![&pay_subdomains_class, &owner],
     )
     .await
     .unwrap();
@@ -123,7 +123,7 @@ async fn test_name_service() {
     )
     .unwrap();
     println!("Name Record Header: {:?}", name_record_header);
-    println!("SOl class {:?}", sol_subdomains_class.pubkey());
+    println!("SOl class {:?}", pay_subdomains_class.pubkey());
 
     let data = "@Dudl".as_bytes().to_vec();
     let update_instruction = update(
@@ -131,11 +131,11 @@ async fn test_name_service() {
         0,
         data,
         name_account_key,
-        sol_subdomains_class.pubkey(),
+        pay_subdomains_class.pubkey(),
         Some(name_record_header.parent_name),
     )
     .unwrap();
-    sign_send_instruction(&mut ctx, update_instruction, vec![&sol_subdomains_class])
+    sign_send_instruction(&mut ctx, update_instruction, vec![&pay_subdomains_class])
         .await
         .unwrap();
 
@@ -156,13 +156,13 @@ async fn test_name_service() {
         ctx.payer.pubkey(),
         name_account_key,
         owner.pubkey(),
-        Some(sol_subdomains_class.pubkey()),
+        Some(pay_subdomains_class.pubkey()),
     )
     .unwrap();
     sign_send_instruction(
         &mut ctx,
         transfer_instruction,
-        vec![&owner, &sol_subdomains_class],
+        vec![&owner, &pay_subdomains_class],
     )
     .await
     .unwrap();

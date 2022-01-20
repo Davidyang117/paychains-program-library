@@ -1,13 +1,13 @@
 //! Common accounts management functions
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         program::pda,
         refdb,
         refdb::RefDB,
         string::{str_to_as64, ArrayString64},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
         pubkey::Pubkey,
     },

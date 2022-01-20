@@ -9,11 +9,11 @@
       "mintAddress": "CzPDyvotTcxNqtPne32yUiEVQ6jk42HZi1Y3hUu7qf7f",
       "decimals": 6
     },
-    "RAY-SOL": {
-      "symbol": "RAY-SOL",
-      "name": "RAY-SOL LP",
+    "RAY-PAY": {
+      "symbol": "RAY-PAY",
+      "name": "RAY-PAY LP",
       "coin": "RAY",
-      "pc": "SOL",
+      "pc": "PAY",
       "mintAddress": "134Cct3CSdRCbYgq5SkwmHgfwjJ7EM5cG9PzqffWqECx",
       "decimals": 6
     },
@@ -73,11 +73,11 @@
       "mintAddress": "DSX5E21RE9FB9hM8Nh8xcXQfPK6SzRaJiywemHBSsfup",
       "decimals": 6
     },
-    "RAY-SOL-V3": {
-      "symbol": "RAY-SOL",
-      "name": "RAY-SOL V3 LP",
+    "RAY-PAY-V3": {
+      "symbol": "RAY-PAY",
+      "name": "RAY-PAY V3 LP",
       "coin": "RAY",
-      "pc": "SOL",
+      "pc": "PAY",
       "mintAddress": "F5PPQHGcznZ2FxD9JaxJMXaf7XkaFFJ6zzTBcW8osQjw",
       "decimals": 6
     },
@@ -129,10 +129,10 @@
       "mintAddress": "C3sT1R3nsw4AVdepvLTLKr5Gvszr7jufyBWUCvy4TUvT",
       "decimals": 6
     },
-    "SOL-USDC-V4": {
-      "symbol": "SOL-USDC",
-      "name": "SOL-USDC LP",
-      "coin": "SOL",
+    "PAY-USDC-V4": {
+      "symbol": "PAY-USDC",
+      "name": "PAY-USDC LP",
+      "coin": "PAY",
       "pc": "USDC",
       "mintAddress": "8HoQnePLqPj4M7PUDzfw8e3Ymdwgc7NLGnaTUapubyvu",
       "decimals": 9
@@ -209,10 +209,10 @@
       "mintAddress": "2Vyyeuyd15Gp8aH6uKE72c4hxc8TVSLibxDP9vzspQWG",
       "decimals": 0
     },
-    "SOL-USDT-V4": {
-      "symbol": "SOL-USDT",
-      "name": "SOL-USDT LP",
-      "coin": "SOL",
+    "PAY-USDT-V4": {
+      "symbol": "PAY-USDT",
+      "name": "PAY-USDT LP",
+      "coin": "PAY",
       "pc": "USDT",
       "mintAddress": "Epm4KfTj4DMrvqn6Bwg2Tr2N8vhQuNbuK8bESFp4k33K",
       "decimals": 9
@@ -337,11 +337,11 @@
       "mintAddress": "9VoY3VERETuc2FoadMSYYizF26mJinY514ZpEzkHMtwG",
       "decimals": 6
     },
-    "SRM-SOL-V4": {
-      "symbol": "SRM-SOL",
-      "name": "SRM-SOL LP",
+    "SRM-PAY-V4": {
+      "symbol": "SRM-PAY",
+      "name": "SRM-PAY LP",
       "coin": "SRM",
-      "pc": "SOL",
+      "pc": "PAY",
       "mintAddress": "AKJHspCwDhABucCxNLXUSfEzb7Ny62RqFtC9uNjJi4fq",
       "decimals": 6
     },
@@ -481,11 +481,11 @@
       "mintAddress": "mjQH33MqZv5aKAbKHi8dG3g3qXeRQqq1GFcXceZkNSr",
       "decimals": 6
     },
-    "RAY-SOL-V4": {
-      "symbol": "RAY-SOL",
-      "name": "RAY-SOL LP",
+    "RAY-PAY-V4": {
+      "symbol": "RAY-PAY",
+      "name": "RAY-PAY LP",
       "coin": "RAY",
-      "pc": "SOL",
+      "pc": "PAY",
       "mintAddress": "89ZKE4aoyfLBe2RuV6jM3JGNhaV18Nxh8eNtjRcndBip",
       "decimals": 6
     },
@@ -505,19 +505,19 @@
       "mintAddress": "cjZmbt8sJgaoyWYUttomAu5LJYU44ZrcKTbzTSEPDVw",
       "decimals": 9
     },
-    "mSOL-USDC-V4": {
-      "symbol": "mSOL-USDC",
-      "name": "mSOL-USDC LP",
-      "coin": "mSOL",
+    "mPAY-USDC-V4": {
+      "symbol": "mPAY-USDC",
+      "name": "mPAY-USDC LP",
+      "coin": "mPAY",
       "pc": "USDC",
       "mintAddress": "4xTpJ4p76bAeggXoYywpCCNKfJspbuRzZ79R7pRhbqSf",
       "decimals": 9
     },
-    "mSOL-SOL-V4": {
-      "symbol": "mSOL-SOL",
-      "name": "mSOL-SOL LP",
-      "coin": "mSOL",
-      "pc": "SOL",
+    "mPAY-PAY-V4": {
+      "symbol": "mPAY-PAY",
+      "name": "mPAY-PAY LP",
+      "coin": "mPAY",
+      "pc": "PAY",
       "mintAddress": "5ijRoAHVgd5T5CNtK5KDRUBZ7Bffb69nktMj5n6ks6m4",
       "decimals": 9
     },
@@ -641,18 +641,18 @@
       "mintAddress": "A7GCVHA8NSsbdFscHdoNU41tL1TRKNmCH4K94CgcLK9F",
       "decimals": 6
     },
-    "ETH-SOL-V4": {
-      "symbol": "ETH-SOL",
-      "name": "ETH-SOL LP",
+    "ETH-PAY-V4": {
+      "symbol": "ETH-PAY",
+      "name": "ETH-PAY LP",
       "coin": "ETH",
-      "pc": "SOL",
+      "pc": "PAY",
       "mintAddress": "GKfgC86iJoMjwAtcyiLu6nWnjggqUXsDQihXkP14fDez",
       "decimals": 6
     },
-    "stSOL-USDC-V4": {
-      "symbol": "stSOL-USDC",
-      "name": "stSOL-USDC LP",
-      "coin": "stSOL",
+    "stPAY-USDC-V4": {
+      "symbol": "stPAY-USDC",
+      "name": "stPAY-USDC LP",
+      "coin": "stPAY",
       "pc": "USDC",
       "mintAddress": "HDUJMwYZkjUZre63xUeDhdCi8c6LgUDiBqxmP3QC3VPX",
       "decimals": 9

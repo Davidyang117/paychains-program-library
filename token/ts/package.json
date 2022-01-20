@@ -1,8 +1,8 @@
 {
-    "name": "@solana/spl-token",
+    "name": "@paychains/spl-token",
     "version": "0.2.0-alpha.0",
-    "author": "Solana Maintainers <maintainers@solana.foundation>",
-    "repository": "https://github.com/solana-labs/solana-program-library",
+    "author": "PayChains Maintainers <maintainers@paychains.foundation>",
+    "repository": "https://github.com/paychains-labs/paychains-program-library",
     "license": "Apache-2.0",
     "engines": {
         "node": ">= 14"
@@ -39,9 +39,9 @@
         "nuke": "shx rm -rf node_modules yarn.lock"
     },
     "dependencies": {
-        "@solana/buffer-layout": "^4.0.0",
-        "@solana/buffer-layout-utils": "^0.1.1",
-        "@solana/web3.js": "^1.20.0"
+        "@paychains/buffer-layout": "^4.0.0",
+        "@paychains/buffer-layout-utils": "^0.1.1",
+        "@paychains/web3.js": "^1.20.0"
     },
     "devDependencies": {
         "@types/chai-as-promised": "^7.1.4",

@@ -1,6 +1,6 @@
 use {
-    solana_program_test::{processor, tokio::sync::Mutex, ProgramTest},
-    solana_sdk::{
+    paychains_program_test::{processor, tokio::sync::Mutex, ProgramTest},
+    paychains_sdk::{
         instruction::Instruction,
         signer::{keypair::Keypair, Signer},
     },

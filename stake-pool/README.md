@@ -1,6 +1,6 @@
 # stake-pool program
 
-Full documentation is available at https://spl.solana.com/stake-pool
+Full documentation is available at https://spl.paychains.com/stake-pool
 
 The command-line interface tool is available in the `./cli` directory.
 

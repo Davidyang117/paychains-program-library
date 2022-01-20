@@ -7,10 +7,10 @@ from construct import Switch  # type: ignore
 from construct import Int32ul, Pass  # type: ignore
 from construct import Struct
 
-from solana._layouts.shared import PUBLIC_KEY_LAYOUT
-from solana.publickey import PublicKey
-from solana.sysvar import SYSVAR_RENT_PUBKEY
-from solana.transaction import AccountMeta, TransactionInstruction
+from paychains._layouts.shared import PUBLIC_KEY_LAYOUT
+from paychains.publickey import PublicKey
+from paychains.sysvar import SYSVAR_RENT_PUBKEY
+from paychains.transaction import AccountMeta, TransactionInstruction
 
 from stake.constants import STAKE_PROGRAM_ID
 from stake.state import AUTHORIZED_LAYOUT, LOCKUP_LAYOUT, Authorized, Lockup, StakeAuthorize

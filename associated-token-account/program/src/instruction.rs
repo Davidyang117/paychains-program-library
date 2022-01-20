@@ -1,7 +1,7 @@
 //! Program instructions
 
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     instruction::{AccountMeta, Instruction},
     pubkey::Pubkey,
 };
@@ -40,7 +40,7 @@ pub fn create_associated_token_account(
             AccountMeta::new(associated_account_address, false),
             AccountMeta::new_readonly(*wallet_address, false),
             AccountMeta::new_readonly(*spl_token_mint_address, false),
-            AccountMeta::new_readonly(solana_program::system_program::id(), false),
+            AccountMeta::new_readonly(paychains_program::system_program::id(), false),
             AccountMeta::new_readonly(spl_token::id(), false),
         ],
         data: instruction_data.try_to_vec().unwrap(),

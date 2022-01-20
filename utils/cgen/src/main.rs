@@ -32,7 +32,7 @@ fn token<P: AsRef<Path>>(crate_dir: P) {
         },
         parse: cbindgen::ParseConfig {
             parse_deps: true,
-            include: Some(vec!["solana-program".to_string(), "solana-sdk".to_string()]),
+            include: Some(vec!["paychains-program".to_string(), "paychains-sdk".to_string()]),
             ..cbindgen::ParseConfig::default()
         },
         ..cbindgen::Config::default()

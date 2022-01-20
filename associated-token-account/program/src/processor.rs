@@ -3,7 +3,7 @@
 use crate::*;
 use crate::{instruction::AssociatedTokenAccountInstruction, tools::account::create_pda_account};
 use borsh::BorshDeserialize;
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     entrypoint::ProgramResult,
     msg,

@@ -1,10 +1,10 @@
 #![cfg(feature = "test-bpf")]
 mod program_test;
 
-use solana_program_test::*;
+use paychains_program_test::*;
 
 use program_test::*;
-use solana_sdk::signature::{Keypair, Signer};
+use paychains_sdk::signature::{Keypair, Signer};
 use spl_governance::{
     error::GovernanceError, tools::bpf_loader_upgradeable::get_program_upgrade_authority,
 };

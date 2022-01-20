@@ -6,11 +6,11 @@
 
 import BN from 'bn.js'; // eslint-disable-line
 import {Buffer} from 'buffer';
-import {Layout} from '@solana/buffer-layout';
-import {Connection, PublicKey, TransactionInstruction} from '@solana/web3.js';
-import type {Signer, TransactionSignature} from '@solana/web3.js';
+import {Layout} from '@paychains/buffer-layout';
+import {Connection, PublicKey, TransactionInstruction} from '@paychains/web3.js';
+import type {Signer, TransactionSignature} from '@paychains/web3.js';
 
-declare module '@solana/spl-token' {
+declare module '@paychains/spl-token' {
   declare export var TOKEN_PROGRAM_ID;
   declare export var ASSOCIATED_TOKEN_PROGRAM_ID;
   declare export class u64 extends BN {

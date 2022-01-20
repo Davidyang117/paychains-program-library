@@ -4,8 +4,8 @@ import {
   PublicKey,
   SystemProgram,
   Transaction,
-} from '@solana/web3.js';
-import {AccountLayout, Token, TOKEN_PROGRAM_ID} from '@solana/spl-token';
+} from '@paychains/web3.js';
+import {AccountLayout, Token, TOKEN_PROGRAM_ID} from '@paychains/spl-token';
 
 import {TokenSwap, CurveType, TOKEN_SWAP_PROGRAM_ID} from '../src';
 import {sendAndConfirmTransaction} from '../src/util/send-and-confirm-transaction';

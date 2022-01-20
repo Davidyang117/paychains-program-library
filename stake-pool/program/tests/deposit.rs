@@ -6,14 +6,14 @@ use {
     bincode::deserialize,
     borsh::BorshSerialize,
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked,
         instruction::{AccountMeta, Instruction, InstructionError},
         pubkey::Pubkey,
         stake, sysvar,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::Transaction,
         transaction::TransactionError,
@@ -214,7 +214,7 @@ async fn success() {
         get_token_balance(&mut context.banks_client, &pool_token_account).await;
     let tokens_issued_user = tokens_issued
         - post_stake_pool
-            .calc_pool_tokens_sol_deposit_fee(stake_rent)
+            .calc_pool_tokens_pay_deposit_fee(stake_rent)
             .unwrap()
         - post_stake_pool
             .calc_pool_tokens_stake_deposit_fee(stake_lamports - stake_rent)
@@ -237,7 +237,7 @@ async fn success() {
         pre_validator_stake_item.stake_lamports() + stake_lamports - stake_rent,
     );
 
-    // Check validator stake account actual SOL balance
+    // Check validator stake account actual PAY balance
     let validator_stake_account = get_account(
         &mut context.banks_client,
         &validator_stake_account.stake_account,
@@ -390,7 +390,7 @@ async fn success_with_extra_stake_lamports() {
         get_token_balance(&mut context.banks_client, &pool_token_account).await;
 
     let fee_tokens = post_stake_pool
-        .calc_pool_tokens_sol_deposit_fee(extra_lamports + stake_rent)
+        .calc_pool_tokens_pay_deposit_fee(extra_lamports + stake_rent)
         .unwrap()
         + post_stake_pool
             .calc_pool_tokens_stake_deposit_fee(stake_lamports - stake_rent)
@@ -432,7 +432,7 @@ async fn success_with_extra_stake_lamports() {
         pre_validator_stake_item.stake_lamports() + stake_lamports - stake_rent,
     );
 
-    // Check validator stake account actual SOL balance
+    // Check validator stake account actual PAY balance
     let validator_stake_account = get_account(
         &mut context.banks_client,
         &validator_stake_account.stake_account,
@@ -952,7 +952,7 @@ async fn success_with_referral_fee() {
     let rent = context.banks_client.get_rent().await.unwrap();
     let stake_rent = rent.minimum_balance(std::mem::size_of::<stake::state::StakeState>());
     let fee_tokens = stake_pool
-        .calc_pool_tokens_sol_deposit_fee(stake_rent)
+        .calc_pool_tokens_pay_deposit_fee(stake_rent)
         .unwrap()
         + stake_pool
             .calc_pool_tokens_stake_deposit_fee(stake_lamports - stake_rent)

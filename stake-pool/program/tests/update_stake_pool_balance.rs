@@ -4,11 +4,11 @@ mod helpers;
 
 use {
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked, instruction::InstructionError, pubkey::Pubkey,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::TransactionError,
     },

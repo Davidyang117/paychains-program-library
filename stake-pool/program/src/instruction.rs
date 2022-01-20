@@ -9,7 +9,7 @@ use {
         MAX_VALIDATORS_TO_UPDATE,
     },
     borsh::{BorshDeserialize, BorshSchema, BorshSerialize},
-    solana_program::{
+    paychains_program::{
         instruction::{AccountMeta, Instruction},
         pubkey::Pubkey,
         stake, system_program, sysvar,
@@ -34,10 +34,10 @@ pub enum PreferredValidatorType {
 pub enum FundingType {
     /// Sets the stake deposit authority
     StakeDeposit,
-    /// Sets the SOL deposit authority
-    SolDeposit,
-    /// Sets the SOL withdraw authority
-    SolWithdraw,
+    /// Sets the PAY deposit authority
+    PayDeposit,
+    /// Sets the PAY withdraw authority
+    PayWithdraw,
 }
 
 /// Instructions supported by the StakePool program.
@@ -81,7 +81,7 @@ pub enum StakePoolInstruction {
     ///   list of managed validators.
     ///
     ///   The stake account will have the rent-exempt amount plus
-    ///   `crate::MINIMUM_ACTIVE_STAKE` (currently 0.001 SOL).
+    ///   `crate::MINIMUM_ACTIVE_STAKE` (currently 0.001 PAY).
     ///
     ///   0. `[w]` Stake pool
     ///   1. `[s]` Staker
@@ -101,7 +101,7 @@ pub enum StakePoolInstruction {
     ///   (Staker only) Removes validator from the pool
     ///
     ///   Only succeeds if the validator stake account has the minimum of
-    ///   `crate::MINIMUM_ACTIVE_STAKE` (currently 0.001 SOL) plus the rent-exempt
+    ///   `crate::MINIMUM_ACTIVE_STAKE` (currently 0.001 PAY) plus the rent-exempt
     ///   amount.
     ///
     ///   0. `[w]` Stake pool
@@ -111,7 +111,7 @@ pub enum StakePoolInstruction {
     ///   4. `[w]` Validator stake list storage account
     ///   5. `[w]` Stake account to remove from the pool
     ///   6. `[]` Transient stake account, to check that that we're not trying to activate
-    ///   7. `[w]` Destination stake account, to receive the minimum SOL from the validator stake account
+    ///   7. `[w]` Destination stake account, to receive the minimum PAY from the validator stake account
     ///   8. `[]` Sysvar clock
     ///   9. `[]` Stake program id,
     RemoveValidatorFromPool,
@@ -157,7 +157,7 @@ pub enum StakePoolInstruction {
     ///
     /// This instruction only succeeds if the transient stake account does not exist.
     /// The minimum amount to move is rent-exemption plus `crate::MINIMUM_ACTIVE_STAKE`
-    /// (currently 0.001 SOL) in order to avoid issues on credits observed when
+    /// (currently 0.001 PAY) in order to avoid issues on credits observed when
     /// merging active stakes later.
     ///
     ///  0. `[]` Stake pool
@@ -191,7 +191,7 @@ pub enum StakePoolInstruction {
     /// stake pool
     ///
     /// In order to avoid users abusing the stake pool as a free conversion
-    /// between SOL staked on different validators, the staker can force all
+    /// between PAY staked on different validators, the staker can force all
     /// deposits and/or withdraws to go to one chosen account, or unset that account.
     ///
     /// 0. `[w]` Stake pool
@@ -276,9 +276,9 @@ pub enum StakePoolInstruction {
 
     ///   Withdraw the token from the pool at the current ratio.
     ///
-    ///   Succeeds if the stake account has enough SOL to cover the desired amount
+    ///   Succeeds if the stake account has enough PAY to cover the desired amount
     ///   of pool tokens, and if the withdrawal keeps the total staked amount
-    ///   above the minimum of rent-exempt amount + 0.001 SOL.
+    ///   above the minimum of rent-exempt amount + 0.001 PAY.
     ///
     ///   When allowing withdrawals, the order of priority goes:
     ///
@@ -333,12 +333,12 @@ pub enum StakePoolInstruction {
     ///  2. '[]` New staker pubkey
     SetStaker,
 
-    ///   Deposit SOL directly into the pool's reserve account. The output is a "pool" token
+    ///   Deposit PAY directly into the pool's reserve account. The output is a "pool" token
     ///   representing ownership into the pool. Inputs are converted to the current ratio.
     ///
     ///   0. `[w]` Stake pool
     ///   1. `[]` Stake pool withdraw authority
-    ///   2. `[w]` Reserve stake account, to deposit SOL
+    ///   2. `[w]` Reserve stake account, to deposit PAY
     ///   3. `[s]` Account providing the lamports to be deposited into the pool
     ///   4. `[w]` User account to receive pool tokens
     ///   5. `[w]` Account to receive fee tokens
@@ -347,23 +347,23 @@ pub enum StakePoolInstruction {
     ///   8. `[]` System program account
     ///   9. `[]` Token program id
     ///  10. `[s]` (Optional) Stake pool sol deposit authority.
-    DepositSol(u64),
+    DepositPay(u64),
 
-    ///  (Manager only) Update SOL deposit authority
+    ///  (Manager only) Update PAY deposit authority
     ///
     ///  0. `[w]` StakePool
     ///  1. `[s]` Manager
     ///  2. '[]` New authority pubkey or none
     SetFundingAuthority(FundingType),
 
-    ///   Withdraw SOL directly from the pool's reserve account. Fails if the
-    ///   reserve does not have enough SOL.
+    ///   Withdraw PAY directly from the pool's reserve account. Fails if the
+    ///   reserve does not have enough PAY.
     ///
     ///   0. `[w]` Stake pool
     ///   1. `[]` Stake pool withdraw authority
     ///   2. `[s]` User transfer authority, for pool token account
     ///   3. `[w]` User account to burn pool tokens
-    ///   4. `[w]` Reserve stake account, to withdraw SOL
+    ///   4. `[w]` Reserve stake account, to withdraw PAY
     ///   5. `[w]` Account receiving the lamports from the reserve, must be a system account
     ///   6. `[w]` Account to receive pool fee tokens
     ///   7. `[w]` Pool token mint account
@@ -372,7 +372,7 @@ pub enum StakePoolInstruction {
     ///  10. `[]` Stake program account
     ///  11. `[]` Token program id
     ///  12. `[s]` (Optional) Stake pool sol withdraw authority
-    WithdrawSol(u64),
+    WithdrawPay(u64),
 }
 
 /// Creates an 'initialize' instruction.
@@ -997,7 +997,7 @@ pub fn deposit_stake_with_authority(
     ]
 }
 
-/// Creates instructions required to deposit SOL directly into a stake pool.
+/// Creates instructions required to deposit PAY directly into a stake pool.
 pub fn deposit_sol(
     program_id: &Pubkey,
     stake_pool: &Pubkey,
@@ -1026,19 +1026,19 @@ pub fn deposit_sol(
     Instruction {
         program_id: *program_id,
         accounts,
-        data: StakePoolInstruction::DepositSol(amount)
+        data: StakePoolInstruction::DepositPay(amount)
             .try_to_vec()
             .unwrap(),
     }
 }
 
-/// Creates instruction required to deposit SOL directly into a stake pool.
+/// Creates instruction required to deposit PAY directly into a stake pool.
 /// The difference with `deposit_sol()` is that a deposit
 /// authority must sign this instruction.
-pub fn deposit_sol_with_authority(
+pub fn deposit_pay_with_authority(
     program_id: &Pubkey,
     stake_pool: &Pubkey,
-    sol_deposit_authority: &Pubkey,
+    pay_deposit_authority: &Pubkey,
     stake_pool_withdraw_authority: &Pubkey,
     reserve_stake_account: &Pubkey,
     lamports_from: &Pubkey,
@@ -1060,12 +1060,12 @@ pub fn deposit_sol_with_authority(
         AccountMeta::new(*pool_mint, false),
         AccountMeta::new_readonly(system_program::id(), false),
         AccountMeta::new_readonly(*token_program_id, false),
-        AccountMeta::new_readonly(*sol_deposit_authority, true),
+        AccountMeta::new_readonly(*pay_deposit_authority, true),
     ];
     Instruction {
         program_id: *program_id,
         accounts,
-        data: StakePoolInstruction::DepositSol(amount)
+        data: StakePoolInstruction::DepositPay(amount)
             .try_to_vec()
             .unwrap(),
     }
@@ -1111,7 +1111,7 @@ pub fn withdraw_stake(
     }
 }
 
-/// Creates instruction required to withdraw SOL directly from a stake pool.
+/// Creates instruction required to withdraw PAY directly from a stake pool.
 pub fn withdraw_sol(
     program_id: &Pubkey,
     stake_pool: &Pubkey,
@@ -1142,19 +1142,19 @@ pub fn withdraw_sol(
     Instruction {
         program_id: *program_id,
         accounts,
-        data: StakePoolInstruction::WithdrawSol(pool_tokens)
+        data: StakePoolInstruction::WithdrawPay(pool_tokens)
             .try_to_vec()
             .unwrap(),
     }
 }
 
-/// Creates instruction required to withdraw SOL directly from a stake pool.
+/// Creates instruction required to withdraw PAY directly from a stake pool.
 /// The difference with `withdraw_sol()` is that the sol withdraw authority
 /// must sign this instruction.
-pub fn withdraw_sol_with_authority(
+pub fn withdraw_pay_with_authority(
     program_id: &Pubkey,
     stake_pool: &Pubkey,
-    sol_withdraw_authority: &Pubkey,
+    pay_withdraw_authority: &Pubkey,
     stake_pool_withdraw_authority: &Pubkey,
     user_transfer_authority: &Pubkey,
     pool_tokens_from: &Pubkey,
@@ -1178,12 +1178,12 @@ pub fn withdraw_sol_with_authority(
         AccountMeta::new_readonly(sysvar::stake_history::id(), false),
         AccountMeta::new_readonly(stake::program::id(), false),
         AccountMeta::new_readonly(*token_program_id, false),
-        AccountMeta::new_readonly(*sol_withdraw_authority, true),
+        AccountMeta::new_readonly(*pay_withdraw_authority, true),
     ];
     Instruction {
         program_id: *program_id,
         accounts,
-        data: StakePoolInstruction::WithdrawSol(pool_tokens)
+        data: StakePoolInstruction::WithdrawPay(pool_tokens)
             .try_to_vec()
             .unwrap(),
     }
@@ -1252,14 +1252,14 @@ pub fn set_funding_authority(
     program_id: &Pubkey,
     stake_pool: &Pubkey,
     manager: &Pubkey,
-    new_sol_deposit_authority: Option<&Pubkey>,
+    new_pay_deposit_authority: Option<&Pubkey>,
     funding_type: FundingType,
 ) -> Instruction {
     let mut accounts = vec![
         AccountMeta::new(*stake_pool, false),
         AccountMeta::new_readonly(*manager, true),
     ];
-    if let Some(auth) = new_sol_deposit_authority {
+    if let Some(auth) = new_pay_deposit_authority {
         accounts.push(AccountMeta::new_readonly(*auth, false))
     }
     Instruction {

@@ -2,8 +2,8 @@
 
 mod action;
 use {
-    solana_program_test::{processor, tokio, ProgramTest},
-    solana_sdk::{
+    paychains_program_test::{processor, tokio, ProgramTest},
+    paychains_sdk::{
         program_pack::Pack,
         pubkey::Pubkey,
         signature::{Keypair, Signer},

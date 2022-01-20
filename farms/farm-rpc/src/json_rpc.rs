@@ -17,9 +17,9 @@ use {
         Build, Rocket, State,
     },
     serde_json::{from_str, from_value, json, Value},
-    solana_account_decoder::parse_token::UiTokenAccount,
-    solana_farm_client::client::{FarmClient, FarmMap, PoolMap, PubkeyMap, TokenMap, VaultMap},
-    solana_farm_sdk::{
+    paychains_account_decoder::parse_token::UiTokenAccount,
+    paychains_farm_client::client::{FarmClient, FarmMap, PoolMap, PubkeyMap, TokenMap, VaultMap},
+    paychains_farm_sdk::{
         farm::Farm,
         git_token::GitToken,
         pool::Pool,
@@ -27,7 +27,7 @@ use {
         token::Token,
         vault::{UserInfo, Vault, VaultInfo},
     },
-    solana_sdk::{
+    paychains_sdk::{
         commitment_config::CommitmentConfig, instruction::Instruction, pubkey::Pubkey,
         signature::Keypair,
     },
@@ -842,12 +842,12 @@ async fn close_system_account(
     Ok(signature.to_string())
 }
 
-/// Transfers native SOL from the wallet to the destination
-#[post("/transfer?<wallet_keypair>&<destination_wallet>&<sol_ui_amount>")]
+/// Transfers native PAY from the wallet to the destination
+#[post("/transfer?<wallet_keypair>&<destination_wallet>&<pay_ui_amount>")]
 async fn transfer(
     wallet_keypair: Option<KeypairParam>,
     destination_wallet: Option<PubkeyParam>,
-    sol_ui_amount: f64,
+    pay_ui_amount: f64,
     farm_client: &State<FarmClientArc>,
 ) -> Result<String, NotFound<String>> {
     let wallet_keypair = check_unwrap_keypair(wallet_keypair, "wallet_keypair")?;
@@ -857,17 +857,17 @@ async fn transfer(
         .lock()
         .map_err(|e| NotFound(e.to_string()))?;
     let signature = farm_client
-        .transfer(&wallet_keypair, &destination_wallet, sol_ui_amount)
+        .transfer(&wallet_keypair, &destination_wallet, pay_ui_amount)
         .map_err(|e| NotFound(e.to_string()))?;
 
     Ok(signature.to_string())
 }
 
-/// Transfers native SOL from the wallet to the associated Wrapped SOL account.
-#[post("/transfer_sol_to_wsol?<wallet_keypair>&<sol_ui_amount>")]
-async fn transfer_sol_to_wsol(
+/// Transfers native PAY from the wallet to the associated Wrapped PAY account.
+#[post("/transfer_pay_to_wsol?<wallet_keypair>&<pay_ui_amount>")]
+async fn transfer_pay_to_wsol(
     wallet_keypair: Option<KeypairParam>,
-    sol_ui_amount: f64,
+    pay_ui_amount: f64,
     farm_client: &State<FarmClientArc>,
 ) -> Result<String, NotFound<String>> {
     let wallet_keypair = check_unwrap_keypair(wallet_keypair, "wallet_keypair")?;
@@ -876,7 +876,7 @@ async fn transfer_sol_to_wsol(
         .lock()
         .map_err(|e| NotFound(e.to_string()))?;
     let signature = farm_client
-        .transfer_sol_to_wsol(&wallet_keypair, sol_ui_amount)
+        .transfer_pay_to_wsol(&wallet_keypair, pay_ui_amount)
         .map_err(|e| NotFound(e.to_string()))?;
 
     Ok(signature.to_string())
@@ -904,7 +904,7 @@ async fn token_transfer(
     Ok(signature.to_string())
 }
 
-/// Updates token balance of the account, usefull after transfer SOL to WSOL account
+/// Updates token balance of the account, usefull after transfer PAY to WPAY account
 #[post("/sync_token_balance?<wallet_keypair>&<token_name>")]
 async fn sync_token_balance(
     wallet_keypair: Option<KeypairParam>,
@@ -1018,7 +1018,7 @@ async fn get_token_account_data(
     Ok(Json(token_data))
 }
 
-/// Returns native SOL balance
+/// Returns native PAY balance
 #[get("/account_balance?<wallet_address>")]
 async fn get_account_balance(
     wallet_address: Option<PubkeyParam>,
@@ -1487,12 +1487,12 @@ async fn new_instruction_close_system_account(
     Ok(JsonWithInstruction::new(&instruction))
 }
 
-/// Creates the native SOL transfer instruction
-#[get("/new_instruction_transfer?<wallet_address>&<destination_wallet>&<sol_ui_amount>")]
+/// Creates the native PAY transfer instruction
+#[get("/new_instruction_transfer?<wallet_address>&<destination_wallet>&<pay_ui_amount>")]
 async fn new_instruction_transfer(
     wallet_address: Option<PubkeyParam>,
     destination_wallet: Option<PubkeyParam>,
-    sol_ui_amount: f64,
+    pay_ui_amount: f64,
     farm_client: &State<FarmClientArc>,
 ) -> Result<JsonWithInstruction, NotFound<String>> {
     let wallet_address = check_unwrap_pubkey(wallet_address, "wallet_address")?;
@@ -1502,7 +1502,7 @@ async fn new_instruction_transfer(
         .lock()
         .map_err(|e| NotFound(e.to_string()))?;
     let instruction = farm_client
-        .new_instruction_transfer(&wallet_address, &destination_wallet, sol_ui_amount)
+        .new_instruction_transfer(&wallet_address, &destination_wallet, pay_ui_amount)
         .map_err(|e| NotFound(e.to_string()))?;
 
     Ok(JsonWithInstruction::new(&instruction))
@@ -1971,7 +1971,7 @@ pub async fn stage(config: &Config) -> AdHoc {
                     create_system_account,
                     close_system_account,
                     transfer,
-                    transfer_sol_to_wsol,
+                    transfer_pay_to_wsol,
                     token_transfer,
                     sync_token_balance,
                     get_or_create_token_account,

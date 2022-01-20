@@ -8,15 +8,15 @@ pub mod processor;
 pub mod tools;
 
 // Export current SDK types for downstream users building with a different SDK version
-pub use solana_program;
-use solana_program::{
+pub use paychains_program;
+use paychains_program::{
     instruction::{AccountMeta, Instruction},
     program_pack::Pack,
     pubkey::Pubkey,
     sysvar,
 };
 
-solana_program::declare_id!("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
+paychains_program::declare_id!("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
 
 pub(crate) fn get_associated_token_address_and_bump_seed(
     wallet_address: &Pubkey,

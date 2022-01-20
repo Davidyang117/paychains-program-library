@@ -6,8 +6,8 @@ use {
     num_enum::TryFromPrimitive,
     serde::{Deserialize, Serialize},
     serde_json::to_string,
-    solana_program::program_error::ProgramError,
-    solana_program::pubkey::Pubkey,
+    paychains_program::program_error::ProgramError,
+    paychains_program::pubkey::Pubkey,
 };
 
 #[derive(Serialize, Deserialize, Clone, Copy, Debug, Eq, PartialEq)]

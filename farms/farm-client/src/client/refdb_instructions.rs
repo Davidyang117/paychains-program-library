@@ -1,8 +1,8 @@
-//! Solana Farm Client RefDB Instructions
+//! PayChains Farm Client RefDB Instructions
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         farm::Farm,
         id::{main_router, ProgramIDType},
         instruction::{main_router::MainInstruction, refdb::RefDbInstruction},
@@ -13,7 +13,7 @@ use {
         token::Token,
         vault::Vault,
     },
-    solana_sdk::{
+    paychains_sdk::{
         instruction::{AccountMeta, Instruction},
         pubkey::Pubkey,
         system_program,

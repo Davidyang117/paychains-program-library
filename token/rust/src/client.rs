@@ -1,7 +1,7 @@
 use async_trait::async_trait;
-use solana_client::rpc_client::RpcClient;
-use solana_program_test::{tokio::sync::Mutex, BanksClient, ProgramTestContext};
-use solana_sdk::{
+use paychains_client::rpc_client::RpcClient;
+use paychains_program_test::{tokio::sync::Mutex, BanksClient, ProgramTestContext};
+use paychains_sdk::{
     account::Account, hash::Hash, pubkey::Pubkey, signature::Signature, transaction::Transaction,
 };
 use std::{fmt, future::Future, pin::Pin, sync::Arc};
@@ -100,7 +100,7 @@ enum ProgramBanksClientContext {
     Context(Arc<Mutex<ProgramTestContext>>),
 }
 
-/// Program client for `BanksClient` from crate `solana-program-test`.
+/// Program client for `BanksClient` from crate `paychains-program-test`.
 pub struct ProgramBanksClient<ST> {
     context: ProgramBanksClientContext,
     send: ST,
@@ -183,7 +183,7 @@ where
     }
 }
 
-/// Program client for `RpcClient` from crate `solana-client`.
+/// Program client for `RpcClient` from crate `paychains-client`.
 pub struct ProgramRpcClient<'a, ST> {
     client: &'a RpcClient,
     send: ST,

@@ -1,6 +1,6 @@
 import pytest
-from solana.keypair import Keypair
-from solana.rpc.commitment import Confirmed
+from paychains.keypair import Keypair
+from paychains.rpc.commitment import Confirmed
 
 import system.actions
 

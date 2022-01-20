@@ -6,7 +6,7 @@ use crate::{
     state::{Decision, Pool, POOL_VERSION},
 };
 use borsh::{BorshDeserialize, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     account_info::next_account_info,
     account_info::AccountInfo,
     clock::{Clock, Slot},

@@ -1,11 +1,11 @@
 [package]
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
+authors = ["PayChains Maintainers <maintainers@paychains.foundation>"]
 description = "SPL-Stake-Pool Command-line Utility"
 edition = "2018"
-homepage = "https://spl.solana.com/stake-pool"
+homepage = "https://spl.paychains.com/stake-pool"
 license = "Apache-2.0"
 name = "spl-stake-pool-cli"
-repository = "https://github.com/solana-labs/solana-program-library"
+repository = "https://github.com/paychains-labs/paychains-program-library"
 version = "0.6.3"
 
 [dependencies]
@@ -14,15 +14,15 @@ clap = "2.33.3"
 serde = "1.0.130"
 serde_derive = "1.0.130"
 serde_json = "1.0.68"
-solana-account-decoder = "=1.9.2"
-solana-clap-utils = "=1.9.2"
-solana-cli-config = "=1.9.2"
-solana-cli-output = "1.9.2"
-solana-client = "=1.9.2"
-solana-logger = "=1.9.2"
-solana-program = "=1.9.2"
-solana-remote-wallet = "=1.9.2"
-solana-sdk = "=1.9.2"
+paychains-account-decoder = "=1.9.2"
+paychains-clap-utils = "=1.9.2"
+paychains-cli-config = "=1.9.2"
+paychains-cli-output = "1.9.2"
+paychains-client = "=1.9.2"
+paychains-logger = "=1.9.2"
+paychains-program = "=1.9.2"
+paychains-remote-wallet = "=1.9.2"
+paychains-sdk = "=1.9.2"
 spl-associated-token-account = { version = "1.0", path="../../associated-token-account/program", features = [ "no-entrypoint" ] }
 spl-stake-pool = { version = "0.6", path="../program", features = [ "no-entrypoint" ] }
 spl-token = { version = "3.2", path="../../token/program", features = [ "no-entrypoint" ]  }

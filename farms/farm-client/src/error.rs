@@ -1,7 +1,7 @@
 use {
-    solana_account_decoder::parse_account_data::ParseAccountError,
-    solana_client::client_error::ClientError,
-    solana_sdk::{program_error::ProgramError, pubkey::PubkeyError},
+    paychains_account_decoder::parse_account_data::ParseAccountError,
+    paychains_client::client_error::ClientError,
+    paychains_sdk::{program_error::ProgramError, pubkey::PubkeyError},
     thiserror::Error,
 };
 

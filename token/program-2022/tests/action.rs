@@ -1,6 +1,6 @@
 use {
-    solana_program_test::BanksClient,
-    solana_sdk::{
+    paychains_program_test::BanksClient,
+    paychains_sdk::{
         hash::Hash,
         program_pack::Pack,
         pubkey::Pubkey,

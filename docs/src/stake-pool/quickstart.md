@@ -7,20 +7,20 @@ right away.
 
 ## Prerequisites
 
-This guide requires the Solana CLI tool suite and Stake Pool CLI tool.
+This guide requires the PayChains CLI tool suite and Stake Pool CLI tool.
 
-- [Install the Solana Tools](https://docs.solana.com/cli/install-solana-cli-tools)
+- [Install the PayChains Tools](https://docs.paychains.com/cli/install-paychains-cli-tools)
 - [Install the Stake Pool CLI](cli.md)
 
-You must also have an account with SOL. The guide will assume that you
-are using the default keypair created at the default location using `solana-keygen new`.
+You must also have an account with PAY. The guide will assume that you
+are using the default keypair created at the default location using `paychains-keygen new`.
 Note that it is possible to override the default keypair with every command if
 needed.
 
-If you are running on localhost using `solana-test-validator`, the default keypair
-will automatically start with 500,000,000 SOL.
+If you are running on localhost using `paychains-test-validator`, the default keypair
+will automatically start with 500,000,000 PAY.
 
-If you are running on devnet or testnet, you can airdrop funds using `solana airdrop 1`.
+If you are running on devnet or testnet, you can airdrop funds using `paychains airdrop 1`.
 
 If you are running on mainnet-beta, you must purchase funds some other way, from
 an exchange, a friend, etc.
@@ -28,7 +28,7 @@ an exchange, a friend, etc.
 ## Sample scripts
 
 This guide uses the
-[sample scripts on GitHub](https://github.com/solana-labs/solana-program-library/tree/master/stake-pool/cli/scripts)
+[sample scripts on GitHub](https://github.com/paychains-labs/paychains-program-library/tree/master/stake-pool/cli/scripts)
 to run everything quickly and easily.
 
 You'll see the following scripts:
@@ -36,7 +36,7 @@ You'll see the following scripts:
 * `setup-test-validator.sh`: sets up a local test validator with validator vote accounts
 * `setup-stake-pool.sh`: creates a new stake pool with hardcoded parameters
 * `add-validators.sh`: adds validators to the stake pool
-* `deposit.sh`: performs stake and SOL deposits
+* `deposit.sh`: performs stake and PAY deposits
 * `rebalance.sh`: rebalances the stake pool
 * `withdraw.sh`: performs some withdrawals
 
@@ -73,7 +73,7 @@ DrT6VGqqJT1GRVaZmuEjNim4ie7ecmNixjiycd67jyJy
 7FMebvnWnWN45KF5Fa3Y7kAJZReKU6WLzribtWDJybax
 ```
 
-Note: this will fail if another `solana-test-validator` is already running.
+Note: this will fail if another `paychains-test-validator` is already running.
 
 #### Important notes on local network
 
@@ -83,10 +83,10 @@ it to fail with: `Custom program error: 0x11`. This is totally normal, and will
 not happen on the other networks. You simply need to re-run the command.
 
 Since there is no voting activity on the test validator network, you will
-need to use the secret `--force` flag with `solana delegate-stake`, ie:
+need to use the secret `--force` flag with `paychains delegate-stake`, ie:
 
 ```bash
-$ solana delegate-stake --force stake.json CzDy6uxLTko5Jjcdm46AozMmrARY6R2aDBagdemiBuiT
+$ paychains delegate-stake --force stake.json CzDy6uxLTko5Jjcdm46AozMmrARY6R2aDBagdemiBuiT
 ```
 
 ## Step 1: Create the stake pool
@@ -134,7 +134,7 @@ Signature: 47QHcWMEa5Syg13C3SQRA4n88Y8iLx1f39wJXQAStRUxpt2VD5t6pYgAdruNRHUQt1ZBY
 ```
 
 Your stake pool now exists! For the largest number of validators, the cost for
-this phase is ~2.02 SOL.
+this phase is ~2.02 PAY.
 
 ## Step 2: Add validators to the pool
 
@@ -153,20 +153,20 @@ Signature: 3XtmYu9msqnMeKJs9BopYjn5QTc5hENMXXiBwvEw6HYzU5w6z1HUkGwNW24io4Vu9WRKF
 ... (something similar repeated 9 more times)
 ```
 
-This operation costs 0.00328288 SOL per validator. This amount is totally recoverable
+This operation costs 0.00328288 PAY per validator. This amount is totally recoverable
 by removing the validator from the stake pool.
 
 ## Step 3: Deposit into the pool
 
-Now that your pool has validators, it needs some SOL or stake accounts for you
-to manage. There are two possible sources of deposits: SOL or stake accounts.
+Now that your pool has validators, it needs some PAY or stake accounts for you
+to manage. There are two possible sources of deposits: PAY or stake accounts.
 
-### a) Depositing SOL
+### a) Depositing PAY
 
 This will likely be the most attractive form of deposit, since it's the easiest
 for everyone to use. Normally, this will likely be done from a DeFi app or
 wallet, but in our example, we'll do it straight from the command line.  Let's
-deposit 10 SOL into our pool:
+deposit 10 PAY into our pool:
 
 ```
 $ spl-stake-pool deposit-sol Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR 100
@@ -174,7 +174,7 @@ Using existing associated token account DgyZrAq88bnG1TNRxpgDQzWXpzEurCvfY2ukKFWB
 Signature: 4AJv6hSznYoMGnaQvjWXSBjKqtjYpjBx2MLezmRRjWRDa8vUaBLQfPNGd3kamZNs1JeWSvnzczwtzsMD5WkgKamA
 ```
 
-Now there will be some SOL for us to work with.
+Now there will be some PAY for us to work with.
 
 ### b) Depositing stake accounts
 
@@ -196,17 +196,17 @@ may fail. No problem, you simply need to retry.
 
 ## Step 4: Rebalance stake in the pool
 
-Over time, as people deposit SOL into the reserve, or as validator performance
+Over time, as people deposit PAY into the reserve, or as validator performance
 varies, you will want to move stake around. The best way to do this will be
 through an automated system to collect information about the stake pool and the
 network, and decide how much stake to allocate to each validator.
 
-The Solana Foundation maintains an open-source bot for its delegation program,
+The PayChains Foundation maintains an open-source bot for its delegation program,
 which can be adapated for your stake pool. The source code is part of the
-[stake-o-matic GitHub repo](https://github.com/solana-labs/stake-o-matic/tree/master/bot).
+[stake-o-matic GitHub repo](https://github.com/paychains-labs/stake-o-matic/tree/master/bot).
 
 Additionally, there is a work-in-progress Python stake pool bot, found at the
-[stake-pool-py on GitHub](https://github.com/solana-labs/solana-program-library/tree/master/stake-pool/py).
+[stake-pool-py on GitHub](https://github.com/paychains-labs/paychains-program-library/tree/master/stake-pool/py).
 
 For our example, we will run a simple pool rebalancer, which increases the stake
 on each validator in the list by the given amount. There are no checks or logic
@@ -219,10 +219,10 @@ $ ./rebalance.sh keys/stake-pool.json local_validators.txt 1
 ## Step 5: Withdraw from the stake pool
 
 Finally, if a user wants to withdraw from the stake pool, they can choose to
-withdraw SOL from the reserve if it has enough SOL, or to withdraw from one of
+withdraw PAY from the reserve if it has enough PAY, or to withdraw from one of
 the stake accounts in the pool.
 
-The `withdraw.sh` script removes stakes and SOL from each of the stake accounts
+The `withdraw.sh` script removes stakes and PAY from each of the stake accounts
 in the pool, given the stake pool, validator file, and amount.
 
 ```bash

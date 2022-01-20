@@ -57,7 +57,7 @@ impl Extension for TransferFeeAmount {
 
 #[cfg(test)]
 pub(crate) mod test {
-    use {super::*, solana_program::pubkey::Pubkey, std::convert::TryFrom};
+    use {super::*, paychains_program::pubkey::Pubkey, std::convert::TryFrom};
 
     pub(crate) fn test_transfer_fee_config() -> TransferFeeConfig {
         TransferFeeConfig {

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Solana Farms RPC Service">
+    <meta name="description" content="PayChains Farms RPC Service">
     <meta name="google" content="nositelinkssearchbox">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" sizes="32x32" href="favicon.ico" />
     <link rel="apple-touch-icon" type="image/png" href="rainbow192.png">
     <link rel="manifest" href="manifest.json" />
-    <title>Solana Farms RPC Service</title>
+    <title>PayChains Farms RPC Service</title>
     <style>
       p.header {
         margin-left: 10px; 
@@ -44,7 +44,7 @@
   </head>
   <body style="background-color:rgb(22, 22, 22);">
     <div id="root">
-      <p class="header">Solana Farms RPC Service</p>
+      <p class="header">PayChains Farms RPC Service</p>
       <p class="request_type">Get:</p>
       <p class="description">/// Returns Token metadata from Github</p>
       <a class="link" href="/api/v1/git_token?name=[name]">/api/v1/git_token?name=[name]</a>
@@ -133,7 +133,7 @@
       <p class="description">/// Returns UiTokenAccount struct data for the associated token account address</p>
       <a class="link"
         href="/api/v1/token_account_data?wallet_address=[wallet_address]&amp;token_name=[token_name]">/api/v1/token_account_data?wallet_address=[wallet_address]&amp;token_name=[token_name]</a>
-      <p class="description">/// Returns native SOL balance</p>
+      <p class="description">/// Returns native PAY balance</p>
       <a class="link"
         href="/api/v1/account_balance?wallet_address=[wallet_address]">/api/v1/account_balance?wallet_address=[wallet_address]</a>
       <p class="description">/// Returns token balance for the associated token account address</p>
@@ -159,9 +159,9 @@
       <p class="description">/// Returns a new Instruction for closing system account</p>
       <a class="link"
         href="/api/v1/new_instruction_close_system_account?wallet_address=[wallet_address]&amp;target_address=[target_address]">/api/v1/new_instruction_close_system_account?wallet_address=[wallet_address]&amp;target_address=[target_address]</a>
-      <p class="description">/// Creates the native SOL transfer instruction</p>
+      <p class="description">/// Creates the native PAY transfer instruction</p>
       <a class="link"
-        href="/api/v1/new_instruction_transfer?wallet_address=[wallet_address]&amp;destination_wallet=[destination_wallet]&amp;sol_ui_amount=[sol_ui_amount]">/api/v1/new_instruction_transfer?wallet_address=[wallet_address]&amp;destination_wallet=[destination_wallet]&amp;sol_ui_amount=[sol_ui_amount]</a>
+        href="/api/v1/new_instruction_transfer?wallet_address=[wallet_address]&amp;destination_wallet=[destination_wallet]&amp;pay_ui_amount=[pay_ui_amount]">/api/v1/new_instruction_transfer?wallet_address=[wallet_address]&amp;destination_wallet=[destination_wallet]&amp;pay_ui_amount=[pay_ui_amount]</a>
       <p class="description">/// Creates a tokens transfer instruction</p>
       <a class="link"
         href="/api/v1/new_instruction_token_transfer?wallet_address=[wallet_address]&amp;token_name=[token_name]&amp;destination_wallet=[destination_wallet]&amp;ui_amount=[ui_amount]">/api/v1/new_instruction_token_transfer?wallet_address=[wallet_address]&amp;token_name=[token_name]&amp;destination_wallet=[destination_wallet]&amp;ui_amount=[ui_amount]</a>
@@ -211,15 +211,15 @@
       <p class="description">/// Creates a new system account</p>
       <p class="link">
         /api/v1/create_system_account?wallet_keypair=[wallet_keypair]&amp;new_account_keypair=[new_account_keypair]&amp;lamports=[lamports]&amp;space=[space]&amp;owner=[owner]</a>
-      <p class="description">/// Transfers native SOL from the wallet to the destination</p>
+      <p class="description">/// Transfers native PAY from the wallet to the destination</p>
       <p class="link">
-        /api/v1/transfer?wallet_keypair=[wallet_keypair]&amp;destination_wallet=[destination_wallet]&amp;sol_ui_amount=[sol_ui_amount]</a>
-      <p class="description">/// Transfers native SOL from the wallet to the associated Wrapped SOL account.</p>
-      <p class="link">/api/v1/transfer_sol_to_wsol?wallet_keypair=[wallet_keypair]&amp;sol_ui_amount=[sol_ui_amount]</a>
+        /api/v1/transfer?wallet_keypair=[wallet_keypair]&amp;destination_wallet=[destination_wallet]&amp;pay_ui_amount=[pay_ui_amount]</a>
+      <p class="description">/// Transfers native PAY from the wallet to the associated Wrapped PAY account.</p>
+      <p class="link">/api/v1/transfer_pay_to_wsol?wallet_keypair=[wallet_keypair]&amp;pay_ui_amount=[pay_ui_amount]</a>
       <p class="description">/// Transfers tokens from the wallet to the destination</p>
       <p class="link">
         /api/v1/token_transfer?wallet_keypair=[wallet_keypair]&amp;token_name=[token_name]&amp;destination_wallet=[destination_wallet]&amp;ui_amount=[ui_amount]</a>
-      <p class="description">/// Updates token balance of the account, usefull after transfer SOL to WSOL account</p>
+      <p class="description">/// Updates token balance of the account, usefull after transfer PAY to WPAY account</p>
       <p class="link">/api/v1/sync_token_balance?wallet_keypair=[wallet_keypair]&amp;token_name=[token_name]</a>
       <p class="description">/// Returns the associated token account or creates one if it doesn't exist</p>
       <p class="link">/api/v1/create_token_account?wallet_keypair=[wallet_keypair]&amp;token_name=[token_name]</a>

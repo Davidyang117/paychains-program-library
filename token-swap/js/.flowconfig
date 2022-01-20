@@ -2,8 +2,8 @@
 <PROJECT_ROOT>/node_modules/*
 
 [libs]
-node_modules/@solana/web3.js/module.flow.js
-node_modules/@solana/spl-token/module.flow.js
+node_modules/@paychains/web3.js/module.flow.js
+node_modules/@paychains/spl-token/module.flow.js
 flow-typed/
 
 [options]

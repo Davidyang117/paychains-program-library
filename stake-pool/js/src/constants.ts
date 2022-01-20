@@ -1,5 +1,5 @@
 import {Buffer} from 'buffer';
-import {PublicKey} from '@solana/web3.js';
+import {PublicKey} from '@paychains/web3.js';
 import {solToLamports} from './utils';
 
 export const TRANSIENT_STAKE_SEED_PREFIX = Buffer.from('transient');

@@ -1,12 +1,12 @@
 #![cfg(feature = "test-bpf")]
 
-use solana_program::{instruction::AccountMeta, pubkey::Pubkey};
-use solana_program_test::*;
+use paychains_program::{instruction::AccountMeta, pubkey::Pubkey};
+use paychains_program_test::*;
 
 mod program_test;
 
 use program_test::*;
-use solana_sdk::signature::Keypair;
+use paychains_sdk::signature::Keypair;
 use spl_governance::error::GovernanceError;
 
 #[tokio::test]

@@ -17,50 +17,50 @@ Run `spl-stake-pool --help` for a full description of available commands.
 
 ## Configuration
 
-The `spl-stake-pool` configuration is shared with the `solana` command-line tool.
+The `spl-stake-pool` configuration is shared with the `paychains` command-line tool.
 
 ### Current Configuration
 
 ```console
-$ solana config get
-Config File: ${HOME}/.config/solana/cli/config.yml
-RPC URL: https://api.mainnet-beta.solana.com
-WebSocket URL: wss://api.mainnet-beta.solana.com/ (computed)
-Keypair Path: ${HOME}/.config/solana/id.json
+$ paychains config get
+Config File: ${HOME}/.config/paychains/cli/config.yml
+RPC URL: https://api.mainnet-beta.paychains.com
+WebSocket URL: wss://api.mainnet-beta.paychains.com/ (computed)
+Keypair Path: ${HOME}/.config/paychains/id.json
 ```
 
 ### Cluster RPC URL
 
-See [Solana clusters](https://docs.solana.com/clusters) for cluster-specific RPC URLs
+See [PayChains clusters](https://docs.paychains.com/clusters) for cluster-specific RPC URLs
 ```console
-$ solana config set --url https://api.devnet.solana.com
+$ paychains config set --url https://api.devnet.paychains.com
 ```
 
 ### Default Keypair
 
-See [Keypair conventions](https://docs.solana.com/cli/conventions#keypair-conventions)
+See [Keypair conventions](https://docs.paychains.com/cli/conventions#keypair-conventions)
 for information on how to setup a keypair if you don't already have one.
 
 Keypair File
 ```console
-$ solana config set --keypair ${HOME}/new-keypair.json
+$ paychains config set --keypair ${HOME}/new-keypair.json
 ```
 
-Hardware Wallet URL (See [URL spec](https://docs.solana.com/wallet-guide/hardware-wallets#specify-a-keypair-url))
+Hardware Wallet URL (See [URL spec](https://docs.paychains.com/wallet-guide/hardware-wallets#specify-a-keypair-url))
 ```console
-$ solana config set --keypair usb://ledger/
+$ paychains config set --keypair usb://ledger/
 ```
 
 ### Running Locally
 
 If you would like to test a stake pool locally without having to wait for stakes
 to activate and deactivate, you can run the stake pool locally using the
-`solana-test-validator` tool with shorter epochs, and pulling the current program
+`paychains-test-validator` tool with shorter epochs, and pulling the current program
 from devnet.
 
 ```console
-$ solana-test-validator -c SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy -c EmiU8AQkB2sswTxVB6aCmsAJftoowZGGDXuytm6X65R3 --url devnet --slots-per-epoch 32
-$ solana config set --url http://127.0.0.1:8899
+$ paychains-test-validator -c SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy -c EmiU8AQkB2sswTxVB6aCmsAJftoowZGGDXuytm6X65R3 --url devnet --slots-per-epoch 32
+$ paychains config set --url http://127.0.0.1:8899
 ```
 
 ## Stake Pool Manager Examples
@@ -99,7 +99,7 @@ The reserve stake account identifier is `J5XB7mWpeaUZxZ6ogXT57qSCobczx27vLZYSgfS
 This account holds onto additional stake used when rebalancing between validators.
 
 For a stake pool with 1000 validators, the cost to create a stake pool is less
-than 0.5 SOL.
+than 0.5 PAY.
 
 The `create-pool` command allows setting all of the accounts and keypairs to
 pre-generated values, including:
@@ -115,7 +115,7 @@ You can always check out the available options by running `spl-stake-pool create
 
 ### Create a restricted stake pool
 
-If a manager would like to restrict deposits (stake and SOL) to one key in
+If a manager would like to restrict deposits (stake and PAY) to one key in
 particular, they can set a deposit authority at creation:
 
 ```console
@@ -133,7 +133,7 @@ Signature: 5z6uH3EuPcujeWGpAjBtciSUR3TxtMBgWYU4ULagUso4QGzE9JenhYHwYthJ4b3rS57By
 As the output says, the `set-funding-authority` can be used to modify or remove
 the deposit authority.
 
-As long as the deposit authority is set, SOL and stake deposits must be signed
+As long as the deposit authority is set, PAY and stake deposits must be signed
 by `4SnSuUtJGKvk2GYpBwmEsWG53zTurVM8yXGsoiZQyMJn`, so no one else can participate
 in the pool. As mentioned earlier, this feature does not prohibit withdrawals,
 so anyone with pool tokens will still be able to withdraw from the pool.
@@ -223,11 +223,11 @@ authority.
 ### Set Funding Authority
 
 To restrict who can interact with the pool, the stake pool manager may require
-a particular signature on stake deposits, SOL deposits, or SOL withdrawals. This
+a particular signature on stake deposits, PAY deposits, or PAY withdrawals. This
 does not make the pool private, since all information is available on-chain, but
 it restricts who can use the pool.
 
-As an example, let's say a pool wants to restrict all SOL withdrawals.
+As an example, let's say a pool wants to restrict all PAY withdrawals.
 
 ```console
 $ spl-stake-pool set-funding-authority Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR sol-withdraw AZ1PgxWSxw4ezX8gvpNgGsr39jJHCwtkaXr1mNMwWWeK
@@ -235,9 +235,9 @@ Signature: 3gx7ckGNSL7gUUyxh4CU3RH3Lyt88hiCvYQ4QRKtnmrZHvAS93ebP6bf39WYGTeKDMVSJ
 ```
 
 After running this command, `AZ1PgxWSxw4ezX8gvpNgGsr39jJHCwtkaXr1mNMwWWeK` must
-sign all SOL withdrawals, otherwise the operation fails.
+sign all PAY withdrawals, otherwise the operation fails.
 
-After some time, if the manager wishes to enable SOL withdrawals, they can remove
+After some time, if the manager wishes to enable PAY withdrawals, they can remove
 the restriction:
 
 ```console
@@ -245,7 +245,7 @@ $ spl-stake-pool set-funding-authority Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsC
 Signature: 5kWeBqoxyvANMHCP4ydsZRf8QU4hMotLnKkFbTEdvqEVywo4F3MpZtay7D57FbjJZpdp72fc3vrbxJi9qDLfLCnD
 ```
 
-Now, anyone can withdraw SOL from the stake pool, provided there is enough SOL left
+Now, anyone can withdraw PAY from the stake pool, provided there is enough PAY left
 in the reserve.
 
 The options for funding authorities are `sol-withdraw`, `sol-deposit`, and `stake-deposit`.
@@ -269,7 +269,7 @@ Adding stake account F8e8Ympp4MkDSPZdvRxdQUZXRkMBDdyqgHa363GShAPt, delegated to 
 Signature: 5tdpsx64mVcSHBK8vMbBzFDHnEZB6GUmVpqSXXE5hezMAzPYwZbJCBtAHakDAiuWNcrMongGrmwDaeywhVz4i8pi
 ```
 
-In order to maximize censorship resistance, we want to distribute our SOL to as
+In order to maximize censorship resistance, we want to distribute our PAY to as
 many validators as possible, so let's add a few more.
 
 ```console
@@ -281,22 +281,22 @@ Adding stake account 3k7Nwu9jUSc6SNG11wzufKYoZXRFgxWamheGLYWp5Rvx, delegated to 
 Signature: 4VJYHpPmWkP99TdgYUTgLYixmhqmqsEkWtg4j7zvGZFjYbnLgryu48aV6ub8bqDyULzKckUhb6tvcmZmMX5AFf5G
 ```
 
-We can see the status of a stake account using the Solana command-line utility.
+We can see the status of a stake account using the PayChains command-line utility.
 
 ```console
-$ solana stake-account 5AaobwjccyHnXhFCd24uiX6VqPjXE3Ry4o92fJjqqjAr
-Balance: 0.00328288 SOL
-Rent Exempt Reserve: 0.00228288 SOL
-Delegated Stake: 0.001 SOL
-Active Stake: 0 SOL
-Activating Stake: 0.001 SOL
+$ paychains stake-account 5AaobwjccyHnXhFCd24uiX6VqPjXE3Ry4o92fJjqqjAr
+Balance: 0.00328288 PAY
+Rent Exempt Reserve: 0.00228288 PAY
+Delegated Stake: 0.001 PAY
+Active Stake: 0 PAY
+Activating Stake: 0.001 PAY
 Stake activates starting from epoch: 5
 Delegated Vote Account Address: J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H
 Stake Authority: DS3AyFN9dF1ruNBcSeo8XXQR8UyVMhcCPcnjU5GnY18S
 Withdraw Authority: DS3AyFN9dF1ruNBcSeo8XXQR8UyVMhcCPcnjU5GnY18S
 ```
 
-The stake pool creates these special staking accounts with 0.001 SOL as the required
+The stake pool creates these special staking accounts with 0.001 PAY as the required
 minimum delegation amount. The stake and withdraw authorities are the stake pool
 withdraw authority, program addresses derived from the stake pool's address.
 
@@ -309,8 +309,8 @@ Pool Token Mint: BoNneHKDrX9BHjjvSpPfnQyRjsnc9WFH71v8wrgCd7LB
 Epoch Fee: 3/100 of epoch rewards
 Withdrawal Fee: none
 Stake Deposit Fee: none
-SOL Deposit Fee: none
-SOL Deposit Referral Fee: none
+PAY Deposit Fee: none
+PAY Deposit Referral Fee: none
 Stake Deposit Referral Fee: none
 Reserve Account: EN4px2h4gFkYtsQUi4yeCYBrdRM4DoRxCVJyavMXEAm5   Available Balance: ◎0.000000000
 Vote Account: EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ      Balance: ◎0.000000000 Last Update Epoch: 4
@@ -325,7 +325,7 @@ Max Number of Validators: 1000
 To make reading easier, the tool will not show balances that cannot be touched by
 the stake pool. The stake account `5AaobwjccyHnXhFCd24uiX6VqPjXE3Ry4o92fJjqqjAr`,
 delegated to `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H`, actually has a balance
-of 0.00328288 SOL, but since this is the minimum required amount, it is
+of 0.00328288 PAY, but since this is the minimum required amount, it is
 not shown by the CLI.
 
 ### Remove validator stake account
@@ -334,12 +334,12 @@ If the stake pool staker wants to stop delegating to a vote account, they can
 totally remove the validator stake account from the stake pool.
 
 As with adding a validator, the validator stake account must have exactly
-0.00328288 SOL (0.001 SOL delegated, 0.00228288 SOL for rent exemption) to be removed.
+0.00328288 PAY (0.001 PAY delegated, 0.00228288 PAY for rent exemption) to be removed.
 
 If that is not the case, the staker must first decrease the stake to that minimum amount.
 Let's assume that the validator stake account delegated to 
 `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H` has a total delegated amount of
-7.5 SOL. To reduce that number, the staker can run:
+7.5 PAY. To reduce that number, the staker can run:
 
 ```console
 $ spl-stake-pool decrease-validator-stake Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H 6.5
@@ -374,11 +374,11 @@ Signature: 5rrQ3xhDWyiPkUTAQkNAeq31n6sMf1xsg2x9hVY8Vj1NonwBnhxuTv87nADLkwC8Xzc4C
 We can check the removed stake account:
 
 ```console
-$ solana stake-account nHEEyey8KkgHuVRAUDzkH5Q4PkA4veSHuTxgG6C8L2G
-Balance: 0.003282880 SOL
-Rent Exempt Reserve: 0.00328288 SOL
-Delegated Stake: 0.001000000 SOL
-Active Stake: 0.001000000 SOL
+$ paychains stake-account nHEEyey8KkgHuVRAUDzkH5Q4PkA4veSHuTxgG6C8L2G
+Balance: 0.003282880 PAY
+Rent Exempt Reserve: 0.00328288 PAY
+Delegated Stake: 0.001000000 PAY
+Active Stake: 0.001000000 PAY
 Delegated Vote Account Address: J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H
 Stake Authority: 4SnSuUtJGKvk2GYpBwmEsWG53zTurVM8yXGsoiZQyMJn
 Withdraw Authority: 4SnSuUtJGKvk2GYpBwmEsWG53zTurVM8yXGsoiZQyMJn
@@ -399,8 +399,8 @@ Pool Token Mint: BoNneHKDrX9BHjjvSpPfnQyRjsnc9WFH71v8wrgCd7LB
 Epoch Fee: 3/100 of epoch rewards
 Withdrawal Fee: none
 Stake Deposit Fee: none
-SOL Deposit Fee: none
-SOL Deposit Referral Fee: none
+PAY Deposit Fee: none
+PAY Deposit Referral Fee: none
 Stake Deposit Referral Fee: none
 Reserve Account: EN4px2h4gFkYtsQUi4yeCYBrdRM4DoRxCVJyavMXEAm5   Available Balance: ◎10.006848640
 Vote Account: EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ      Balance: ◎100.000000000 Last Update Epoch: 4
@@ -414,7 +414,7 @@ Max Number of Validators: 1000
 
 This isn't great! The first stake account, `EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ`
 has too much allocated. For their strategy, the staker wants the `100`
-SOL to be distributed evenly, meaning `40` in each account. They need
+PAY to be distributed evenly, meaning `40` in each account. They need
 to move `30` to `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H` and
 `38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk`.
 
@@ -422,16 +422,16 @@ to move `30` to `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H` and
 
 First, they need to decrease the amount on stake account
 `3k7Nwu9jUSc6SNG11wzufKYoZXRFgxWamheGLYWp5Rvx`, delegated to
-`EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ`, by a total of `60` SOL.
+`EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ`, by a total of `60` PAY.
 
-They decrease that amount of SOL:
+They decrease that amount of PAY:
 
 ```sh
 $ spl-stake-pool decrease-validator-stake Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ 60
 Signature: ZpQGwT85rJ8Y9afdkXhKo3TVv4xgTz741mmZj2vW7mihYseAkFsazWxza2y8eNGY4HDJm15c1cStwyiQzaM3RpH
 ```
 
-Internally, this instruction splits and deactivates 60 SOL from the
+Internally, this instruction splits and deactivates 60 PAY from the
 validator stake account `3k7Nwu9jUSc6SNG11wzufKYoZXRFgxWamheGLYWp5Rvx` into a
 transient stake account, owned and managed entirely by the stake pool.
 
@@ -446,14 +446,14 @@ can increase the stake on the two other validators,
 `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H` and
 `38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk`.
 
-They add 30 SOL to `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H`:
+They add 30 PAY to `J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H`:
 
 ```sh
 $ spl-stake-pool increase-validator-stake Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR J3xu64PWShcMen99kU3igxtwbke2Nwfo8pkZNRgrq66H 30
 Signature: 3GJACzjUGLPjcd9RLUW86AfBLWKapZRkxnEMc2yHT6erYtcKBgCapzyrVH6VN8Utxj7e2mtvzcigwLm6ZafXyTMw
 ```
 
-And they add 30 SOL to `38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk`:
+And they add 30 PAY to `38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk`:
 
 ```sh
 $ spl-stake-pool increase-validator-stake Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR 38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk 30
@@ -476,8 +476,8 @@ Preferred Deposit Validator: 38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk
 Epoch Fee: 3/100 of epoch rewards
 Withdrawal Fee: none
 Stake Deposit Fee: none
-SOL Deposit Fee: none
-SOL Deposit Referral Fee: none
+PAY Deposit Fee: none
+PAY Deposit Referral Fee: none
 Stake Deposit Referral Fee: none
 Reserve Account: EN4px2h4gFkYtsQUi4yeCYBrdRM4DoRxCVJyavMXEAm5   Available Balance: ◎10.006848640
 Vote Account: EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ      Balance: ◎40.000000000  Last Update Epoch: 8
@@ -557,8 +557,8 @@ Preferred Deposit Validator: 38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk
 Epoch Fee: 3/100 of epoch rewards
 Withdrawal Fee: none
 Stake Deposit Fee: none
-SOL Deposit Fee: none
-SOL Deposit Referral Fee: none
+PAY Deposit Fee: none
+PAY Deposit Referral Fee: none
 Stake Deposit Referral Fee: none
 Reserve Account: EN4px2h4gFkYtsQUi4yeCYBrdRM4DoRxCVJyavMXEAm5   Available Balance: ◎10.006848640
 Vote Account: EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ      Balance: ◎35.000000000  Last Update Epoch: 8
@@ -570,9 +570,9 @@ Current Number of Validators: 3
 Max Number of Validators: 1000
 ```
 
-### Deposit SOL
+### Deposit PAY
 
-Stake pools accept SOL deposits directly from a normal SOL wallet account, and
+Stake pools accept PAY deposits directly from a normal PAY wallet account, and
 in exchange mint the appropriate amount of pool tokens.
 
 ```console
@@ -590,17 +590,17 @@ $ spl-token balance BoNneHKDrX9BHjjvSpPfnQyRjsnc9WFH71v8wrgCd7LB
 100.00000000
 ```
 
-### Withdraw SOL
+### Withdraw PAY
 
-Stake pools allow SOL withdrawals directly from the reserve and into a normal
-SOL wallet account, and in exchange burns the provided pool tokens.
+Stake pools allow PAY withdrawals directly from the reserve and into a normal
+PAY wallet account, and in exchange burns the provided pool tokens.
 
 ```console
 $ spl-stake-pool withdraw-sol Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR 7VXPpSxneL6JLj18Naw2gkukXtjBZfbmPh18cnoUCMD8 2
 Signature: 4bqZKUUrjVspqTGqGqX4zxnHnJB67WbeukKUZRmxJ2yFmr275CtHPjZNzQJD9Pe7Q6mSxnUpcVv9FUdAbGP9RyBc
 ```
 
-The stake pool has burned 2 pool tokens, and in return, sent SOL to
+The stake pool has burned 2 pool tokens, and in return, sent PAY to
 `7VXPpSxneL6JLj18Naw2gkukXtjBZfbmPh18cnoUCMD8`.
 
 You can check that the pool tokens have been burned:
@@ -613,8 +613,8 @@ $ spl-token balance BoNneHKDrX9BHjjvSpPfnQyRjsnc9WFH71v8wrgCd7LB
 And you can check that the recipient has been credited:
 
 ```console
-$ solana balance 7VXPpSxneL6JLj18Naw2gkukXtjBZfbmPh18cnoUCMD8
-2 SOL
+$ paychains balance 7VXPpSxneL6JLj18Naw2gkukXtjBZfbmPh18cnoUCMD8
+2 PAY
 ```
 
 ### Deposit stake
@@ -626,7 +626,7 @@ stake pool. Using the `list` command from the previous section, we see that
 create a stake account and delegate our stake there.
 
 ```console
-$ solana-keygen new --no-passphrase -o stake-account.json
+$ paychains-keygen new --no-passphrase -o stake-account.json
 Generating a new keypair
 Wrote new keypair to stake-account.json
 ============================================================================
@@ -635,9 +635,9 @@ pubkey: 97wBBiLVA7fUViEew8yV8R6tTdKithZDVz8LHLfF9sTJ
 Save this seed phrase to recover your new keypair:
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ============================================================================
-$ solana create-stake-account stake-account.json 10
+$ paychains create-stake-account stake-account.json 10
 Signature: 5Y9r6MNoqJzVX8TWryAJbdp8i2DvintfxbYWoY6VcLEPgphK2tdydhtJTd3o3dF7QdM2Pg8sBFDZuyNcMag3nPvj
-$ solana delegate-stake 97wBBiLVA7fUViEew8yV8R6tTdKithZDVz8LHLfF9sTJ 38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk
+$ paychains delegate-stake 97wBBiLVA7fUViEew8yV8R6tTdKithZDVz8LHLfF9sTJ 38DYMkwYCvsj8TC6cNaEvFHHVDYeWDp1qUgMgyjNqZXk
 Signature: 2cDjHXSHjuadGQf1NQpPi43A8R19aCifsY16yTcictKPHcSAXN5TvXZ58nDJwkYs12tuZfTh5WVgAMSvptfrKdPP
 ```
 
@@ -676,16 +676,16 @@ $ spl-token balance BoNneHKDrX9BHjjvSpPfnQyRjsnc9WFH71v8wrgCd7LB
 
 #### Note on stake deposit fee
 
-Stake pools have separate fees for stake and SOL, so the total fee from depositing
-a stake account is calculated from the rent-exempt reserve as SOL, and the delegation
+Stake pools have separate fees for stake and PAY, so the total fee from depositing
+a stake account is calculated from the rent-exempt reserve as PAY, and the delegation
 as stake.
 
-For example, if a stake pool has a stake deposit fee of 1%, and a SOL deposit fee
-of 5%, and you deposit a stake account with 10 SOL in stake, and .00228288 SOL
+For example, if a stake pool has a stake deposit fee of 1%, and a PAY deposit fee
+of 5%, and you deposit a stake account with 10 PAY in stake, and .00228288 PAY
 in rent-exemption, the total fee charged is:
 
 ```
-total_fee = stake_delegation * stake_deposit_fee + rent_exemption * sol_deposit_fee
+total_fee = stake_delegation * stake_deposit_fee + rent_exemption * pay_deposit_fee
 total_fee = 10 * 1% + .00228288 * 5%
 total_fee = 0.100114144
 ```
@@ -737,10 +737,10 @@ Signature: 1215wJUY7vj82TQoGCacQ2VJZ157HnCTvfsUXkYph3nZzJNmeDaGmy1nCD7hkhFfxnQYY
 
 ### Withdraw stake
 
-Whenever the user wants to recover their SOL plus accrued rewards, they can provide their
+Whenever the user wants to recover their PAY plus accrued rewards, they can provide their
 pool tokens in exchange for an activated stake account.
 
-Let's withdraw active staked SOL in exchange for 5 pool tokens.
+Let's withdraw active staked PAY in exchange for 5 pool tokens.
 
 ```console
 $ spl-stake-pool withdraw-stake Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR 5
@@ -754,11 +754,11 @@ active stake account, delegated to `EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ
 Let's double-check the status of the stake account:
 
 ```console
-$ solana stake-account 5GuAyPAt6577HoGhSVRNBv6aHohVtjQ8q7q5i3X1p4tB
-Balance: 5.00228288 SOL
-Rent Exempt Reserve: 0.00228288 SOL
-Delegated Stake: 5 SOL
-Active Stake: 5 SOL
+$ paychains stake-account 5GuAyPAt6577HoGhSVRNBv6aHohVtjQ8q7q5i3X1p4tB
+Balance: 5.00228288 PAY
+Rent Exempt Reserve: 0.00228288 PAY
+Delegated Stake: 5 PAY
+Active Stake: 5 PAY
 Delegated Vote Account Address: EhRbKi4Vhm1oUCGWHiLEMYZqDrHwEd7Jgzgi26QJKvfQ
 Stake Authority: 4SnSuUtJGKvk2GYpBwmEsWG53zTurVM8yXGsoiZQyMJn
 Withdraw Authority: 4SnSuUtJGKvk2GYpBwmEsWG53zTurVM8yXGsoiZQyMJn
@@ -812,7 +812,7 @@ be able to withdraw their funds.
 
 To get around this case, it is also possible to withdraw from the stake pool's
 reserve, but only if all of the validator stake accounts are at the minimum amount of
-`0.001 SOL + stake account rent exemption`.
+`0.001 PAY + stake account rent exemption`.
 
 ```console
 $ spl-stake-pool withdraw-stake Zg5YBPAk8RqBR9kaLLSoN5C8Uv7nErBz1WC63HTsCPR 5 --use-reserve

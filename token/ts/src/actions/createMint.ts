@@ -7,7 +7,7 @@ import {
     Signer,
     SystemProgram,
     Transaction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import { TOKEN_PROGRAM_ID } from '../constants';
 import { createInitializeMintInstruction } from '../instructions';
 import { getMinimumBalanceForRentExemptMint, MINT_SIZE } from '../state';

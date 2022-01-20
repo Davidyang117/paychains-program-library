@@ -15,11 +15,11 @@ command_args=()
 command_args+=( --epoch-fee-numerator 0 )
 command_args+=( --epoch-fee-denominator 0 )
 
-# Withdrawal fee for SOL and stake accounts, represented as `numerator / denominator`
+# Withdrawal fee for PAY and stake accounts, represented as `numerator / denominator`
 command_args+=( --withdrawal-fee-numerator 0 )
 command_args+=( --withdrawal-fee-denominator 0 )
 
-# Deposit fee for SOL and stake accounts, represented as `numerator / denominator`
+# Deposit fee for PAY and stake accounts, represented as `numerator / denominator`
 command_args+=( --deposit-fee-numerator 0 )
 command_args+=( --deposit-fee-denominator 0 )
 
@@ -46,7 +46,7 @@ mkdir -p $keys_dir
 create_keypair () {
   if test ! -f "$1"
   then
-    solana-keygen new --no-passphrase -s -o "$1"
+    paychains-keygen new --no-passphrase -s -o "$1"
   fi
 }
 

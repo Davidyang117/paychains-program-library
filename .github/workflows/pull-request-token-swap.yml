@@ -23,8 +23,8 @@ jobs:
         run: |
           source ci/rust-version.sh
           echo "RUST_STABLE=$rust_stable" >> $GITHUB_ENV
-          source ci/solana-version.sh
-          echo "SOLANA_VERSION=$solana_version" >> $GITHUB_ENV
+          source ci/paychains-version.sh
+          echo "PAYCHAINS_VERSION=$paychains_version" >> $GITHUB_ENV
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -47,14 +47,14 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: ~/.cache/solana
-          key: solana-${{ env.SOLANA_VERSION }}
+          path: ~/.cache/paychains
+          key: paychains-${{ env.PAYCHAINS_VERSION }}
 
       - name: Install dependencies
         run: |
           ./ci/install-build-deps.sh
           ./ci/install-program-deps.sh
-          echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+          echo "$HOME/.local/share/paychains/install/active_release/bin" >> $GITHUB_PATH
 
       - name: Build and test
         run: ./ci/cargo-test-bpf.sh token-swap
@@ -112,8 +112,8 @@ jobs:
         run: |
           source ci/rust-version.sh
           echo "RUST_STABLE=$rust_stable" >> $GITHUB_ENV
-          source ci/solana-version.sh
-          echo "SOLANA_VERSION=$solana_version" >> $GITHUB_ENV
+          source ci/paychains-version.sh
+          echo "PAYCHAINS_VERSION=$paychains_version" >> $GITHUB_ENV
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -139,15 +139,15 @@ jobs:
         with:
           path: |
             ~/.cache
-          key: solana-${{ env.SOLANA_VERSION }}
+          key: paychains-${{ env.PAYCHAINS_VERSION }}
           restore-keys: |
-            solana-
+            paychains-
 
       - name: Install dependencies
         run: |
           ./ci/install-build-deps.sh
           ./ci/install-program-deps.sh
-          echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+          echo "$HOME/.local/share/paychains/install/active_release/bin" >> $GITHUB_PATH
 
       - name: Run fuzz target
         run: ./ci/fuzz.sh token-swap-instructions 30 # 30 seconds, just to check everything is ok

@@ -1,11 +1,11 @@
 //! Add liquidity to the Raydium pool instruction
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::raydium::RaydiumAddLiquidity,
         program::{account, protocol::raydium},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         instruction::{AccountMeta, Instruction},

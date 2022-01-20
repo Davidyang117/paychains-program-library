@@ -3,8 +3,8 @@
 mod program_test;
 
 use program_test::*;
-use solana_program_test::tokio;
-use solana_sdk::{signature::Keypair, signer::Signer};
+use paychains_program_test::tokio;
+use paychains_sdk::{signature::Keypair, signer::Signer};
 use spl_governance::{
     error::GovernanceError, instruction::set_governance_config,
     state::enums::VoteThresholdPercentage,

@@ -1,1 +1,1 @@
-declare module '@solana/buffer-layout';
+declare module '@paychains/buffer-layout';

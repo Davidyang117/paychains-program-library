@@ -1,8 +1,8 @@
 //! Common functions for tests
 
 use {
-    solana_farm_client::client::FarmClient,
-    solana_sdk::{pubkey::Pubkey, signature::Keypair, signer::keypair::read_keypair_file},
+    paychains_farm_client::client::FarmClient,
+    paychains_sdk::{pubkey::Pubkey, signature::Keypair, signer::keypair::read_keypair_file},
 };
 
 #[derive(Copy, Clone)]
@@ -15,10 +15,10 @@ pub struct Swap<'a> {
 
 #[allow(dead_code)]
 pub fn get_endpoint_and_keypair() -> (String, Keypair) {
-    let cli_config = if let Some(ref config_file) = *solana_cli_config::CONFIG_FILE {
-        solana_cli_config::Config::load(config_file).unwrap()
+    let cli_config = if let Some(ref config_file) = *paychains_cli_config::CONFIG_FILE {
+        paychains_cli_config::Config::load(config_file).unwrap()
     } else {
-        solana_cli_config::Config::default()
+        paychains_cli_config::Config::default()
     };
 
     (
@@ -31,7 +31,7 @@ pub fn get_endpoint_and_keypair() -> (String, Keypair) {
 
 #[allow(dead_code)]
 pub fn get_token_or_native_balance(client: &FarmClient, wallet: &Pubkey, token_name: &str) -> f64 {
-    if token_name != "SOL" {
+    if token_name != "PAY" {
         if let Ok(balance) = client.get_token_account_balance(wallet, token_name) {
             balance
         } else {

@@ -3,8 +3,8 @@
 mod helpers;
 
 use helpers::*;
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program_test::*;
+use paychains_sdk::{
     signature::{Keypair, Signer},
     transaction::Transaction,
 };
@@ -25,23 +25,23 @@ async fn test_success() {
     // limit to track compute unit increase
     test.set_compute_max_units(38_000);
 
-    const SOL_DEPOSIT_AMOUNT_LAMPORTS: u64 = 10 * LAMPORTS_TO_SOL * INITIAL_COLLATERAL_RATIO;
-    const SOL_RESERVE_COLLATERAL_LAMPORTS: u64 = 2 * SOL_DEPOSIT_AMOUNT_LAMPORTS;
+    const PAY_DEPOSIT_AMOUNT_LAMPORTS: u64 = 10 * LAMPORTS_TO_PAY * INITIAL_COLLATERAL_RATIO;
+    const PAY_RESERVE_COLLATERAL_LAMPORTS: u64 = 2 * PAY_DEPOSIT_AMOUNT_LAMPORTS;
 
     let user_accounts_owner = Keypair::new();
     let user_transfer_authority = Keypair::new();
 
     let lending_market = add_lending_market(&mut test);
 
-    let sol_oracle = add_sol_oracle(&mut test);
-    let sol_test_reserve = add_reserve(
+    let pay_oracle = add_pay_oracle(&mut test);
+    let pay_test_reserve = add_reserve(
         &mut test,
         &lending_market,
-        &sol_oracle,
+        &pay_oracle,
         &user_accounts_owner,
         AddReserveArgs {
-            user_liquidity_amount: SOL_RESERVE_COLLATERAL_LAMPORTS,
-            liquidity_amount: SOL_RESERVE_COLLATERAL_LAMPORTS,
+            user_liquidity_amount: PAY_RESERVE_COLLATERAL_LAMPORTS,
+            liquidity_amount: PAY_RESERVE_COLLATERAL_LAMPORTS,
             liquidity_mint_decimals: 9,
             liquidity_mint_pubkey: spl_token::native_mint::id(),
             config: TEST_RESERVE_CONFIG,
@@ -62,27 +62,27 @@ async fn test_success() {
     test_obligation.validate_state(&mut banks_client).await;
 
     let initial_collateral_supply_balance =
-        get_token_balance(&mut banks_client, sol_test_reserve.collateral_supply_pubkey).await;
+        get_token_balance(&mut banks_client, pay_test_reserve.collateral_supply_pubkey).await;
     let initial_user_collateral_balance =
-        get_token_balance(&mut banks_client, sol_test_reserve.user_collateral_pubkey).await;
+        get_token_balance(&mut banks_client, pay_test_reserve.user_collateral_pubkey).await;
 
     let mut transaction = Transaction::new_with_payer(
         &[
             approve(
                 &spl_token::id(),
-                &sol_test_reserve.user_collateral_pubkey,
+                &pay_test_reserve.user_collateral_pubkey,
                 &user_transfer_authority.pubkey(),
                 &user_accounts_owner.pubkey(),
                 &[],
-                SOL_DEPOSIT_AMOUNT_LAMPORTS,
+                PAY_DEPOSIT_AMOUNT_LAMPORTS,
             )
             .unwrap(),
             deposit_obligation_collateral(
                 spl_token_lending::id(),
-                SOL_DEPOSIT_AMOUNT_LAMPORTS,
-                sol_test_reserve.user_collateral_pubkey,
-                sol_test_reserve.collateral_supply_pubkey,
-                sol_test_reserve.pubkey,
+                PAY_DEPOSIT_AMOUNT_LAMPORTS,
+                pay_test_reserve.user_collateral_pubkey,
+                pay_test_reserve.collateral_supply_pubkey,
+                pay_test_reserve.pubkey,
                 test_obligation.pubkey,
                 lending_market.pubkey,
                 test_obligation.owner,
@@ -100,15 +100,15 @@ async fn test_success() {
 
     // check that collateral tokens were transferred
     let collateral_supply_balance =
-        get_token_balance(&mut banks_client, sol_test_reserve.collateral_supply_pubkey).await;
+        get_token_balance(&mut banks_client, pay_test_reserve.collateral_supply_pubkey).await;
     assert_eq!(
         collateral_supply_balance,
-        initial_collateral_supply_balance + SOL_DEPOSIT_AMOUNT_LAMPORTS
+        initial_collateral_supply_balance + PAY_DEPOSIT_AMOUNT_LAMPORTS
     );
     let user_collateral_balance =
-        get_token_balance(&mut banks_client, sol_test_reserve.user_collateral_pubkey).await;
+        get_token_balance(&mut banks_client, pay_test_reserve.user_collateral_pubkey).await;
     assert_eq!(
         user_collateral_balance,
-        initial_user_collateral_balance - SOL_DEPOSIT_AMOUNT_LAMPORTS
+        initial_user_collateral_balance - PAY_DEPOSIT_AMOUNT_LAMPORTS
     );
 }

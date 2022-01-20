@@ -278,7 +278,7 @@ name = "flash_loan_receiver"
 version = "1.0.0"
 dependencies = [
  "arrayref",
- "solana-program",
+ "paychains-program",
  "spl-token",
 ]
 
@@ -697,7 +697,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-frozen-abi"
+name = "paychains-frozen-abi"
 version = "1.7.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dbee6969ad41585a93c1669c9b4417cefff4ff52957a45f6c579a1f66f84bb03"
@@ -711,13 +711,13 @@ dependencies = [
  "serde",
  "serde_derive",
  "sha2",
- "solana-frozen-abi-macro",
- "solana-logger",
+ "paychains-frozen-abi-macro",
+ "paychains-logger",
  "thiserror",
 ]
 
 [[package]]
-name = "solana-frozen-abi-macro"
+name = "paychains-frozen-abi-macro"
 version = "1.7.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "24fefced09f5cf4a8bb6b3d475a08992f28215c1bc5c05a2657a85c0e80e8cfd"
@@ -729,7 +729,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-logger"
+name = "paychains-logger"
 version = "1.7.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46823a4af30167a864e38258c2ae803cebac0b19bde9575dc1bdd0e3453c8ccd"
@@ -740,7 +740,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-program"
+name = "paychains-program"
 version = "1.7.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ff4d4caae58d145ddf277a5e6b1316d9aa727269e3a5e443f5faa90532e9db22"
@@ -767,15 +767,15 @@ dependencies = [
  "serde_derive",
  "sha2",
  "sha3",
- "solana-frozen-abi",
- "solana-frozen-abi-macro",
- "solana-logger",
- "solana-sdk-macro",
+ "paychains-frozen-abi",
+ "paychains-frozen-abi-macro",
+ "paychains-logger",
+ "paychains-sdk-macro",
  "thiserror",
 ]
 
 [[package]]
-name = "solana-sdk-macro"
+name = "paychains-sdk-macro"
 version = "1.7.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "64e988d7938720ca3090cc02caafa7952a98e28d153c5ecc7661208d5adfd520"
@@ -797,7 +797,7 @@ dependencies = [
  "num-derive",
  "num-traits",
  "num_enum",
- "solana-program",
+ "paychains-program",
  "thiserror",
 ]
 

@@ -7,8 +7,8 @@ use {
         },
         traits::Crank,
     },
-    solana_farm_sdk::{instruction::vault::VaultInstruction, vault::Vault},
-    solana_program::{
+    paychains_farm_sdk::{instruction::vault::VaultInstruction, vault::Vault},
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
     },
 };

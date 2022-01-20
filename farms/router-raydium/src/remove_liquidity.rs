@@ -1,11 +1,11 @@
 //! Remove liquidity from the Raydium pool instruction
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::raydium::RaydiumRemoveLiquidity,
         program::{account, protocol::raydium},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         instruction::{AccountMeta, Instruction},

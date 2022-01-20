@@ -2,13 +2,13 @@
 
 use {
     crate::{strategies::common, traits::AddLiquidity, user_info::UserInfo, vault_info::VaultInfo},
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         id::zero,
         instruction::vault::VaultInstruction,
         program::{account, pda, protocol::raydium},
         vault::Vault,
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
     },
 };

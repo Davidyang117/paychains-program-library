@@ -1,10 +1,10 @@
-from solana.publickey import PublicKey
-from solana.keypair import Keypair
-from solana.rpc.async_api import AsyncClient
-from solana.rpc.commitment import Confirmed
-from solana.rpc.types import TxOpts
-from solana.transaction import Transaction
-import solana.system_program as sys
+from paychains.publickey import PublicKey
+from paychains.keypair import Keypair
+from paychains.rpc.async_api import AsyncClient
+from paychains.rpc.commitment import Confirmed
+from paychains.rpc.types import TxOpts
+from paychains.transaction import Transaction
+import paychains.system_program as sys
 
 from spl.token.constants import TOKEN_PROGRAM_ID
 from spl.token.async_client import AsyncToken

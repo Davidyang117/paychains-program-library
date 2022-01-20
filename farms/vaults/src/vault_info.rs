@@ -2,12 +2,12 @@
 
 use {
     crate::{clock, traits::VaultParams},
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         refdb,
         refdb::{RefDB, Reference, ReferenceType},
         string::{str_to_as64, ArrayString64},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, clock::UnixTimestamp, entrypoint::ProgramResult,
         program_error::ProgramError, pubkey::Pubkey,
     },

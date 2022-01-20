@@ -7,14 +7,14 @@ use {
         rpc_client_utils::send_and_confirm_messages_with_spinner, Error,
     },
     clap::{value_t_or_exit, App, AppSettings, Arg, ArgMatches, SubCommand},
-    solana_clap_utils::{
+    paychains_clap_utils::{
         input_parsers::pubkey_of_signer,
         input_validators::{is_amount, is_parsable, is_valid_pubkey},
     },
-    solana_client::rpc_client::RpcClient,
-    solana_remote_wallet::remote_wallet::RemoteWalletManager,
-    solana_sdk::{
-        message::Message, native_token::Sol, program_pack::Pack, pubkey::Pubkey, signature::Signer,
+    paychains_client::rpc_client::RpcClient,
+    paychains_remote_wallet::remote_wallet::RemoteWalletManager,
+    paychains_sdk::{
+        message::Message, native_token::Pay, program_pack::Pack, pubkey::Pubkey, signature::Signer,
         system_instruction,
     },
     spl_associated_token_account::*,
@@ -451,7 +451,7 @@ fn send_messages(
     println!(
         "Sending {:?} messages for ~{}",
         messages.len(),
-        Sol(lamports_required)
+        Pay(lamports_required)
     );
 
     crate::check_fee_payer_balance(config, lamports_required)?;

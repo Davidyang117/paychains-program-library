@@ -1,11 +1,11 @@
 # Name Service program
 
-A spl program for issuing and managing ownership of: domain names, Solana
+A spl program for issuing and managing ownership of: domain names, PayChains
 Pubkeys, URLs, twitter handles, ipfs cid's, metadata, etc..
 
 This program provides an interface and implementation that third parties can
 utilize to create and use their own version of a name service of any kind.
 
-Full documentation is available at https://spl.solana.com/name-service
+Full documentation is available at https://spl.paychains.com/name-service
 
 JavaScript binding are available in the `./js` directory.

@@ -1,11 +1,11 @@
-//! Solana Farm Client Pool Instructions
+//! PayChains Farm Client Pool Instructions
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::amm::AmmInstruction, pool::PoolRoute, program::account, token::TokenSelector,
     },
-    solana_sdk::{instruction::Instruction, program_error::ProgramError, pubkey::Pubkey},
+    paychains_sdk::{instruction::Instruction, program_error::ProgramError, pubkey::Pubkey},
 };
 
 use super::FarmClient;

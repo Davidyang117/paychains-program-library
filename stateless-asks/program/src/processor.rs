@@ -1,7 +1,7 @@
 //! Program state processor
 
 use metaplex_token_metadata::state::Metadata;
-use solana_program::program_option::COption;
+use paychains_program::program_option::COption;
 use std::slice::Iter;
 
 use crate::error::UtilError;
@@ -9,7 +9,7 @@ use crate::instruction::StatelessOfferInstruction;
 use crate::validation_utils::{assert_is_ata, assert_keys_equal};
 use {
     borsh::BorshDeserialize,
-    solana_program::{
+    paychains_program::{
         account_info::next_account_info,
         account_info::AccountInfo,
         entrypoint::ProgramResult,
@@ -318,7 +318,7 @@ fn pay_creator_fees<'a>(
                     }
                 } else if creator_fee > 0 {
                     if !seeds.is_empty() {
-                        msg!("Maker cannot pay with native SOL");
+                        msg!("Maker cannot pay with native PAY");
                         return Err(ProgramError::InvalidAccountData);
                     }
                     match system_program_info {

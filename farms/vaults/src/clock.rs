@@ -3,8 +3,8 @@
 use std::cmp;
 use {
     crate::vault_info::VaultInfo,
-    solana_farm_sdk::math,
-    solana_program::{
+    paychains_farm_sdk::math,
+    paychains_program::{
         clock::UnixTimestamp, entrypoint::ProgramResult, msg, program_error::ProgramError, sysvar,
         sysvar::Sysvar,
     },

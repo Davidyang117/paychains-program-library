@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Solana tokens loader
+# PayChains tokens loader
 
-url="https://raw.githubusercontent.com/solana-labs/token-list/main/src/tokens/solana.tokenlist.json"
+url="https://raw.githubusercontent.com/paychains-labs/token-list/main/src/tokens/paychains.tokenlist.json"
 
 if hash wget 2>/dev/null; then
   wget_or_curl="wget -O tokens.json $url"

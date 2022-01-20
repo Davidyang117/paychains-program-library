@@ -5,14 +5,14 @@ import {
   StakeProgram,
   SystemProgram,
   TransactionInstruction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import {
   findStakeProgramAddress,
   findTransientStakeProgramAddress,
 } from './program-address';
 import BN from 'bn.js';
 
-import {lamportsToSol} from './math';
+import {lamportsToPay} from './math';
 import {WithdrawAccount} from '../index';
 import {
   StakePool,
@@ -143,7 +143,7 @@ export async function prepareWithdrawAccounts(
   // Not enough stake to withdraw the specified amount
   if (remainingAmount > 0) {
     throw new Error(
-      `No stake accounts found in this pool with enough balance to withdraw ${lamportsToSol(
+      `No stake accounts found in this pool with enough balance to withdraw ${lamportsToPay(
         amount,
       )} pool tokens.`,
     );

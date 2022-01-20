@@ -7,7 +7,7 @@ use {
         state::{Data, RecordData},
     },
     borsh::{BorshDeserialize, BorshSerialize},
-    solana_program::{
+    paychains_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint::ProgramResult,
         msg,

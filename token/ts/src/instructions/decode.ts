@@ -1,5 +1,5 @@
-import { u8 } from '@solana/buffer-layout';
-import { TransactionInstruction } from '@solana/web3.js';
+import { u8 } from '@paychains/buffer-layout';
+import { TransactionInstruction } from '@paychains/web3.js';
 import { TOKEN_PROGRAM_ID } from '../constants';
 import { TokenInvalidInstructionDataError, TokenInvalidInstructionTypeError } from '../errors';
 import { decodeApproveInstruction, DecodedApproveInstruction } from './approve';

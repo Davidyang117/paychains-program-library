@@ -1,11 +1,11 @@
 use {
-    solana_farm_client::client::FarmClient,
-    solana_sdk::{commitment_config::CommitmentConfig, signature::Keypair, signer::Signer},
+    paychains_farm_client::client::FarmClient,
+    paychains_sdk::{commitment_config::CommitmentConfig, signature::Keypair, signer::Signer},
 };
 
 use crate::{utils, utils::Swap};
 
-const MAX_SOL_BALANCE_TO_USE: f64 = 0.1;
+const MAX_PAY_BALANCE_TO_USE: f64 = 0.1;
 
 pub fn do_swap(client: &FarmClient, keypair: &Keypair, swap: &Swap) {
     let amount = if swap.amount == 0.0 {
@@ -202,7 +202,7 @@ pub fn cleanup(
         do_swap(client, keypair, &swap);
     }
 
-    if token_a_str != "SOL" {
+    if token_a_str != "PAY" {
         let token_a_balance = utils::get_token_or_native_balance(client, &wallet, &token_a_str);
         if token_a_balance > 0.0 {
             do_swap(
@@ -211,14 +211,14 @@ pub fn cleanup(
                 &Swap {
                     protocol: "RDM",
                     from_token: token_a_str.as_str(),
-                    to_token: "SOL",
+                    to_token: "PAY",
                     amount: token_a_balance,
                 },
             );
         }
     }
 
-    if token_b_str != "SOL" {
+    if token_b_str != "PAY" {
         let token_b_balance = utils::get_token_or_native_balance(client, &wallet, &token_b_str);
         if token_b_balance > 0.0 {
             do_swap(
@@ -227,7 +227,7 @@ pub fn cleanup(
                 &Swap {
                     protocol: "RDM",
                     from_token: token_b_str.as_str(),
-                    to_token: "SOL",
+                    to_token: "PAY",
                     amount: token_b_balance,
                 },
             );
@@ -257,8 +257,8 @@ pub fn run_test(pool_name: &str, swaps: Vec<Swap>, cleanup_swaps: Vec<Swap>, poo
         do_swap(&client, &keypair, &swap);
     }
 
-    let token_a_balance = if token_a_str == "SOL" {
-        MAX_SOL_BALANCE_TO_USE.min(utils::get_token_or_native_balance(
+    let token_a_balance = if token_a_str == "PAY" {
+        MAX_PAY_BALANCE_TO_USE.min(utils::get_token_or_native_balance(
             &client,
             &wallet,
             &token_a_str,
@@ -266,8 +266,8 @@ pub fn run_test(pool_name: &str, swaps: Vec<Swap>, cleanup_swaps: Vec<Swap>, poo
     } else {
         utils::get_token_or_native_balance(&client, &wallet, &token_a_str)
     };
-    let token_b_balance = if token_b_str == "SOL" {
-        MAX_SOL_BALANCE_TO_USE.min(utils::get_token_or_native_balance(
+    let token_b_balance = if token_b_str == "PAY" {
+        MAX_PAY_BALANCE_TO_USE.min(utils::get_token_or_native_balance(
             &client,
             &wallet,
             &token_b_str,

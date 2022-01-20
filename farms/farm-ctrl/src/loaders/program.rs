@@ -4,9 +4,9 @@ use {
     crate::config::Config,
     log::info,
     serde::Deserialize,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{id::ProgramIDType, pack::pubkey_deserialize},
-    solana_sdk::pubkey::Pubkey,
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{id::ProgramIDType, pack::pubkey_deserialize},
+    paychains_sdk::pubkey::Pubkey,
 };
 
 #[derive(Deserialize, Debug)]

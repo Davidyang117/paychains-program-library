@@ -1,45 +1,45 @@
 #!/usr/bin/env bash
 #
-# Updates the solana version in all the SPL crates
+# Updates the paychains version in all the SPL crates
 #
 
-solana_ver=$1
-if [[ -z $solana_ver ]]; then
-  echo "Usage: $0 <new-solana-version>"
+paychains_ver=$1
+if [[ -z $paychains_ver ]]; then
+  echo "Usage: $0 <new-paychains-version>"
   exit 1
 fi
 
 cd "$(dirname "$0")"
 
-sed -i'' -e "s#solana_version=v.*#solana_version=v${solana_ver}#" ./ci/solana-version.sh
+sed -i'' -e "s#paychains_version=v.*#paychains_version=v${paychains_ver}#" ./ci/paychains-version.sh
 
 declare tomls=()
 while IFS='' read -r line; do tomls+=("$line"); done < <(find . -name Cargo.toml)
 
 crates=(
-  solana-account-decoder
-  solana-banks-client
-  solana-banks-server
-  solana-bpf-loader-program
-  solana-clap-utils
-  solana-cli-config
-  solana-cli-output
-  solana-client
-  solana-core
-  solana-logger
-  solana-notifier
-  solana-program
-  solana-program-test
-  solana-remote-wallet
-  solana-runtime
-  solana-sdk
-  solana-stake-program
-  solana-transaction-status
-  solana-vote-program
-  solana-version
+  paychains-account-decoder
+  paychains-banks-client
+  paychains-banks-server
+  paychains-bpf-loader-program
+  paychains-clap-utils
+  paychains-cli-config
+  paychains-cli-output
+  paychains-client
+  paychains-core
+  paychains-logger
+  paychains-notifier
+  paychains-program
+  paychains-program-test
+  paychains-remote-wallet
+  paychains-runtime
+  paychains-sdk
+  paychains-stake-program
+  paychains-transaction-status
+  paychains-vote-program
+  paychains-version
 )
 
 set -x
 for crate in "${crates[@]}"; do
-  sed -E -i'' -e "s#(${crate} = \")(=?).*#\1\2${solana_ver}\"#" "${tomls[@]}"
+  sed -E -i'' -e "s#(${crate} = \")(=?).*#\1\2${paychains_ver}\"#" "${tomls[@]}"
 done

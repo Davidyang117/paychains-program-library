@@ -1,12 +1,12 @@
 //! Unstake LP tokens from a Raydium farm instruction
 
 use {
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         id::zero,
         instruction::raydium::RaydiumUnstake,
         program::{account, protocol::raydium},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         instruction::{AccountMeta, Instruction},

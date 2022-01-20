@@ -6,15 +6,15 @@ use {
     num_enum::TryFromPrimitive,
     serde::{Deserialize, Serialize},
     serde_json::to_string,
-    solana_program::{program_error::ProgramError, pubkey::Pubkey},
+    paychains_program::{program_error::ProgramError, pubkey::Pubkey},
 };
 
 #[repr(u8)]
 #[derive(Serialize, Deserialize, Clone, Copy, Debug, Eq, PartialEq, TryFromPrimitive)]
 pub enum TokenType {
-    NativeSol,
-    WrappedSol,
-    WrappedSollet,
+    NativePay,
+    WrappedPay,
+    WrappedPaylet,
     WrappedWarmhole,
     SplToken,
     LpToken,
@@ -126,9 +126,9 @@ impl Token {
 impl std::fmt::Display for TokenType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match *self {
-            TokenType::NativeSol => write!(f, "NativeSol"),
-            TokenType::WrappedSol => write!(f, "WrappedSol"),
-            TokenType::WrappedSollet => write!(f, "WrappedSollet"),
+            TokenType::NativePay => write!(f, "NativePay"),
+            TokenType::WrappedPay => write!(f, "WrappedPay"),
+            TokenType::WrappedPaylet => write!(f, "WrappedPaylet"),
             TokenType::WrappedWarmhole => write!(f, "WrappedWarmhole"),
             TokenType::SplToken => write!(f, "SplToken"),
             TokenType::LpToken => write!(f, "LpToken"),

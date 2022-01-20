@@ -7,19 +7,19 @@ use {
     clap::ArgMatches,
     log::error,
     num_enum::TryFromPrimitive,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{id::DAO_CUSTODY_NAME, token::TokenSelector},
-    solana_sdk::{bpf_loader_upgradeable, instruction::Instruction, pubkey::Pubkey},
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{id::DAO_CUSTODY_NAME, token::TokenSelector},
+    paychains_sdk::{bpf_loader_upgradeable, instruction::Instruction, pubkey::Pubkey},
     spl_associated_token_account::create_associated_token_account,
     std::str::FromStr,
 };
 
 fn main() {
-    let matches = config::get_clap_app(solana_version::version!()).get_matches();
+    let matches = config::get_clap_app(paychains_version::version!()).get_matches();
 
     // set log verbosity level
-    let log_level = "solana=".to_string() + matches.value_of("log_level").unwrap();
-    solana_logger::setup_with_default(log_level.as_str());
+    let log_level = "paychains=".to_string() + matches.value_of("log_level").unwrap();
+    paychains_logger::setup_with_default(log_level.as_str());
 
     // load config params
     let config = config::Config::new(&matches);
@@ -91,7 +91,7 @@ fn main() {
         }
         ("balance", Some(_)) => {
             println!(
-                "SOL balance: {}",
+                "PAY balance: {}",
                 client.get_account_balance(&wallet).unwrap()
             );
         }
@@ -117,7 +117,7 @@ fn main() {
         }
         ("wallet-balances", Some(_subcommand_matches)) => {
             println!(
-                "SOL balance: {}",
+                "PAY balance: {}",
                 client.get_account_balance(&wallet).unwrap()
             );
             let tokens = client.get_wallet_tokens(&wallet).unwrap();

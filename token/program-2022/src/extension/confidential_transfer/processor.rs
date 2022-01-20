@@ -9,7 +9,7 @@ use {
         processor::Processor,
         state::{Account, Mint},
     },
-    solana_program::{
+    paychains_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint::ProgramResult,
         instruction::Instruction,
@@ -18,7 +18,7 @@ use {
         pubkey::Pubkey,
         sysvar::instructions::get_instruction_relative,
     },
-    solana_zk_token_sdk::{
+    paychains_zk_token_sdk::{
         zk_token_elgamal::{ops, pod},
         zk_token_proof_program,
     },
@@ -277,7 +277,7 @@ fn process_deposit(
             return Err(TokenError::MintMismatch.into());
         }
 
-        // Wrapped SOL deposits are not supported because lamports cannot be vanished.
+        // Wrapped PAY deposits are not supported because lamports cannot be vanished.
         assert!(!token_account.base.is_native());
         token_account.base.amount = token_account
             .base
@@ -419,7 +419,7 @@ fn process_withdraw(
             return Err(TokenError::MintMismatch.into());
         }
 
-        // Wrapped SOL withdrawals are not supported because lamports cannot be apparated.
+        // Wrapped PAY withdrawals are not supported because lamports cannot be apparated.
         assert!(!receiver_token_account.base.is_native());
         receiver_token_account.base.amount = receiver_token_account
             .base

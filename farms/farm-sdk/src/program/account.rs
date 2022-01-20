@@ -3,7 +3,7 @@
 use {
     crate::{math, pack::check_data_len},
     arrayref::array_ref,
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program::invoke,
         program_error::ProgramError, program_pack::Pack, pubkey::Pubkey,
     },

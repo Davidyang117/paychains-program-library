@@ -1,14 +1,14 @@
-#![allow(deprecated)] // TODO: Remove when SPL upgrades to Solana 1.8
+#![allow(deprecated)] // TODO: Remove when SPL upgrades to PayChains 1.8
 use clap::{
     crate_description, crate_name, crate_version, value_t, value_t_or_exit, App, AppSettings, Arg,
     ArgMatches, SubCommand,
 };
 use serde::Serialize;
-use solana_account_decoder::{
+use paychains_account_decoder::{
     parse_token::{TokenAccountType, UiAccountState},
     UiAccountData,
 };
-use solana_clap_utils::{
+use paychains_clap_utils::{
     fee_payer::fee_payer_arg,
     input_parsers::{pubkey_of_signer, pubkeys_of_multiple_signers, value_of},
     input_validators::{
@@ -21,15 +21,15 @@ use solana_clap_utils::{
     offline::{self, *},
     ArgConstant, DisplayError,
 };
-use solana_cli_output::{
+use paychains_cli_output::{
     return_signers_data, CliSignOnlyData, CliSignature, OutputFormat, QuietDisplay,
     ReturnSignersConfig, VerboseDisplay,
 };
-use solana_client::{
+use paychains_client::{
     blockhash_query::BlockhashQuery, rpc_client::RpcClient, rpc_request::TokenAccountsFilter,
 };
-use solana_remote_wallet::remote_wallet::RemoteWalletManager;
-use solana_sdk::{
+use paychains_remote_wallet::remote_wallet::RemoteWalletManager;
+use paychains_sdk::{
     commitment_config::CommitmentConfig,
     instruction::Instruction,
     message::Message,
@@ -761,7 +761,7 @@ fn command_transfer(
                     println_display(
                         config,
                         format!(
-                            "  Funding recipient: {} ({} SOL)",
+                            "  Funding recipient: {} ({} PAY)",
                             recipient_token_account,
                             lamports_to_sol(minimum_balance_for_rent_exemption)
                         ),
@@ -1032,27 +1032,27 @@ fn command_wrap(
     config: &Config,
     sol: f64,
     wallet_address: Pubkey,
-    wrapped_sol_account: Option<Pubkey>,
+    wrapped_pay_account: Option<Pubkey>,
     bulk_signers: BulkSigners,
 ) -> CommandResult {
-    let lamports = sol_to_lamports(sol);
+    let lamports = pay_to_lamports(sol);
 
-    let instructions = if let Some(wrapped_sol_account) = wrapped_sol_account {
+    let instructions = if let Some(wrapped_pay_account) = wrapped_pay_account {
         println_display(
             config,
-            format!("Wrapping {} SOL into {}", sol, wrapped_sol_account),
+            format!("Wrapping {} PAY into {}", sol, wrapped_pay_account),
         );
         vec![
             system_instruction::create_account(
                 &wallet_address,
-                &wrapped_sol_account,
+                &wrapped_pay_account,
                 lamports,
                 Account::LEN as u64,
                 &spl_token::id(),
             ),
             initialize_account(
                 &spl_token::id(),
-                &wrapped_sol_account,
+                &wrapped_pay_account,
                 &native_mint::id(),
                 &wallet_address,
             )?,
@@ -1072,7 +1072,7 @@ fn command_wrap(
             }
         }
 
-        println_display(config, format!("Wrapping {} SOL into {}", sol, account));
+        println_display(config, format!("Wrapping {} PAY into {}", sol, account));
         vec![
             system_instruction::transfer(&wallet_address, &account, lamports),
             create_associated_token_account(&config.fee_payer, &wallet_address, &native_mint::id()),
@@ -1114,14 +1114,14 @@ fn command_unwrap(
         let lamports = config.rpc_client.get_balance(&address)?;
         if lamports == 0 {
             if use_associated_account {
-                return Err("No wrapped SOL in associated account; did you mean to specify an auxiliary address?".to_string().into());
+                return Err("No wrapped PAY in associated account; did you mean to specify an auxiliary address?".to_string().into());
             } else {
-                return Err(format!("No wrapped SOL in {}", address).into());
+                return Err(format!("No wrapped PAY in {}", address).into());
             }
         }
         println_display(
             config,
-            format!("  Amount: {} SOL", lamports_to_sol(lamports)),
+            format!("  Amount: {} PAY", lamports_to_sol(lamports)),
         );
     }
     println_display(config, format!("  Recipient: {}", &wallet_address));
@@ -1673,7 +1673,7 @@ fn main() -> Result<(), Error> {
                 .takes_value(true)
                 .global(true)
                 .help("Configuration file to use");
-            if let Some(ref config_file) = *solana_cli_config::CONFIG_FILE {
+            if let Some(ref config_file) = *paychains_cli_config::CONFIG_FILE {
                 arg.default_value(config_file)
             } else {
                 arg
@@ -1705,7 +1705,7 @@ fn main() -> Result<(), Error> {
                 .global(true)
                 .validator(is_url_or_moniker)
                 .help(
-                    "URL for Solana's JSON RPC or moniker (or their first letter): \
+                    "URL for PayChains's JSON RPC or moniker (or their first letter): \
                        [mainnet-beta, testnet, devnet, localhost] \
                     Default from the configuration file."
                 ),
@@ -2127,7 +2127,7 @@ fn main() -> Result<(), Error> {
         )
         .subcommand(
             SubCommand::with_name("wrap")
-                .about("Wrap native SOL in a SOL token account")
+                .about("Wrap native PAY in a PAY token account")
                 .arg(
                     Arg::with_name("amount")
                         .validator(is_amount)
@@ -2135,7 +2135,7 @@ fn main() -> Result<(), Error> {
                         .takes_value(true)
                         .index(1)
                         .required(true)
-                        .help("Amount of SOL to wrap"),
+                        .help("Amount of PAY to wrap"),
                 )
                 .arg(
                     Arg::with_name("wallet_keypair")
@@ -2144,8 +2144,8 @@ fn main() -> Result<(), Error> {
                         .validator(is_valid_signer)
                         .takes_value(true)
                         .help(
-                            "Specify the keypair for the wallet which will have its native SOL wrapped. \
-                             This wallet will be assigned as the owner of the wrapped SOL token account. \
+                            "Specify the keypair for the wallet which will have its native PAY wrapped. \
+                             This wallet will be assigned as the owner of the wrapped PAY token account. \
                              This may be a keypair file or the ASK keyword. \
                              Defaults to the client keypair."
                         ),
@@ -2154,14 +2154,14 @@ fn main() -> Result<(), Error> {
                     Arg::with_name("create_aux_account")
                         .takes_value(false)
                         .long("create-aux-account")
-                        .help("Wrap SOL in an auxiliary account instead of associated token account"),
+                        .help("Wrap PAY in an auxiliary account instead of associated token account"),
                 )
                 .nonce_args(true)
                 .offline_args(),
         )
         .subcommand(
             SubCommand::with_name("unwrap")
-                .about("Unwrap a SOL token account")
+                .about("Unwrap a PAY token account")
                 .arg(
                     Arg::with_name("address")
                         .validator(is_valid_pubkey)
@@ -2178,8 +2178,8 @@ fn main() -> Result<(), Error> {
                         .validator(is_valid_signer)
                         .takes_value(true)
                         .help(
-                            "Specify the keypair for the wallet which owns the wrapped SOL. \
-                             This wallet will receive the unwrapped SOL. \
+                            "Specify the keypair for the wallet which owns the wrapped PAY. \
+                             This wallet will receive the unwrapped PAY. \
                              This may be a keypair file or the ASK keyword. \
                              Defaults to the client keypair."
                         ),
@@ -2264,7 +2264,7 @@ fn main() -> Result<(), Error> {
                         .validator(is_valid_pubkey)
                         .value_name("REFUND_ACCOUNT_ADDRESS")
                         .takes_value(true)
-                        .help("The address of the account to receive remaining SOL [default: --owner]"),
+                        .help("The address of the account to receive remaining PAY [default: --owner]"),
                 )
                 .arg(
                     Arg::with_name("close_authority")
@@ -2417,12 +2417,12 @@ fn main() -> Result<(), Error> {
                     Arg::with_name("close_empty_associated_accounts")
                     .long("close-empty-associated-accounts")
                     .takes_value(false)
-                    .help("close all empty associated token accounts (to get SOL back)")
+                    .help("close all empty associated token accounts (to get PAY back)")
                 )
         )
         .subcommand(
             SubCommand::with_name("sync-native")
-                .about("Sync a native SOL token account to its underlying lamports")
+                .about("Sync a native PAY token account to its underlying lamports")
                 .arg(
                     owner_address_arg()
                         .index(1)
@@ -2452,16 +2452,16 @@ fn main() -> Result<(), Error> {
 
     let config = {
         let cli_config = if let Some(config_file) = matches.value_of("config_file") {
-            solana_cli_config::Config::load(config_file).unwrap_or_default()
+            paychains_cli_config::Config::load(config_file).unwrap_or_default()
         } else {
-            solana_cli_config::Config::default()
+            paychains_cli_config::Config::default()
         };
         let json_rpc_url = normalize_to_url_if_moniker(
             matches
                 .value_of("json_rpc_url")
                 .unwrap_or(&cli_config.json_rpc_url),
         );
-        let websocket_url = solana_cli_config::Config::compute_websocket_url(&json_rpc_url);
+        let websocket_url = paychains_cli_config::Config::compute_websocket_url(&json_rpc_url);
 
         let (signer, fee_payer) = signer_from_path(
             matches,
@@ -2559,7 +2559,7 @@ fn main() -> Result<(), Error> {
         }
     };
 
-    solana_logger::setup_with_default("solana=info");
+    paychains_logger::setup_with_default("paychains=info");
 
     let result = match (sub_command, sub_matches) {
         ("bench", Some(arg_matches)) => bench_process_command(

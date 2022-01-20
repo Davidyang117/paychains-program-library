@@ -1,7 +1,7 @@
 //! Realm Account
 
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo, program_error::ProgramError, program_pack::IsInitialized,
     pubkey::Pubkey,
 };
@@ -248,7 +248,7 @@ mod test {
         instruction::GovernanceInstruction,
         state::legacy::{GovernanceInstructionV1, RealmConfigV1, RealmV1},
     };
-    use solana_program::borsh::try_from_slice_unchecked;
+    use paychains_program::borsh::try_from_slice_unchecked;
 
     use super::*;
 

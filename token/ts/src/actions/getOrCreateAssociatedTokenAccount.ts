@@ -6,7 +6,7 @@ import {
     sendAndConfirmTransaction,
     Signer,
     Transaction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } from '../constants';
 import {
     TokenAccountNotFoundError,

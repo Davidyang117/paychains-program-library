@@ -5,18 +5,18 @@ mod helpers;
 use {
     borsh::BorshSerialize,
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked, program_option::COption, program_pack::Pack,
         pubkey::Pubkey, stake,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         account::{Account, WritableAccount},
         clock::{Clock, Epoch},
         signature::{Keypair, Signer},
         transaction::Transaction,
     },
-    solana_vote_program::{
+    paychains_vote_program::{
         self,
         vote_state::{VoteInit, VoteState, VoteStateVersions},
     },
@@ -77,15 +77,15 @@ async fn setup(
         preferred_deposit_validator_vote_address: None,
         preferred_withdraw_validator_vote_address: None,
         stake_deposit_fee: Fee::default(),
-        sol_deposit_fee: Fee::default(),
+        pay_deposit_fee: Fee::default(),
         stake_withdrawal_fee: Fee::default(),
         next_stake_withdrawal_fee: None,
         stake_referral_fee: 0,
-        sol_referral_fee: 0,
-        sol_deposit_authority: None,
-        sol_withdraw_authority: None,
-        sol_withdrawal_fee: Fee::default(),
-        next_sol_withdrawal_fee: None,
+        pay_referral_fee: 0,
+        pay_deposit_authority: None,
+        pay_withdraw_authority: None,
+        pay_withdrawal_fee: Fee::default(),
+        next_pay_withdrawal_fee: None,
         last_epoch_pool_token_supply: 0,
         last_epoch_total_lamports: 0,
     };
@@ -123,7 +123,7 @@ async fn setup(
         let vote_account = Account::create(
             ACCOUNT_RENT_EXEMPTION,
             bincode::serialize::<VoteStateVersions>(&vote_state).unwrap(),
-            solana_vote_program::id(),
+            paychains_vote_program::id(),
             false,
             Epoch::default(),
         );

@@ -1,9 +1,9 @@
-//! Solana Farm Client Saber Pools accounts builder
+//! PayChains Farm Client Saber Pools accounts builder
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{pool::PoolRoute, token::TokenSelector},
-    solana_sdk::{instruction::AccountMeta, program_error::ProgramError, pubkey::Pubkey, sysvar},
+    paychains_farm_sdk::{pool::PoolRoute, token::TokenSelector},
+    paychains_sdk::{instruction::AccountMeta, program_error::ProgramError, pubkey::Pubkey, sysvar},
     std::vec::Vec,
 };
 

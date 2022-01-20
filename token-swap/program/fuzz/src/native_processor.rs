@@ -1,13 +1,13 @@
 use crate::native_account_data::NativeAccountData;
 
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo, entrypoint::ProgramResult, instruction::Instruction,
     program_error::ProgramError, program_stubs, pubkey::Pubkey,
 };
 
 struct TestSyscallStubs {}
 impl program_stubs::SyscallStubs for TestSyscallStubs {
-    fn sol_invoke_signed(
+    fn pay_invoke_signed(
         &self,
         instruction: &Instruction,
         account_infos: &[AccountInfo],

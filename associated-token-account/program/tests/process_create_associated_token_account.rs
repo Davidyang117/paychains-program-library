@@ -3,11 +3,11 @@
 
 mod program_test;
 
-use solana_program::{
+use paychains_program::{
     instruction::*, program_pack::Pack, pubkey::Pubkey, system_instruction, sysvar,
 };
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program_test::*;
+use paychains_sdk::{
     signature::Signer,
     transaction::{Transaction, TransactionError},
 };

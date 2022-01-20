@@ -1,4 +1,4 @@
-//! Solana Farms control interface.
+//! PayChains Farms control interface.
 
 mod config;
 mod generate;
@@ -12,16 +12,16 @@ mod remove;
 mod vault;
 
 use {
-    log::error, num_enum::TryFromPrimitive, solana_farm_client::client::FarmClient,
-    solana_farm_sdk::token::TokenSelector, solana_sdk::pubkey::Pubkey, std::str::FromStr,
+    log::error, num_enum::TryFromPrimitive, paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::token::TokenSelector, paychains_sdk::pubkey::Pubkey, std::str::FromStr,
 };
 
 fn main() {
-    let matches = config::get_clap_app(solana_version::version!()).get_matches();
+    let matches = config::get_clap_app(paychains_version::version!()).get_matches();
 
     // set log verbosity level
-    let log_level = "solana=".to_string() + matches.value_of("log_level").unwrap();
-    solana_logger::setup_with_default(log_level.as_str());
+    let log_level = "paychains=".to_string() + matches.value_of("log_level").unwrap();
+    paychains_logger::setup_with_default(log_level.as_str());
 
     // load config params
     let config = config::Config::new(&matches);

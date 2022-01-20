@@ -1,8 +1,8 @@
-use solana_program_test::{
+use paychains_program_test::{
     tokio::{self, sync::Mutex},
     ProgramTest,
 };
-use solana_sdk::{
+use paychains_sdk::{
     program_option::COption,
     signer::{keypair::Keypair, Signer},
 };

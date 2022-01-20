@@ -1,8 +1,8 @@
 //! Handlers for remove and remove_all commands
 
 use {
-    crate::config::Config, log::info, solana_farm_client::client::FarmClient,
-    solana_farm_sdk::refdb::StorageType,
+    crate::config::Config, log::info, paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::refdb::StorageType,
 };
 
 pub fn remove(client: &FarmClient, config: &Config, target: StorageType, object: &str) {

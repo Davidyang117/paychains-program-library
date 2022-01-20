@@ -2,12 +2,12 @@
 
 use {
     crate::{traits::LockLiquidity, user_info::UserInfo, vault_info::VaultInfo},
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         instruction::vault::VaultInstruction,
         program::{account, pda, protocol::saber},
         vault::{Vault, VaultStrategy},
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
     },
 };

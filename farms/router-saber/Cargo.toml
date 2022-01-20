@@ -1,11 +1,11 @@
 [package]
-name = "solana-farm-router-saber"
+name = "paychains-farm-router-saber"
 version = "0.0.1"
-description = "Solana Farm Saber Router"
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
-repository = "https://github.com/solana-labs/solana-program-library"
+description = "PayChains Farm Saber Router"
+authors = ["PayChains Maintainers <maintainers@paychains.foundation>"]
+repository = "https://github.com/paychains-labs/paychains-program-library"
 license = "Apache-2.0"
-homepage = "https://solana.com/"
+homepage = "https://paychains.com/"
 edition = "2018"
 
 [features]
@@ -13,8 +13,8 @@ no-entrypoint = []
 debug = []
 
 [dependencies]
-solana-farm-sdk = { path = "../farm-sdk" }
-solana-program = "1.9.2"
+paychains-farm-sdk = { path = "../farm-sdk" }
+paychains-program = "1.9.2"
 arrayref = "0.3.6"
 stable-swap-client = "1.5.2"
 quarry-mine = { version = "1.10.0", features = ["no-entrypoint"] }
@@ -23,7 +23,7 @@ quarry-redeemer = { version = "1.10.0", features = ["no-entrypoint"] }
 spl-token = { version = "3.2.0", features = ["no-entrypoint"] }
 
 [dev-dependencies]
-solana-program-test = "1.9.2"
+paychains-program-test = "1.9.2"
 
 [lib]
 crate-type = ["cdylib", "lib"]

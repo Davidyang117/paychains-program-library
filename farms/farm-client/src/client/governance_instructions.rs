@@ -1,12 +1,12 @@
-//! Solana Farm Client Governance Instructions
+//! PayChains Farm Client Governance Instructions
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         id::{DAO_PROGRAM_NAME, DAO_TOKEN_NAME},
         token::Token,
     },
-    solana_sdk::{borsh::try_from_slice_unchecked, instruction::Instruction, pubkey::Pubkey},
+    paychains_sdk::{borsh::try_from_slice_unchecked, instruction::Instruction, pubkey::Pubkey},
     spl_governance::instruction as dao_instruction,
     spl_governance::state::{
         governance::GovernanceConfig,

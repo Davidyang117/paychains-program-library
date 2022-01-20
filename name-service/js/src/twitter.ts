@@ -3,7 +3,7 @@ import {
   PublicKey,
   SystemProgram,
   TransactionInstruction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 
 import { deleteNameRegistry, NAME_PROGRAM_ID } from './bindings';
 import {

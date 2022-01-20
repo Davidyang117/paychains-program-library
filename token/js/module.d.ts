@@ -1,13 +1,13 @@
-declare module '@solana/spl-token' {
+declare module '@paychains/spl-token' {
   import {Buffer} from 'buffer';
-  import {Layout} from '@solana/buffer-layout';
+  import {Layout} from '@paychains/buffer-layout';
   import {
     PublicKey,
     Signer,
     TransactionInstruction,
     TransactionSignature,
     Connection,
-  } from '@solana/web3.js';
+  } from '@paychains/web3.js';
   import BN from 'bn.js';
 
   // === client/token.js ===

@@ -5,8 +5,8 @@ use {
         strategies::rdm_stake_lp_compound::{crank1::crank1, crank2::crank2, crank3::crank3},
         traits::Crank,
     },
-    solana_farm_sdk::{instruction::vault::VaultInstruction, vault::Vault},
-    solana_program::{
+    paychains_farm_sdk::{instruction::vault::VaultInstruction, vault::Vault},
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
     },
 };

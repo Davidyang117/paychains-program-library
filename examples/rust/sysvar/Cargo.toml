@@ -1,9 +1,9 @@
 [package]
 name = "spl-example-sysvar"
 version = "1.0.0"
-description = "Solana Program Library Sysvar Example"
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
-repository = "https://github.com/solana-labs/solana-program-library"
+description = "PayChains Program Library Sysvar Example"
+authors = ["PayChains Maintainers <maintainers@paychains.foundation>"]
+repository = "https://github.com/paychains-labs/paychains-program-library"
 license = "Apache-2.0"
 edition = "2018"
 publish = false
@@ -13,11 +13,11 @@ no-entrypoint = []
 test-bpf = []
 
 [dependencies]
-solana-program = "1.9.2"
+paychains-program = "1.9.2"
 
 [dev-dependencies]
-solana-program-test = "1.9.2"
-solana-sdk = "1.9.2"
+paychains-program-test = "1.9.2"
+paychains-sdk = "1.9.2"
 
 [lib]
 crate-type = ["cdylib", "lib"]

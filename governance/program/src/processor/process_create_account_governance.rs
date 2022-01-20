@@ -9,7 +9,7 @@ use crate::state::{
     realm::get_realm_data,
     token_owner_record::get_token_owner_record_data_for_realm,
 };
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     entrypoint::ProgramResult,
     pubkey::Pubkey,

@@ -1,6 +1,6 @@
 //! Program state processor
 
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     clock::Clock,
     entrypoint::ProgramResult,

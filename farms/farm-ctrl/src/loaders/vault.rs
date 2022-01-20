@@ -3,8 +3,8 @@
 use {
     crate::config::Config,
     log::info,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{refdb::StorageType, vault::Vault},
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{refdb::StorageType, vault::Vault},
 };
 
 pub fn load(client: &FarmClient, config: &Config, data: &str, remove_mode: bool) {
@@ -13,7 +13,7 @@ pub fn load(client: &FarmClient, config: &Config, data: &str, remove_mode: bool)
         .get_refdb_last_index(&StorageType::Vault.to_string())
         .expect("Vault RefDB query error");
 
-    if parsed["name"] != "Solana Vaults List" {
+    if parsed["name"] != "PayChains Vaults List" {
         panic!("Unsupported vaults file");
     }
     let vaults = parsed["vaults"].as_array().unwrap();

@@ -6,7 +6,7 @@ use {
     num_enum::TryFromPrimitive,
     serde::{Deserialize, Serialize},
     serde_json::to_string,
-    solana_program::{program_error::ProgramError, pubkey::Pubkey},
+    paychains_program::{program_error::ProgramError, pubkey::Pubkey},
 };
 
 #[allow(clippy::large_enum_variant)]

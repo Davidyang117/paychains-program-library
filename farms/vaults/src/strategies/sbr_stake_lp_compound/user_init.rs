@@ -2,8 +2,8 @@
 
 use {
     crate::{traits::UserInit, user_info::UserInfo},
-    solana_farm_sdk::{instruction::vault::VaultInstruction, program::pda, vault::Vault},
-    solana_program::{
+    paychains_farm_sdk::{instruction::vault::VaultInstruction, program::pda, vault::Vault},
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
         pubkey::Pubkey,
     },

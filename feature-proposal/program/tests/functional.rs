@@ -2,13 +2,13 @@
 #![cfg(feature = "test-bpf")]
 
 use {
-    solana_program::{
+    paychains_program::{
         feature::{self, Feature},
         program_option::COption,
         system_program,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::Transaction,
     },

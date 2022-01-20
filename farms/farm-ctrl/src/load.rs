@@ -3,8 +3,8 @@
 use {
     crate::{config::Config, loaders},
     log::info,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::refdb::StorageType,
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::refdb::StorageType,
     std::fs,
 };
 

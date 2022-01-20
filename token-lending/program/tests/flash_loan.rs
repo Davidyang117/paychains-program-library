@@ -3,14 +3,14 @@
 mod helpers;
 
 use helpers::*;
-use solana_program::instruction::AccountMeta;
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program::instruction::AccountMeta;
+use paychains_program_test::*;
+use paychains_sdk::{
     pubkey::Pubkey,
     signature::{Keypair, Signer},
     transaction::{Transaction, TransactionError},
 };
-use spl_token::solana_program::instruction::InstructionError;
+use spl_token::paychains_program::instruction::InstructionError;
 use spl_token_lending::{
     error::LendingError, instruction::flash_loan, processor::process_instruction,
 };

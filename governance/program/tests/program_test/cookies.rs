@@ -1,5 +1,5 @@
-use solana_program::{instruction::Instruction, pubkey::Pubkey};
-use solana_sdk::signature::Keypair;
+use paychains_program::{instruction::Instruction, pubkey::Pubkey};
+use paychains_sdk::signature::Keypair;
 use spl_governance::{
     addins::voter_weight::VoterWeightRecord,
     state::{

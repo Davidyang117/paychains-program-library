@@ -2,19 +2,19 @@
 name = "spl-feature-proposal-cli"
 version = "1.2.0"
 description = "SPL Feature Proposal Command-line Utility"
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
-repository = "https://github.com/solana-labs/solana-program-library"
+authors = ["PayChains Maintainers <maintainers@paychains.foundation>"]
+repository = "https://github.com/paychains-labs/paychains-program-library"
 license = "Apache-2.0"
 edition = "2018"
 
 [dependencies]
 chrono = "0.4.19"
 clap = "2.33.3"
-solana-clap-utils = "1.9.2"
-solana-cli-config = "1.9.2"
-solana-client = "1.9.2"
-solana-logger = "1.9.2"
-solana-sdk = "1.9.2"
+paychains-clap-utils = "1.9.2"
+paychains-cli-config = "1.9.2"
+paychains-client = "1.9.2"
+paychains-logger = "1.9.2"
+paychains-sdk = "1.9.2"
 spl-feature-proposal = { version = "1.0", path = "../program", features = ["no-entrypoint"] }
 
 [[bin]]

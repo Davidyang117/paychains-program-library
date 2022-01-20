@@ -1,11 +1,11 @@
 [package]
-name = "solana-farm-rpc"
+name = "paychains-farm-rpc"
 version = "0.0.1"
-description = "Solana Farm RPC"
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
-repository = "https://github.com/solana-labs/solana-program-library"
+description = "PayChains Farm RPC"
+authors = ["PayChains Maintainers <maintainers@paychains.foundation>"]
+repository = "https://github.com/paychains-labs/paychains-program-library"
 license = "Apache-2.0"
-homepage = "https://solana.com/"
+homepage = "https://paychains.com/"
 edition = "2018"
 
 [features]
@@ -23,12 +23,12 @@ serde = "1.0.130"
 serde_derive = "1.0.130"
 serde_json = "1.0.69"
 serde_yaml = "0.8.21"
-solana-client = "1.9.2"
-solana-logger = "1.9.2"
-solana-version = "1.9.2"
-solana-clap-utils = "1.9.2"
-solana-sdk = "1.9.2"
-solana-farm-sdk = { path = "../farm-sdk" }
-solana-farm-client = { path = "../farm-client" }
-solana-account-decoder = "1.9.2"
+paychains-client = "1.9.2"
+paychains-logger = "1.9.2"
+paychains-version = "1.9.2"
+paychains-clap-utils = "1.9.2"
+paychains-sdk = "1.9.2"
+paychains-farm-sdk = { path = "../farm-sdk" }
+paychains-farm-client = { path = "../farm-client" }
+paychains-account-decoder = "1.9.2"
 url = "2.2.2"

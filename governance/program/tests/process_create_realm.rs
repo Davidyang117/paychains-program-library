@@ -1,6 +1,6 @@
 #![cfg(feature = "test-bpf")]
 
-use solana_program_test::*;
+use paychains_program_test::*;
 
 mod program_test;
 

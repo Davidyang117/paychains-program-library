@@ -6,9 +6,9 @@ use {
         stake::stake, swap::swap, unstake::unstake, unwrap_token::unwrap_token,
         user_init::user_init, wrap_token::wrap_token,
     },
-    solana_farm_sdk::{instruction::amm::AmmInstruction, log::sol_log_params_short},
-    solana_program::{
-        account_info::AccountInfo, entrypoint::ProgramResult, log::sol_log_compute_units, msg,
+    paychains_farm_sdk::{instruction::amm::AmmInstruction, log::pay_log_params_short},
+    paychains_program::{
+        account_info::AccountInfo, entrypoint::ProgramResult, log::pay_log_compute_units, msg,
         pubkey::Pubkey,
     },
 };
@@ -26,7 +26,7 @@ pub fn process_instruction(
 ) -> ProgramResult {
     msg!("Saber router entrypoint");
     if cfg!(feature = "debug") {
-        sol_log_params_short(accounts, instruction_data);
+        pay_log_params_short(accounts, instruction_data);
     }
 
     // Read and unpack instruction data
@@ -56,7 +56,7 @@ pub fn process_instruction(
         AmmInstruction::UnwrapToken { amount } => unwrap_token(accounts, amount)?,
     }
 
-    sol_log_compute_units();
+    pay_log_compute_units();
     msg!("Saber router end of instruction");
     Ok(())
 }

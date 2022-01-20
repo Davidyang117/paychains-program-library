@@ -3,8 +3,8 @@
 use {
     crate::config::Config,
     log::info,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{
         farm::Farm, pool::Pool, program::pda, refdb::ReferenceType, refdb::StorageType,
         token::Token, vault::Vault,
     },

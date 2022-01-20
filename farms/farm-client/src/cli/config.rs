@@ -2,8 +2,8 @@
 
 use {
     clap::{crate_description, crate_name, App, AppSettings, Arg, ArgMatches, SubCommand},
-    solana_clap_utils::{input_validators::is_url, keypair::signer_from_path},
-    solana_sdk::{commitment_config::CommitmentConfig, pubkey::Pubkey, signature::Signer},
+    paychains_clap_utils::{input_validators::is_url, keypair::signer_from_path},
+    paychains_sdk::{commitment_config::CommitmentConfig, pubkey::Pubkey, signature::Signer},
     std::str::FromStr,
 };
 
@@ -18,7 +18,7 @@ pub struct Config {
 impl Config {
     pub fn new(matches: &ArgMatches) -> Self {
         let cli_config = if let Some(config_file) = matches.value_of("config_file") {
-            match solana_cli_config::Config::load(config_file) {
+            match paychains_cli_config::Config::load(config_file) {
                 Err(e) => {
                     panic!(
                         "Failed to load config file \"{}\":{}",
@@ -29,7 +29,7 @@ impl Config {
                 Ok(config) => config,
             }
         } else {
-            solana_cli_config::Config::default()
+            paychains_cli_config::Config::default()
         };
 
         let farm_client_url = matches
@@ -221,7 +221,7 @@ pub fn get_clap_app<'a, 'b>(version: &'b str) -> App<'a, 'b> {
                 .takes_value(true)
                 .global(true)
                 .help("Configuration file to use");
-            if let Some(ref config_file) = *solana_cli_config::CONFIG_FILE {
+            if let Some(ref config_file) = *paychains_cli_config::CONFIG_FILE {
                 arg.default_value(config_file)
             } else {
                 arg
@@ -298,7 +298,7 @@ pub fn get_clap_app<'a, 'b>(version: &'b str) -> App<'a, 'b> {
         )
         .subcommand(
             SubCommand::with_name("transfer")
-                .about("Transfer SOL to another wallet")
+                .about("Transfer PAY to another wallet")
                 .arg(wallet.clone())
                 .arg(amount.clone()),
         )
@@ -314,7 +314,7 @@ pub fn get_clap_app<'a, 'b>(version: &'b str) -> App<'a, 'b> {
                 .about("Print associated token account address")
                 .arg(tokenname.clone()),
         )
-        .subcommand(SubCommand::with_name("balance").about("Print SOL balance"))
+        .subcommand(SubCommand::with_name("balance").about("Print PAY balance"))
         .subcommand(
             SubCommand::with_name("token-balance")
                 .about("Print token balance")
@@ -433,7 +433,7 @@ pub fn get_clap_app<'a, 'b>(version: &'b str) -> App<'a, 'b> {
         )
         .subcommand(
             SubCommand::with_name("governance")
-                .about("Governance commands. See `solana-farm-client governance help`")
+                .about("Governance commands. See `paychains-farm-client governance help`")
                 .setting(AppSettings::SubcommandRequiredElseHelp)
                 .subcommand(
                     SubCommand::with_name("get-config")

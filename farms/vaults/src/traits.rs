@@ -2,8 +2,8 @@
 
 use {
     crate::vault_info::VaultInfo,
-    solana_farm_sdk::vault::Vault,
-    solana_program::{account_info::AccountInfo, entrypoint::ProgramResult},
+    paychains_farm_sdk::vault::Vault,
+    paychains_program::{account_info::AccountInfo, entrypoint::ProgramResult},
 };
 
 pub trait VaultParams {

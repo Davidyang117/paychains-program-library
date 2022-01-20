@@ -1,6 +1,6 @@
 use {
     borsh::{BorshDeserialize, BorshSerialize},
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo,
         msg,
         program_error::ProgramError,

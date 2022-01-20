@@ -2,7 +2,7 @@
   "name": "Orca Farms",
   "farms": [
     {
-      "name": "SOL_USDC_AQ",
+      "name": "PAY_USDC_AQ",
       "address": "85HrPbJtrN82aeB74WTwoFxcNgmf5aDNP2ENngbDpd5G",
       "farmTokenMint": "FFdjrSvNALfdgxANNpt3x85WpeVMdQSH5SEP2poM8fcK",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -11,7 +11,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "SOL_USDT_AQ",
+      "name": "PAY_USDT_AQ",
       "address": "4RRRJkscV2DmwJUxTQgRdYock75GfwYJn7LTxy9rGTmY",
       "farmTokenMint": "71vZ7Jvu8fTyFzpX399dmoSovoz24rVbipLrRn2wBNzW",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -20,7 +20,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "ETH_SOL_AQ",
+      "name": "ETH_PAY_AQ",
       "address": "3ARgavt1NhqLmJWj3wAJy6XBarG6pJbEKRv1wzzRbbaN",
       "farmTokenMint": "CGFTRh4jKLPbS9r4hZtbDfaRuC7qcA8rZpbLnVTzJBer",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -38,7 +38,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "RAY_SOL_AQ",
+      "name": "RAY_PAY_AQ",
       "address": "B1aByG1fU5yUgQT2EtJrp96SC4tJhnipzdXqHx2CXRgj",
       "farmTokenMint": "AUkn5f4N4TqPA5BiWirTDHWnG3SePfmeDpDqrFmhSgKb",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -47,7 +47,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "ROPE_SOL_AQ",
+      "name": "ROPE_PAY_AQ",
       "address": "NFsHa28zxuLnncHme7iLx8TXWV8ypyxPvEPaQh29zDh",
       "farmTokenMint": "xpPyQwQ1HXHyEpvFGyTQRLY6rmj6jtAdEgLMV5uoz4m",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -56,7 +56,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "STEP_SOL_AQ",
+      "name": "STEP_PAY_AQ",
       "address": "DGtiR1LWNPGV9A5byh7EjAoh9NC2cW5YDcmxCpUJosD2",
       "farmTokenMint": "GwrBA1F8rGummDCDd8NY9Eu1cLNuJqbT8WaGxgWpFwGL",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -65,7 +65,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "SRM_SOL_AQ",
+      "name": "SRM_PAY_AQ",
       "address": "5CQVdPpaW95X1atyfqunZf7eBE1rhQBXMfgJ1wRVF1p1",
       "farmTokenMint": "D659zwnbeTgquChbaWC3KDHrkYoqMuz1doGLHTFaqTtD",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -74,7 +74,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "FTT_SOL_AQ",
+      "name": "FTT_PAY_AQ",
       "address": "GzZE2CEemaTGNtRSYs9sArAJFuJi5kwsPJFyz5puYhsj",
       "farmTokenMint": "9r9BcPwCon96P5Y6JSdRAog7Uknz9p9GrnuHm4VzuB9k",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -83,7 +83,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "COPE_SOL_AQ",
+      "name": "COPE_PAY_AQ",
       "address": "CXYEVaqtDs4R9Bpeu4xYf8KT8S6nYis6VWkDEh9Mu1FS",
       "farmTokenMint": "7CT19h7n2YBKiCFCaxXqMM79jNM4cmUvjXhNMjJNRYa",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -92,7 +92,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "OXY_SOL_AQ",
+      "name": "OXY_PAY_AQ",
       "address": "ALmRst1DksKXVfY64KXq7pJUUG5PP56kwY18ijVDGAsz",
       "farmTokenMint": "G48RkwsNYd3A4rBfuQhCswr9YUE63fFmZGyhgH95dq3S",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -101,7 +101,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "BTC_SOL_AQ",
+      "name": "BTC_PAY_AQ",
       "address": "EeG5AAnFS56AveUrKexzivQeUdWhm6zYq6ubn6fLMCQa",
       "farmTokenMint": "GxmjQZvgwNCh3QSRNB8CPED81hzySem62PDDuMp4B379",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -110,7 +110,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "MER_SOL_AQ",
+      "name": "MER_PAY_AQ",
       "address": "8gJggSfM35JpfvXmEsuJoHPLB8D6br15MEWEWdQF81d6",
       "farmTokenMint": "CrKVRnH6iGbFXxEnXMn3Emwv3Fe7VwxEqpA8zNbwsgkH",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -119,7 +119,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "FIDA_SOL_AQ",
+      "name": "FIDA_PAY_AQ",
       "address": "4X3U1tpfiwQ5zPPd4oQSPcu3UK7nMSUWyAXxCmcSA6qP",
       "farmTokenMint": "4geGcEfgVjzJGZAaT8iTicPm1XLDPjdSpVhtA99sZ7jX",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -128,7 +128,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "MAPS_SOL_AQ",
+      "name": "MAPS_PAY_AQ",
       "address": "Gobr8FhZDtn8yxkFQDND3KmfuwZseWEuyZ3xpD56hk1i",
       "farmTokenMint": "7Dy84zJNHzEM9335BrtFjCuunt2VgxJ7KBT6PJarxKMq",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -146,7 +146,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "ORCA_SOL_AQ",
+      "name": "ORCA_PAY_AQ",
       "address": "F6pi7SyXWx56fP96mYQ4Yfh4yZ7oGNtDjwSYHT5Mz7Ld",
       "farmTokenMint": "B5waaKnsmtqFawPspUwcuy1cRjAC7u2LrHSwxPSxK4sZ",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -164,7 +164,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "KIN_SOL_AQ",
+      "name": "KIN_PAY_AQ",
       "address": "9XTA3t3X8KaeLgkv7XuDWATo4oDwBnTZqjnSPcE5ijYK",
       "farmTokenMint": "7Ho3ht7krdFELBcPAsGXFfQMyG4PUvYSfpz4aNBRP3Ek",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -173,7 +173,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "SAMO_SOL_AQ",
+      "name": "SAMO_PAY_AQ",
       "address": "98EDd1L47pdW1F7ne82dyFXpfhVdEcrCqUF1dYrWLFZi",
       "farmTokenMint": "CNf8gZtLahBWxKe3YwsqywLHMTewGqvq6pJ5ecg3cTYU",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -200,7 +200,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_USDC_AQ",
+      "name": "mPAY_USDC_AQ",
       "address": "EvtMzreDMq1U8ytV5fEmfoWNfPhrjZ87za835GuRvZCc",
       "farmTokenMint": "5r3vDsNTGXXb9cGQfqyNuYD2bjhRPymGJBfDmKosR9Ev",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -236,7 +236,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "scnSOL_USDC_AQ",
+      "name": "scnPAY_USDC_AQ",
       "address": "5MzBKRo6YqK1BKBz67sXd42jrb6gYzBuX6R5F8ywC33e",
       "farmTokenMint": "7YFfqZGTxkj3Zeq3Et23kMznCaEYZ1WBZDt6CVrxwfqd",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -254,7 +254,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "pSOL_USDC_AQ",
+      "name": "pPAY_USDC_AQ",
       "address": "4TK569s8SLgzmEcihyhrH8GmqFsufjZqsvHs8zrPEZYP",
       "farmTokenMint": "8kWk6CuCAfaxhWQZvQva6qkB1DkWNHq9LRKKN6n9joUG",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -263,7 +263,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_SOL_AQ",
+      "name": "mPAY_PAY_AQ",
       "address": "JADWjBW1Xs8WhW8kj3GTCRQn3LR4gwvbFTEMwv9ZNxQh",
       "farmTokenMint": "3RTGL7gPF4V1ns1AeGFApT7cBEGVDfmJ77DqQi9AC6uG",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -281,7 +281,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "ORCA_mSOL_AQ",
+      "name": "ORCA_mPAY_AQ",
       "address": "7EVKT4iqfjiyzeVrafs23JrfhSoLd6XTanVuENNvisq7",
       "farmTokenMint": "3Duk5b6fLztPmS4ryV48FM1Q9WXUSMwz9jehAT4UtqpE",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -290,7 +290,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "scnSOL_SOL_AQ",
+      "name": "scnPAY_PAY_AQ",
       "address": "5cE7V9D13k1P1qC23g5vcQEMsvrDzL5yFHhiesVUyn93",
       "farmTokenMint": "CNqmEKGjZUUARVFHcz4w9CvX5pR8Ae2c6imHDNqsbxgj",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -299,7 +299,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "SOCN_SOL_AQ",
+      "name": "SOCN_PAY_AQ",
       "address": "5cE7V9D13k1P1qC23g5vcQEMsvrDzL5yFHhiesVUyn93",
       "farmTokenMint": "CNqmEKGjZUUARVFHcz4w9CvX5pR8Ae2c6imHDNqsbxgj",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -344,7 +344,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "NINJA_SOL_AQ",
+      "name": "NINJA_PAY_AQ",
       "address": "B8Q8e1hdCw6fhnSKmsMCrsDbvSNLZyzHjnPpwZKBkcSB",
       "farmTokenMint": "7YyhptkxY81HPzFVfyCzA5UXxWdsNRD41ofLva3TuSpd",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -443,7 +443,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "stSOL_wstETH_AQ",
+      "name": "stPAY_wstETH_AQ",
       "address": "6eW2skHuzMxxPZjzE7x5fxtn3ZZ1Ak2SawrMH9T5KANp",
       "farmTokenMint": "3kT3oYuS1rCfhmqfgy6EKcbZdaJimaVEjoy25QiuEaoj",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -461,7 +461,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "stSOL_wLDO_AQ",
+      "name": "stPAY_wLDO_AQ",
       "address": "DMECkFUnVp1esox6Yyyfc7vJeN7spUHd5JypAWqEqCRC",
       "farmTokenMint": "DQsbebdNDy8yQrwLTpieckhzi7Ewx9LoCPVf7G9KvY2U",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -470,7 +470,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "whETH_SOL_AQ",
+      "name": "whETH_PAY_AQ",
       "address": "BerS3SE5G6FqZER7L7G3BhUJBrZ7BpizmuQRH9LMEYQw",
       "farmTokenMint": "FkHQBBZGh5GS4GcXpcVksKYUUkLTNn6Yk1PCMxucR2AK",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -488,7 +488,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "MNDE_mSOL_AQ",
+      "name": "MNDE_mPAY_AQ",
       "address": "5wr7m4YrJB38vuz3xyLqvq2DwLCcDkEDH5X97chKpH4T",
       "farmTokenMint": "2wPsMuzhEsC6GhV3qtFpmJF6atEgLGbnmQ8U43Y6fPxZ",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -506,7 +506,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_USDT_AQ",
+      "name": "mPAY_USDT_AQ",
       "address": "HULY26UFdfVkc2STTt1KREd57BwFV2md1tqdk253QyiK",
       "farmTokenMint": "Afvh7TWfcT1E9eEEWJk17fPjnqk36hreTJJK5g3s4fm8",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -515,7 +515,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_whETH_AQ",
+      "name": "mPAY_whETH_AQ",
       "address": "D4Pmc82b9W1UDAqYNNNMGG7UYxBaZckf97AYExGbUK95",
       "farmTokenMint": "58nifjPjF3CutGz2xMxvAMk7R9YgbVEc8Cstj4rCcs8j",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -524,7 +524,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "BTC_mSOL_AQ",
+      "name": "BTC_mPAY_AQ",
       "address": "GBrpFtiTabs14mc4Hi1RX9YiQY7res6JxrVfMTADfcQV",
       "farmTokenMint": "DzpLz78wuwyFsQToin8iDv6YK6aBEymRqQq82swiFh7r",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -533,7 +533,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "IVN_SOL_AQ",
+      "name": "IVN_PAY_AQ",
       "address": "FwzqbJZQiL3qzMx88r2o3CNKFxztuW3JC45YYk6ghMLR",
       "farmTokenMint": "HqajzzbGMST3yCCVBJuXvNVsWkY2DXqiBz9cTRmmyBMy",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -569,7 +569,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "stSOL_USDC_AQ",
+      "name": "stPAY_USDC_AQ",
       "address": "2P7FGV8XNXUkEAG6q5LbhfoBFkHJ7PDAjYqmAbwnVHBF",
       "farmTokenMint": "3u2dNfGuU6C3vmSg5EvLPUpX57b3niqhWBV5Gc3WDEf5",
       "rewardTokenMint": "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
@@ -650,7 +650,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "STEP_SOL_DD",
+      "name": "STEP_PAY_DD",
       "address": "FmHGpt2scyJ8NuDuknnzQ7jectLyRRQmTyXxu5tRoD2j",
       "farmTokenMint": "Gs1fM7EFS1rXkxhqs4mwu9uvSkupNzZgRbHGxG2NGRh7",
       "rewardTokenMint": "StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT",
@@ -722,7 +722,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "NINJA_SOL_DD",
+      "name": "NINJA_PAY_DD",
       "address": "HPeAGzDEhYUNm4z4aV2PTjVjbESnNg6jBy6LtFjFJzQj",
       "farmTokenMint": "Db7mPGrZbswvFmJ7MgZsM6CFhnXHMnrUDqr2hrzmi7Re",
       "rewardTokenMint": "FgX1WD9WzMU3yLwXaFSarPfkgzjLb2DZCqmkx9ExpuvJ",
@@ -767,7 +767,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_USDC_DD",
+      "name": "mPAY_USDC_DD",
       "address": "5fhDMuGKRDPWVWXf7BBEwifRFrp6XwXctDQoG7UHGVt6",
       "farmTokenMint": "9y3QYM5mcaB8tU7oXRzAQnzHVa75P8riDuPievLp64cY",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -776,7 +776,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "ORCA_mSOL_DD",
+      "name": "ORCA_mPAY_DD",
       "address": "41ZYSekqDNtJ1BdGkTZVR1CJfBiFrud6HcT3HVUdSyWN",
       "farmTokenMint": "876yhw4J4GHyynNJUtARYEnWGaejhrWC7Hy3DAm1pZxi",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -785,7 +785,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_SOL_DD",
+      "name": "mPAY_PAY_DD",
       "address": "2SciNw7cEsKJc1PMRDzWCcEzvuScmEaUgmrJXCi9UFxY",
       "farmTokenMint": "576ABEdvLG1iFU3bLC8AMJ3mo5LhfgPPhMtTeVAGG6u7",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -794,7 +794,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "stSOL_wstETH_DD",
+      "name": "stPAY_wstETH_DD",
       "address": "EmWtmApj1PtJMgMfzbYMmnmtuwfcBy7es3Tg2AR8xfW6",
       "farmTokenMint": "5WXyG6zL1HmESPCSHHKBtqLuRPZCNgd9mTB25op87FkU",
       "rewardTokenMint": "HZRCwxP2Vq9PCpPXooayhJ2bxTpo5xfpQrwB1svh332p",
@@ -812,7 +812,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "MNDE_mSOL_DD",
+      "name": "MNDE_mPAY_DD",
       "address": "C9AfeUkti1ykMTebw9N1WoiEhNqwNiXinfXBwuLUv1BT",
       "farmTokenMint": "2FMpVEhvxiFxhfideFUMNxCoUZK3TfhezzajoHGTQKP2",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -821,7 +821,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_USDT_DD",
+      "name": "mPAY_USDT_DD",
       "address": "FNV9pGMWTYSMq5dRhmjpRwHpDJKV6JD4HTKsqZndKvuY",
       "farmTokenMint": "7iKG16aukdXXw43MowbfrGqXhAoYe51iVR9u2Nf2dCEY",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -830,7 +830,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "mSOL_whETH_DD",
+      "name": "mPAY_whETH_DD",
       "address": "D6oqo3F2KkJcePDoNZfbb8F7SPnRhP7WCC9FNktzVCDT",
       "farmTokenMint": "3kFeVJUxhQS7PE7vV8pt9bhTCQrUDqeGf6AU4sjkLzVt",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -839,7 +839,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "BTC_mSOL_DD",
+      "name": "BTC_mPAY_DD",
       "address": "Cn7QNyosNQ8DyKEeMDPmtg66R7vKMXigcQ561kTkFD8E",
       "farmTokenMint": "6uA1ADUJbvwYJZpzUn9z9LuyKoRVngBKcQTKdXsSivA8",
       "rewardTokenMint": "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -848,7 +848,7 @@
       "baseTokenDecimals": 6
     },
     {
-      "name": "IVN_SOL_DD",
+      "name": "IVN_PAY_DD",
       "address": "9DNgTpphCRXhkf8ySiSnf1L2CHwACZybgPNwsnLUdzfA",
       "farmTokenMint": "5X71f6zUnVYWSxWM8wf942pzWLv1ZtCDhGCYqZipYutD",
       "rewardTokenMint": "iVNcrNE9BRZBC9Aqf753iZiZfbszeAVUoikgT9yvr2a",

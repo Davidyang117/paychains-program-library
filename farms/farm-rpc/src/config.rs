@@ -12,7 +12,7 @@ use {
 lazy_static! {
     pub static ref CONFIG_FILE: Option<String> = {
         dirs_next::home_dir().map(|mut path| {
-            path.extend(&[".config", "solana", "farm", "rpc_config.yml"]);
+            path.extend(&[".config", "paychains", "farm", "rpc_config.yml"]);
             path.to_str().unwrap().to_string()
         })
     };
@@ -31,7 +31,7 @@ impl Default for Config {
     fn default() -> Self {
         let json_rpc_url = "http://127.0.0.1:9000".to_string();
         let websocket_url = "wss://127.0.0.1:9001".to_string();
-        let token_list_url = "https://raw.githubusercontent.com/solana-labs/token-list/main/src/tokens/solana.tokenlist.json".to_string();
+        let token_list_url = "https://raw.githubusercontent.com/paychains-labs/token-list/main/src/tokens/paychains.tokenlist.json".to_string();
         let farm_client_url = "http://127.0.0.1:8899".to_string();
         let max_threads = 4;
 

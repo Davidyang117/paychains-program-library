@@ -4,9 +4,9 @@ from enum import IntEnum
 from typing import List, NamedTuple, Optional
 from construct import Container, Struct, Switch, Int8ul, Int32ul, Int64ul, Pass  # type: ignore
 
-from solana.publickey import PublicKey
-from solana.utils.helpers import decode_byte_string
-from solana._layouts.shared import PUBLIC_KEY_LAYOUT
+from paychains.publickey import PublicKey
+from paychains.utils.helpers import decode_byte_string
+from paychains._layouts.shared import PUBLIC_KEY_LAYOUT
 from stake.state import Lockup, LOCKUP_LAYOUT
 
 
@@ -60,12 +60,12 @@ class StakePool(NamedTuple):
     stake_withdrawal_fee: Fee
     next_stake_withdrawal_fee: Optional[Fee]
     stake_referral_fee: int
-    sol_deposit_authority: Optional[PublicKey]
-    sol_deposit_fee: Fee
-    sol_referral_fee: int
-    sol_withdraw_authority: Optional[PublicKey]
-    sol_withdrawal_fee: Fee
-    next_sol_withdrawal_fee: Optional[Fee]
+    pay_deposit_authority: Optional[PublicKey]
+    pay_deposit_fee: Fee
+    pay_referral_fee: int
+    pay_withdraw_authority: Optional[PublicKey]
+    pay_withdrawal_fee: Fee
+    next_pay_withdrawal_fee: Optional[Fee]
     last_epoch_pool_token_supply: int
     last_epoch_total_lamports: int
 
@@ -95,12 +95,12 @@ class StakePool(NamedTuple):
             stake_withdrawal_fee=Fee.decode_container(parsed['stake_withdrawal_fee']),
             next_stake_withdrawal_fee=Fee.decode_optional_container(parsed['next_stake_withdrawal_fee']),
             stake_referral_fee=parsed['stake_referral_fee'],
-            sol_deposit_authority=decode_optional_publickey(parsed['sol_deposit_authority']),
-            sol_deposit_fee=Fee.decode_container(parsed['sol_deposit_fee']),
-            sol_referral_fee=parsed['sol_referral_fee'],
-            sol_withdraw_authority=decode_optional_publickey(parsed['sol_withdraw_authority']),
-            sol_withdrawal_fee=Fee.decode_container(parsed['sol_withdrawal_fee']),
-            next_sol_withdrawal_fee=Fee.decode_optional_container(parsed['next_sol_withdrawal_fee']),
+            pay_deposit_authority=decode_optional_publickey(parsed['pay_deposit_authority']),
+            pay_deposit_fee=Fee.decode_container(parsed['pay_deposit_fee']),
+            pay_referral_fee=parsed['pay_referral_fee'],
+            pay_withdraw_authority=decode_optional_publickey(parsed['pay_withdraw_authority']),
+            pay_withdrawal_fee=Fee.decode_container(parsed['pay_withdrawal_fee']),
+            next_pay_withdrawal_fee=Fee.decode_optional_container(parsed['next_pay_withdrawal_fee']),
             last_epoch_pool_token_supply=parsed['last_epoch_pool_token_supply'],
             last_epoch_total_lamports=parsed['last_epoch_total_lamports'],
         )
@@ -209,15 +209,15 @@ STAKE_POOL_LAYOUT = Struct(
     "next_stake_withdrawal_fee_option" / Int8ul,
     "next_stake_withdrawal_fee" / FEE_LAYOUT,
     "stake_referral_fee" / Int8ul,
-    "sol_deposit_authority_option" / Int8ul,
-    "sol_deposit_authority" / PUBLIC_KEY_LAYOUT,
-    "sol_deposit_fee" / FEE_LAYOUT,
-    "sol_referral_fee" / Int8ul,
-    "sol_withdraw_authority_option" / Int8ul,
-    "sol_withdraw_authority" / PUBLIC_KEY_LAYOUT,
-    "sol_withdrawal_fee" / FEE_LAYOUT,
-    "next_sol_withdrawal_fee_option" / Int8ul,
-    "next_sol_withdrawal_fee" / FEE_LAYOUT,
+    "pay_deposit_authority_option" / Int8ul,
+    "pay_deposit_authority" / PUBLIC_KEY_LAYOUT,
+    "pay_deposit_fee" / FEE_LAYOUT,
+    "pay_referral_fee" / Int8ul,
+    "pay_withdraw_authority_option" / Int8ul,
+    "pay_withdraw_authority" / PUBLIC_KEY_LAYOUT,
+    "pay_withdrawal_fee" / FEE_LAYOUT,
+    "next_pay_withdrawal_fee_option" / Int8ul,
+    "next_pay_withdrawal_fee" / FEE_LAYOUT,
     "last_epoch_pool_token_supply" / Int64ul,
     "last_epoch_total_lamports" / Int64ul,
 )
@@ -269,26 +269,26 @@ DECODE_STAKE_POOL_LAYOUT = Struct(
             1: FEE_LAYOUT,
         }),
     "stake_referral_fee" / Int8ul,
-    "sol_deposit_authority_option" / Int8ul,
-    "sol_deposit_authority" / Switch(
-        lambda this: this.sol_deposit_authority_option,
+    "pay_deposit_authority_option" / Int8ul,
+    "pay_deposit_authority" / Switch(
+        lambda this: this.pay_deposit_authority_option,
         {
             0: Pass,
             1: PUBLIC_KEY_LAYOUT,
         }),
-    "sol_deposit_fee" / FEE_LAYOUT,
-    "sol_referral_fee" / Int8ul,
-    "sol_withdraw_authority_option" / Int8ul,
-    "sol_withdraw_authority" / Switch(
-        lambda this: this.sol_withdraw_authority_option,
+    "pay_deposit_fee" / FEE_LAYOUT,
+    "pay_referral_fee" / Int8ul,
+    "pay_withdraw_authority_option" / Int8ul,
+    "pay_withdraw_authority" / Switch(
+        lambda this: this.pay_withdraw_authority_option,
         {
             0: Pass,
             1: PUBLIC_KEY_LAYOUT,
         }),
-    "sol_withdrawal_fee" / FEE_LAYOUT,
-    "next_sol_withdrawal_fee_option" / Int8ul,
-    "next_sol_withdrawal_fee" / Switch(
-        lambda this: this.next_sol_withdrawal_fee_option,
+    "pay_withdrawal_fee" / FEE_LAYOUT,
+    "next_pay_withdrawal_fee_option" / Int8ul,
+    "next_pay_withdrawal_fee" / Switch(
+        lambda this: this.next_pay_withdrawal_fee_option,
         {
             0: Pass,
             1: FEE_LAYOUT,

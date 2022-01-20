@@ -1,4 +1,4 @@
-import { Keypair, PublicKey } from '@solana/web3.js';
+import { Keypair, PublicKey } from '@paychains/web3.js';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import {

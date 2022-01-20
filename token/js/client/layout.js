@@ -1,6 +1,6 @@
 // @flow
 
-import * as BufferLayout from '@solana/buffer-layout';
+import * as BufferLayout from '@paychains/buffer-layout';
 
 /**
  * Layout for a public key

@@ -3,9 +3,9 @@
 use {
     crate::config::Config,
     log::info,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{string::to_pretty_json, token::TokenSelector},
-    solana_sdk::pubkey::Pubkey,
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{string::to_pretty_json, token::TokenSelector},
+    paychains_sdk::pubkey::Pubkey,
     std::str::FromStr,
 };
 

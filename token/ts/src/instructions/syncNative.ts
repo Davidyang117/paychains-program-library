@@ -1,5 +1,5 @@
-import { struct, u8 } from '@solana/buffer-layout';
-import { AccountMeta, PublicKey, TransactionInstruction } from '@solana/web3.js';
+import { struct, u8 } from '@paychains/buffer-layout';
+import { AccountMeta, PublicKey, TransactionInstruction } from '@paychains/web3.js';
 import { TOKEN_PROGRAM_ID } from '../constants';
 import {
     TokenInvalidInstructionDataError,

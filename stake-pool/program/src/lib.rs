@@ -12,10 +12,10 @@ pub mod state;
 pub mod entrypoint;
 
 // Export current sdk types for downstream users building with a different sdk version
-pub use solana_program;
+pub use paychains_program;
 use {
     crate::state::Fee,
-    solana_program::{native_token::LAMPORTS_PER_SOL, pubkey::Pubkey, stake::state::Meta},
+    paychains_program::{native_token::LAMPORTS_PER_PAY, pubkey::Pubkey, stake::state::Meta},
 };
 
 /// Seed for deposit authority seed
@@ -27,9 +27,9 @@ const AUTHORITY_WITHDRAW: &[u8] = b"withdraw";
 /// Seed for transient stake account
 const TRANSIENT_STAKE_SEED_PREFIX: &[u8] = b"transient";
 
-/// Minimum amount of staked SOL required in a validator stake account to allow
+/// Minimum amount of staked PAY required in a validator stake account to allow
 /// for merges without a mismatch on credits observed
-pub const MINIMUM_ACTIVE_STAKE: u64 = LAMPORTS_PER_SOL / 1_000;
+pub const MINIMUM_ACTIVE_STAKE: u64 = LAMPORTS_PER_PAY / 1_000;
 
 /// Maximum amount of validator stake accounts to update per
 /// `UpdateValidatorListBalance` instruction, based on compute limits
@@ -122,4 +122,4 @@ pub fn find_transient_stake_program_address(
     )
 }
 
-solana_program::declare_id!("SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy");
+paychains_program::declare_id!("SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy");

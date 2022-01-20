@@ -1,9 +1,9 @@
 use std::str::FromStr;
 
-use solana_program::{program_error::ProgramError, pubkey::Pubkey};
-use solana_program_test::{processor, ProgramTest};
+use paychains_program::{program_error::ProgramError, pubkey::Pubkey};
+use paychains_program_test::{processor, ProgramTest};
 
-use solana_sdk::{signature::Keypair, signer::Signer};
+use paychains_sdk::{signature::Keypair, signer::Signer};
 use spl_governance::{
     instruction::{
         create_account_governance, create_proposal, create_realm, deposit_governing_tokens,

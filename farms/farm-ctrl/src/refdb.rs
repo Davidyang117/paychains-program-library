@@ -3,8 +3,8 @@
 use {
     crate::config::Config,
     log::info,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{refdb::ReferenceType, refdb::StorageType},
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{refdb::ReferenceType, refdb::StorageType},
 };
 
 pub fn init(client: &FarmClient, config: &Config, target: StorageType) {

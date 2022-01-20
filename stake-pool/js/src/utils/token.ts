@@ -1,10 +1,10 @@
-import {Connection, PublicKey, TransactionInstruction} from '@solana/web3.js';
+import {Connection, PublicKey, TransactionInstruction} from '@paychains/web3.js';
 import {
   AccountInfo,
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
   TOKEN_PROGRAM_ID,
-} from '@solana/spl-token';
+} from '@paychains/spl-token';
 import {AccountLayout} from '../layouts';
 
 const FAILED_TO_FIND_ACCOUNT = 'Failed to find account';

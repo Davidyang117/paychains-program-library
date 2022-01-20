@@ -1,8 +1,8 @@
 // Program test does not support calling a raw program entrypoint, only `process_instruction`
 #![cfg(feature = "test-bpf")]
 
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program_test::*;
+use paychains_sdk::{
     account::Account,
     instruction::InstructionError,
     instruction::{AccountMeta, Instruction},

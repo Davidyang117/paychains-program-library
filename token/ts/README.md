@@ -1,4 +1,4 @@
-# `@solana/spl-token`
+# `@paychains/spl-token`
 
 A TypeScript library for interacting with the SPL Token program.
 
@@ -13,7 +13,7 @@ A TypeScript library for interacting with the SPL Token program.
 ## Install
 
 ```shell
-yarn add @solana/spl-token
+yarn add @paychains/spl-token
 ```
 
 ## Usage
@@ -26,12 +26,12 @@ yarn add @solana/spl-token
 
 1. Clone the project:
 ```shell
-git clone https://github.com/solana-labs/solana-program-library.git
+git clone https://github.com/paychains-labs/paychains-program-library.git
 ```
 
 2. Navigate to the library:
 ```shell
-cd solana-program-library/token/ts
+cd paychains-program-library/token/ts
 ```
 
 3. Install the dependencies:

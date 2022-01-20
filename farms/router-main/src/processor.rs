@@ -6,15 +6,15 @@ use {
         refdb_instruction::process_refdb_instruction, remove_farm::remove_farm,
         remove_pool::remove_pool, remove_token::remove_token, remove_vault::remove_vault,
     },
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         id::{main_router, main_router_admin},
         instruction::main_router::MainInstruction,
-        log::sol_log_params_short,
+        log::pay_log_params_short,
     },
-    solana_program::{
+    paychains_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint::ProgramResult,
-        log::sol_log_compute_units,
+        log::pay_log_compute_units,
         msg,
         program_error::ProgramError,
         pubkey::Pubkey,
@@ -34,7 +34,7 @@ pub fn process_instruction(
 ) -> ProgramResult {
     msg!("Main router entrypoint");
     if cfg!(feature = "debug") {
-        sol_log_params_short(accounts, instruction_data);
+        pay_log_params_short(accounts, instruction_data);
     }
 
     if *program_id != main_router::id() {
@@ -71,7 +71,7 @@ pub fn process_instruction(
         }
     }
 
-    sol_log_compute_units();
+    pay_log_compute_units();
     msg!("Main router end of instruction");
     Ok(())
 }

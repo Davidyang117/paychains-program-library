@@ -1,6 +1,6 @@
 import asyncio
 import pytest
-from solana.rpc.commitment import Confirmed
+from paychains.rpc.commitment import Confirmed
 
 from stake_pool.state import ValidatorList, StakeStatus
 from stake_pool.actions import remove_validator_from_pool

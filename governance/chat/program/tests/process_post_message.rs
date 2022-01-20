@@ -1,8 +1,8 @@
 #![cfg(feature = "test-bpf")]
 
 use program_test::GovernanceChatProgramTest;
-use solana_program_test::tokio;
-use solana_sdk::signature::Keypair;
+use paychains_program_test::tokio;
+use paychains_sdk::signature::Keypair;
 use spl_governance::error::GovernanceError;
 use spl_governance_chat::error::GovernanceChatError;
 

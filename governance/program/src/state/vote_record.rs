@@ -3,11 +3,11 @@
 use borsh::maybestd::io::Write;
 
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::account_info::AccountInfo;
-use solana_program::borsh::try_from_slice_unchecked;
+use paychains_program::account_info::AccountInfo;
+use paychains_program::borsh::try_from_slice_unchecked;
 
-use solana_program::program_error::ProgramError;
-use solana_program::{program_pack::IsInitialized, pubkey::Pubkey};
+use paychains_program::program_error::ProgramError;
+use paychains_program::{program_pack::IsInitialized, pubkey::Pubkey};
 use spl_governance_tools::account::{get_account_data, AccountMaxSize};
 
 use crate::error::GovernanceError;
@@ -204,7 +204,7 @@ pub fn get_vote_record_address<'a>(
 mod test {
 
     use borsh::BorshSerialize;
-    use solana_program::clock::Epoch;
+    use paychains_program::clock::Epoch;
 
     use super::*;
 

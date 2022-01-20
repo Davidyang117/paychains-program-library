@@ -3,28 +3,28 @@ title: Operation
 ---
 
 Stake pools are an alternative method of earning staking rewards. This on-chain
-program pools together SOL to be staked by a staker, allowing SOL holders to
+program pools together PAY to be staked by a staker, allowing PAY holders to
 stake and earn rewards without managing stakes.
 
 ## Staking
 
-SOL token holders can earn rewards and help secure the network by staking tokens
+PAY token holders can earn rewards and help secure the network by staking tokens
 to one or more validators. Rewards for staked tokens are based on the current
-inflation rate, total number of SOL staked on the network, and an individual
+inflation rate, total number of PAY staked on the network, and an individual
 validator’s uptime and commission (fee).
 
 Additional information regarding staking and stake programming is available at:
 
-- https://solana.com/staking
-- https://docs.solana.com/staking/stake-programming
+- https://paychains.com/staking
+- https://docs.paychains.com/staking/stake-programming
 
 ## Background
 
-Solana's programming model and the definitions of the Solana terms used in this
+PayChains' programming model and the definitions of the PayChains terms used in this
 document are available at:
 
-- https://docs.solana.com/apps
-- https://docs.solana.com/terminology
+- https://docs.paychains.com/apps
+- https://docs.paychains.com/terminology
 
 ## Motivation
 
@@ -32,27 +32,27 @@ This document is intended for the main actors of the stake pool system:
 
 * manager: creates and manages the stake pool, earns fees, can update the fee, staker, and manager
 * staker: adds and removes validators to the pool, rebalances stake among validators
-* user: provides staked SOL into an existing stake pool
+* user: provides staked PAY into an existing stake pool
 
-In its current iteration, the stake pool accepts active stakes or SOL, so
-deposits may come from either an active stake or SOL wallet. Withdrawals
+In its current iteration, the stake pool accepts active stakes or PAY, so
+deposits may come from either an active stake or PAY wallet. Withdrawals
 can return a fully active stake account from one of the stake pool's accounts,
-or SOL from the reserve.
+or PAY from the reserve.
 
 This means that stake pool managers and stakers must be comfortable with
 creating and delegating stakes, which are more advanced operations than sending and
-receiving SPL tokens and SOL. Additional information on stake operations are
+receiving SPL tokens and PAY. Additional information on stake operations are
 available at:
 
-- https://docs.solana.com/cli/delegate-stake
-- https://docs.solana.com/cli/manage-stake-accounts
+- https://docs.paychains.com/cli/delegate-stake
+- https://docs.paychains.com/cli/manage-stake-accounts
 
 To reach a wider audience of users, stake pool managers are encouraged
 to provide a market for their pool's tokens, through an AMM
 like [Token Swap](../token-swap.md).
 
 Alternatively, stake pool managers can partner with wallet and stake account
-providers for direct SOL deposits.
+providers for direct PAY deposits.
 
 ## Operation
 
@@ -62,8 +62,8 @@ using the `add-validator` instruction. In this command, the stake pool creates
 a new stake account and delegates it to the desired validator.
 
 At this point, users can participate with deposits. They can directly deposit
-SOL into the stake pool using the `deposit-sol` instruction. Within this instruction,
-the stake pool will move SOL into the pool's reserve account, to be redistributed
+PAY into the stake pool using the `deposit-sol` instruction. Within this instruction,
+the stake pool will move PAY into the pool's reserve account, to be redistributed
 by the staker.
 
 Alternatively, users can deposit a stake account into the pool.  To do this,
@@ -75,7 +75,7 @@ Once the stake becomes active, which happens at the following epoch boundary
 (maximum 2 days), the user can deposit their stake into the pool using the
 `deposit-stake` instruction.
 
-In exchange for their deposit (SOL or stake), the user receives SPL tokens
+In exchange for their deposit (PAY or stake), the user receives SPL tokens
 representing their fractional ownership in pool. A percentage of the rewards
 earned by the pool goes to the pool manager as an epoch fee.
 
@@ -83,38 +83,38 @@ Over time, as the stakes in the pool accrue rewards, the user's fractional
 ownership will be worth more than their initial deposit.
 
 Whenever they wish to exit the pool, the user may use the `withdraw-sol` instruction
-to receive SOL from the stake pool's reserve in exchange for stake pool tokens.
-Note that this operation will fail if there is not enough SOL in the stake pool's
-reserve, which is normal if the stake pool manager stakes all of the SOL in the pool.
+to receive PAY from the stake pool's reserve in exchange for stake pool tokens.
+Note that this operation will fail if there is not enough PAY in the stake pool's
+reserve, which is normal if the stake pool manager stakes all of the PAY in the pool.
 
 Alternatively, they can use the `withdraw-stake` instruction to withdraw an
 activated stake account in exchange for their SPL pool tokens. The user will get
-back a SOL stake account immediately. The ability to withdraw stake is always
+back a PAY stake account immediately. The ability to withdraw stake is always
 possible, under all circumstances.
 
-Note: when withdrawing stake, if the user wants to withdraw the SOL in the stake
+Note: when withdrawing stake, if the user wants to withdraw the PAY in the stake
 account, they must first deactivate the stake account and wait until the next
 epoch boundary (maximum 2 days).  Once the stake is inactive, they can freely
-withdraw the SOL.
+withdraw the PAY.
 
 The stake pool staker can add and remove validators, or rebalance the pool by
 decreasing the stake on a validator, waiting an epoch to move it into the stake
 pool's reserve account, then increasing the stake on another validator.
 
-The staker operation to add a new validator requires 0.00328288 SOL to create
+The staker operation to add a new validator requires 0.00328288 PAY to create
 the stake account on a validator, so the stake pool staker will need liquidity
-on hand to fully manage the pool stakes.  The SOL used to add a new validator
+on hand to fully manage the pool stakes.  The PAY used to add a new validator
 is recovered when removing the validator.
 
 ### Funding restrictions
 
 To give the manager more control over funds entering the pool, stake pools allow
-deposit and withdrawal restrictions on SOL and stakes through three different
+deposit and withdrawal restrictions on PAY and stakes through three different
 "funding authorities":
 
-* SOL deposit
+* PAY deposit
 * Stake deposit
-* SOL withdrawal
+* PAY withdrawal
 
 If the field is set, that authority must sign the associated instruction.
 
@@ -124,7 +124,7 @@ must sign every stake deposit instruction.
 This can also be useful in a few situations:
 
 * Control who deposits into the stake pool
-* Prohibit a form of deposit. For example, the manager only wishes to have SOL
+* Prohibit a form of deposit. For example, the manager only wishes to have PAY
   deposits, so they set a stake deposit authority, making it only possible to
   deposit a stake account if that authority signs the transaction.
 * Maintenance mode. If the pool needs time to reset fees or otherwise, the
@@ -155,7 +155,7 @@ When processing withdrawals, the order of priority goes:
 * reserve stake account
 
 If there is preferred withdraw validator, and that validator stake account has
-any SOL, a user must withdraw from that account.
+any PAY, a user must withdraw from that account.
 
 If that account is empty, or the preferred withdraw validator stake account is
 not set, then the user must withdraw from any validator stake account.
@@ -202,8 +202,8 @@ The stake pool contains overall information about the pool, including fees,
 pool token mint, amount under management, etc.
 
 The validator list contains specific information about each of the validator
-stake accounts in the pool. This information includes the amount of SOL staked on
-the validator by the pool, and the amount of SOL being activated / deactivated
+stake accounts in the pool. This information includes the amount of PAY staked on
+the validator by the pool, and the amount of PAY being activated / deactivated
 on the validator.
 
 Every stake pool must have its own validator list account, otherwise it will
@@ -211,7 +211,7 @@ fail on initialization.
 
 ### Transaction sizes
 
-The Solana transaction processor has two important limitations:
+The PayChains transaction processor has two important limitations:
 
 * size of the overall transaction, limited to roughly 1 MTU / packet
 * computation budget per instruction

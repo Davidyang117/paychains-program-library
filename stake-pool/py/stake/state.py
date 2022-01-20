@@ -4,8 +4,8 @@ from enum import IntEnum
 from typing import NamedTuple, Dict
 from construct import Container, Struct, Int64ul  # type: ignore
 
-from solana.publickey import PublicKey
-from solana._layouts.shared import PUBLIC_KEY_LAYOUT
+from paychains.publickey import PublicKey
+from paychains._layouts.shared import PUBLIC_KEY_LAYOUT
 
 
 class Lockup(NamedTuple):

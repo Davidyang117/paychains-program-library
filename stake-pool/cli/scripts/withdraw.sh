@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# Script to withdraw stakes and SOL from a stake pool, given the stake pool public key
+# Script to withdraw stakes and PAY from a stake pool, given the stake pool public key
 # and a path to a file containing a list of validator vote accounts
 
 cd "$(dirname "$0")" || exit
 stake_pool_keyfile=$1
 validator_list=$2
-withdraw_sol_amount=$3
+withdraw_pay_amount=$3
 
 create_keypair () {
   if test ! -f "$1"
   then
-    solana-keygen new --no-passphrase -s -o "$1"
+    paychains-keygen new --no-passphrase -s -o "$1"
   fi
 }
 
@@ -25,7 +25,7 @@ withdraw_stakes () {
   done < "$validator_list"
 }
 
-stake_pool_pubkey=$(solana-keygen pubkey "$stake_pool_keyfile")
+stake_pool_pubkey=$(paychains-keygen pubkey "$stake_pool_keyfile")
 keys_dir=keys
 
 spl_stake_pool=spl-stake-pool
@@ -39,6 +39,6 @@ echo "Setting up authority for withdrawn stake accounts at $authority"
 create_keypair $authority
 
 echo "Withdrawing stakes from stake pool"
-withdraw_stakes "$stake_pool_pubkey" "$validator_list" "$withdraw_sol_amount"
-echo "Withdrawing SOL from stake pool to authority"
-$spl_stake_pool withdraw-sol "$stake_pool_pubkey" $authority "$withdraw_sol_amount"
+withdraw_stakes "$stake_pool_pubkey" "$validator_list" "$withdraw_pay_amount"
+echo "Withdrawing PAY from stake pool to authority"
+$spl_stake_pool withdraw-sol "$stake_pool_pubkey" $authority "$withdraw_pay_amount"

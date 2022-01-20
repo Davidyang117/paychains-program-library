@@ -2,14 +2,14 @@
 #![cfg(feature = "test-bpf")]
 
 use {
-    solana_program::{
+    paychains_program::{
         instruction::{AccountMeta, Instruction},
         pubkey::Pubkey,
         rent::Rent,
         system_program,
     },
-    solana_program_test::*,
-    solana_sdk::{account::Account, signature::Signer, transaction::Transaction},
+    paychains_program_test::*,
+    paychains_sdk::{account::Account, signature::Signer, transaction::Transaction},
     spl_example_cross_program_invocation::processor::{process_instruction, SIZE},
     std::str::FromStr,
 };

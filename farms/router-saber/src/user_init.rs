@@ -1,6 +1,6 @@
 //! Initialize a new user for a Saber farm instruction
 
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo,
     entrypoint::ProgramResult,
     hash::Hasher,

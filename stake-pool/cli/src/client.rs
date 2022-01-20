@@ -1,13 +1,13 @@
 use {
     bincode::deserialize,
-    solana_account_decoder::UiAccountEncoding,
-    solana_client::{
+    paychains_account_decoder::UiAccountEncoding,
+    paychains_client::{
         client_error::ClientError,
         rpc_client::RpcClient,
         rpc_config::{RpcAccountInfoConfig, RpcProgramAccountsConfig},
         rpc_filter::{Memcmp, MemcmpEncodedBytes, MemcmpEncoding, RpcFilterType},
     },
-    solana_program::{borsh::try_from_slice_unchecked, program_pack::Pack, pubkey::Pubkey, stake},
+    paychains_program::{borsh::try_from_slice_unchecked, program_pack::Pack, pubkey::Pubkey, stake},
     spl_stake_pool::{
         find_withdraw_authority_program_address,
         state::{StakePool, ValidatorList},
@@ -137,7 +137,7 @@ pub(crate) fn get_all_stake(
                 }),
             ]),
             account_config: RpcAccountInfoConfig {
-                encoding: Some(solana_account_decoder::UiAccountEncoding::Base64),
+                encoding: Some(paychains_account_decoder::UiAccountEncoding::Base64),
                 commitment: Some(rpc_client.commitment()),
                 ..RpcAccountInfoConfig::default()
             },

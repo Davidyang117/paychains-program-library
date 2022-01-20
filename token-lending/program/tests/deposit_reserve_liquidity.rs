@@ -3,8 +3,8 @@
 mod helpers;
 
 use helpers::*;
-use solana_program_test::*;
-use solana_sdk::signature::Keypair;
+use paychains_program_test::*;
+use paychains_sdk::signature::Keypair;
 use spl_token_lending::processor::process_instruction;
 
 #[tokio::test]

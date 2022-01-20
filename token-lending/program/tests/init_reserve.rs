@@ -3,8 +3,8 @@
 mod helpers;
 
 use helpers::*;
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program_test::*;
+use paychains_sdk::{
     instruction::InstructionError,
     signature::{Keypair, Signer},
     transaction::{Transaction, TransactionError},
@@ -29,13 +29,13 @@ async fn test_success() {
 
     let user_accounts_owner = Keypair::new();
     let lending_market = add_lending_market(&mut test);
-    let sol_oracle = add_sol_oracle(&mut test);
+    let pay_oracle = add_pay_oracle(&mut test);
 
     let (mut banks_client, payer, _recent_blockhash) = test.start().await;
 
     const RESERVE_AMOUNT: u64 = 42;
 
-    let sol_user_liquidity_account = create_and_mint_to_token_account(
+    let pay_user_liquidity_account = create_and_mint_to_token_account(
         &mut banks_client,
         spl_token::native_mint::id(),
         None,
@@ -45,33 +45,33 @@ async fn test_success() {
     )
     .await;
 
-    let sol_reserve = TestReserve::init(
+    let pay_reserve = TestReserve::init(
         "sol".to_owned(),
         &mut banks_client,
         &lending_market,
-        &sol_oracle,
+        &pay_oracle,
         RESERVE_AMOUNT,
         TEST_RESERVE_CONFIG,
         spl_token::native_mint::id(),
-        sol_user_liquidity_account,
+        pay_user_liquidity_account,
         &payer,
         &user_accounts_owner,
     )
     .await
     .unwrap();
 
-    sol_reserve.validate_state(&mut banks_client).await;
+    pay_reserve.validate_state(&mut banks_client).await;
 
-    let sol_liquidity_supply =
-        get_token_balance(&mut banks_client, sol_reserve.liquidity_supply_pubkey).await;
-    assert_eq!(sol_liquidity_supply, RESERVE_AMOUNT);
-    let user_sol_balance =
-        get_token_balance(&mut banks_client, sol_reserve.user_liquidity_pubkey).await;
-    assert_eq!(user_sol_balance, 0);
-    let user_sol_collateral_balance =
-        get_token_balance(&mut banks_client, sol_reserve.user_collateral_pubkey).await;
+    let pay_liquidity_supply =
+        get_token_balance(&mut banks_client, pay_reserve.liquidity_supply_pubkey).await;
+    assert_eq!(pay_liquidity_supply, RESERVE_AMOUNT);
+    let user_pay_balance =
+        get_token_balance(&mut banks_client, pay_reserve.user_liquidity_pubkey).await;
+    assert_eq!(user_pay_balance, 0);
+    let user_pay_collateral_balance =
+        get_token_balance(&mut banks_client, pay_reserve.user_collateral_pubkey).await;
     assert_eq!(
-        user_sol_collateral_balance,
+        user_pay_collateral_balance,
         RESERVE_AMOUNT * INITIAL_COLLATERAL_RATIO
     );
 }
@@ -154,13 +154,13 @@ async fn test_invalid_fees() {
 
     let user_accounts_owner = Keypair::new();
     let lending_market = add_lending_market(&mut test);
-    let sol_oracle = add_sol_oracle(&mut test);
+    let pay_oracle = add_pay_oracle(&mut test);
 
     let (mut banks_client, payer, _recent_blockhash) = test.start().await;
 
     const RESERVE_AMOUNT: u64 = 42;
 
-    let sol_user_liquidity_account = create_and_mint_to_token_account(
+    let pay_user_liquidity_account = create_and_mint_to_token_account(
         &mut banks_client,
         spl_token::native_mint::id(),
         None,
@@ -184,11 +184,11 @@ async fn test_invalid_fees() {
                 "sol".to_owned(),
                 &mut banks_client,
                 &lending_market,
-                &sol_oracle,
+                &pay_oracle,
                 RESERVE_AMOUNT,
                 config,
                 spl_token::native_mint::id(),
-                sol_user_liquidity_account,
+                pay_user_liquidity_account,
                 &payer,
                 &user_accounts_owner,
             )
@@ -215,11 +215,11 @@ async fn test_invalid_fees() {
                 "sol".to_owned(),
                 &mut banks_client,
                 &lending_market,
-                &sol_oracle,
+                &pay_oracle,
                 RESERVE_AMOUNT,
                 config,
                 spl_token::native_mint::id(),
-                sol_user_liquidity_account,
+                pay_user_liquidity_account,
                 &payer,
                 &user_accounts_owner,
             )

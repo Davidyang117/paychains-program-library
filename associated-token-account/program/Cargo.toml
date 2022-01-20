@@ -1,9 +1,9 @@
 [package]
 name = "spl-associated-token-account"
 version = "1.0.4"
-description = "Solana Program Library Associated Token Account"
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
-repository = "https://github.com/solana-labs/solana-program-library"
+description = "PayChains Program Library Associated Token Account"
+authors = ["PayChains Maintainers <maintainers@paychains.foundation>"]
+repository = "https://github.com/paychains-labs/paychains-program-library"
 license = "Apache-2.0"
 edition = "2018"
 
@@ -13,12 +13,12 @@ test-bpf = []
 
 [dependencies]
 borsh = "0.9.1"
-solana-program = "1.9.2"
+paychains-program = "1.9.2"
 spl-token = { version = "0.1", path = "../../token/program-2022", features = ["no-entrypoint"], package = "spl-token-2022" }
 
 [dev-dependencies]
-solana-program-test = "1.9.2"
-solana-sdk = "1.9.2"
+paychains-program-test = "1.9.2"
+paychains-sdk = "1.9.2"
 
 [lib]
 crate-type = ["cdylib", "lib"]

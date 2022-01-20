@@ -1,4 +1,4 @@
-import {PublicKey} from '@solana/web3.js';
+import {PublicKey} from '@paychains/web3.js';
 import BN from 'bn.js';
 import {TRANSIENT_STAKE_SEED_PREFIX} from '../constants';
 

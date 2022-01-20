@@ -2,8 +2,8 @@
 
 use {
     crate::{traits::Shutdown, vault_info::VaultInfo},
-    solana_farm_sdk::{instruction::vault::VaultInstruction, vault::Vault},
-    solana_program::{account_info::AccountInfo, entrypoint::ProgramResult, msg},
+    paychains_farm_sdk::{instruction::vault::VaultInstruction, vault::Vault},
+    paychains_program::{account_info::AccountInfo, entrypoint::ProgramResult, msg},
 };
 
 impl Shutdown for VaultInstruction {

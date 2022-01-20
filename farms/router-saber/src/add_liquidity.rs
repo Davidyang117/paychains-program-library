@@ -1,8 +1,8 @@
 //! Add liquidity to the Saber pool instruction
 
 use {
-    solana_farm_sdk::program::account,
-    solana_program::{
+    paychains_farm_sdk::program::account,
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program::invoke,
         program_error::ProgramError,
     },

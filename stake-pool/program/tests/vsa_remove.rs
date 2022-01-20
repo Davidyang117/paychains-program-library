@@ -6,14 +6,14 @@ use {
     bincode::deserialize,
     borsh::BorshSerialize,
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked,
         instruction::{AccountMeta, Instruction, InstructionError},
         pubkey::Pubkey,
         stake, system_instruction, sysvar,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::{Transaction, TransactionError},
         transport::TransportError,

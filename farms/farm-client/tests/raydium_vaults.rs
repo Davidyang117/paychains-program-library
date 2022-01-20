@@ -9,7 +9,7 @@ fn test_vault_polis_ray() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.222,
             },
@@ -37,7 +37,7 @@ fn test_vault_polis_ray_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.222,
             },
@@ -65,7 +65,7 @@ fn test_vault_sny_ray() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.222,
             },
@@ -93,7 +93,7 @@ fn test_vault_atlas_ray() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.222,
             },
@@ -121,13 +121,13 @@ fn test_vault_ray_srm_v3() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.123,
             },
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "SRM",
                 amount: 0.123,
             },
@@ -144,13 +144,13 @@ fn test_vault_ray_srm_v5() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.123,
             },
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "SRM",
                 amount: 0.123,
             },
@@ -167,13 +167,13 @@ fn test_vault_ray_srm_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.123,
             },
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "SRM",
                 amount: 0.123,
             },
@@ -190,7 +190,7 @@ fn test_vault_grape_usdc() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "USDC",
                 amount: 0.222,
             },
@@ -218,7 +218,7 @@ fn test_vault_samo_ray() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.211,
             },
@@ -246,7 +246,7 @@ fn test_vault_oxy_ray() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.233,
             },
@@ -274,7 +274,7 @@ fn test_vault_oxy_ray_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.233,
             },
@@ -298,10 +298,10 @@ fn test_vault_oxy_ray_latest() {
 #[ignore]
 fn test_vault_ray_sol() {
     vault_actions::run_test(
-        "RDM.STC.RAY-SOL-V3",
+        "RDM.STC.RAY-PAY-V3",
         vec![utils::Swap {
             protocol: "RDM",
-            from_token: "SOL",
+            from_token: "PAY",
             to_token: "RAY",
             amount: 0.091111,
         }],
@@ -311,12 +311,12 @@ fn test_vault_ray_sol() {
 
 #[test]
 #[ignore]
-fn test_vault_ray_sol_latest() {
+fn test_vault_ray_pay_latest() {
     vault_actions::run_test(
-        "RDM.STC.RAY-SOL",
+        "RDM.STC.RAY-PAY",
         vec![utils::Swap {
             protocol: "RDM",
-            from_token: "SOL",
+            from_token: "PAY",
             to_token: "RAY",
             amount: 0.091111,
         }],
@@ -332,7 +332,7 @@ fn test_vault_ray_usdt() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "RAY",
                 amount: 0.223,
             },
@@ -369,7 +369,7 @@ fn all_vault_tests() {
 
     // single reward a v3
     test_vault_ray_sol();
-    test_vault_ray_sol_latest();
+    test_vault_ray_pay_latest();
     test_vault_ray_usdt();
     test_vault_ray_srm_v3();
 }*/

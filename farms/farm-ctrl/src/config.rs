@@ -2,9 +2,9 @@
 
 use {
     clap::{crate_description, crate_name, App, AppSettings, Arg, ArgMatches, SubCommand},
-    solana_clap_utils::{input_validators::is_url, keypair::signer_from_path},
-    solana_farm_sdk::refdb,
-    solana_sdk::{commitment_config::CommitmentConfig, signature::Signer},
+    paychains_clap_utils::{input_validators::is_url, keypair::signer_from_path},
+    paychains_farm_sdk::refdb,
+    paychains_sdk::{commitment_config::CommitmentConfig, signature::Signer},
     std::str::FromStr,
 };
 
@@ -21,7 +21,7 @@ pub struct Config {
 impl Config {
     pub fn new(matches: &ArgMatches) -> Self {
         let cli_config = if let Some(config_file) = matches.value_of("config_file") {
-            match solana_cli_config::Config::load(config_file) {
+            match paychains_cli_config::Config::load(config_file) {
                 Err(e) => {
                     panic!(
                         "Failed to load config file \"{}\":{}",
@@ -32,7 +32,7 @@ impl Config {
                 Ok(config) => config,
             }
         } else {
-            solana_cli_config::Config::default()
+            paychains_cli_config::Config::default()
         };
 
         let farm_client_url = matches
@@ -166,7 +166,7 @@ pub fn get_clap_app<'a, 'b>(version: &'b str) -> App<'a, 'b> {
                 .takes_value(true)
                 .global(true)
                 .help("Configuration file to use");
-            if let Some(ref config_file) = *solana_cli_config::CONFIG_FILE {
+            if let Some(ref config_file) = *paychains_cli_config::CONFIG_FILE {
                 arg.default_value(config_file)
             } else {
                 arg
@@ -449,7 +449,7 @@ pub fn get_clap_app<'a, 'b>(version: &'b str) -> App<'a, 'b> {
         )
         .subcommand(
             SubCommand::with_name("governance")
-                .about("Governance commands. See `solana-farm-ctrl governance help`")
+                .about("Governance commands. See `paychains-farm-ctrl governance help`")
                 .setting(AppSettings::SubcommandRequiredElseHelp)
                 .subcommand(
                     SubCommand::with_name("init")

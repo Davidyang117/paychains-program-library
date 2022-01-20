@@ -4,10 +4,10 @@ from enum import IntEnum
 from typing import List, NamedTuple, Optional
 from construct import Struct, Switch, Int8ul, Int32ul, Int64ul, Pass  # type: ignore
 
-from solana.publickey import PublicKey
-from solana.transaction import AccountMeta, TransactionInstruction
-from solana.system_program import SYS_PROGRAM_ID
-from solana.sysvar import SYSVAR_CLOCK_PUBKEY, SYSVAR_RENT_PUBKEY, SYSVAR_STAKE_HISTORY_PUBKEY
+from paychains.publickey import PublicKey
+from paychains.transaction import AccountMeta, TransactionInstruction
+from paychains.system_program import SYS_PROGRAM_ID
+from paychains.sysvar import SYSVAR_CLOCK_PUBKEY, SYSVAR_RENT_PUBKEY, SYSVAR_STAKE_HISTORY_PUBKEY
 from spl.token.constants import TOKEN_PROGRAM_ID
 
 from stake.constants import STAKE_PROGRAM_ID, SYSVAR_STAKE_CONFIG_ID
@@ -31,10 +31,10 @@ class FundingType(IntEnum):
 
     STAKE_DEPOSIT = 0
     """Sets the stake deposit authority."""
-    SOL_DEPOSIT = 1
-    """Sets the SOL deposit authority."""
-    SOL_WITHDRAW = 2
-    """Sets the SOL withdraw authority."""
+    PAY_DEPOSIT = 1
+    """Sets the PAY deposit authority."""
+    PAY_WITHDRAW = 2
+    """Sets the PAY withdraw authority."""
 
 
 class InitializeParams(NamedTuple):
@@ -132,7 +132,7 @@ class RemoveValidatorFromPoolParams(NamedTuple):
     transient_stake: PublicKey
     """`[]` Transient stake account, to check that there's no activation ongoing."""
     destination_stake: PublicKey
-    """`[w]` Destination stake account, to receive the minimum SOL from the validator stake account."""
+    """`[w]` Destination stake account, to receive the minimum PAY from the validator stake account."""
     clock_sysvar: PublicKey
     """'[]' Stake config sysvar."""
     stake_program_id: PublicKey
@@ -365,8 +365,8 @@ class SetStakerParams(NamedTuple):
     pass
 
 
-class DepositSolParams(NamedTuple):
-    """Deposit SOL directly into the pool's reserve account. The output is a "pool" token
+class DepositPayParams(NamedTuple):
+    """Deposit PAY directly into the pool's reserve account. The output is a "pool" token
     representing ownership into the pool. Inputs are converted to the current ratio."""
 
     # Accounts
@@ -395,7 +395,7 @@ class DepositSolParams(NamedTuple):
 
     # Params
     amount: int
-    """Amount of SOL to deposit"""
+    """Amount of PAY to deposit"""
 
     # Optional
     deposit_authority: Optional[PublicKey] = None
@@ -406,8 +406,8 @@ class SetFundingAuthorityParams(NamedTuple):
     pass
 
 
-class WithdrawSolParams(NamedTuple):
-    """Withdraw SOL directly from the pool's reserve account."""
+class WithdrawPayParams(NamedTuple):
+    """Withdraw PAY directly from the pool's reserve account."""
 
     # Accounts
     program_id: PublicKey
@@ -442,7 +442,7 @@ class WithdrawSolParams(NamedTuple):
     """Amount of pool tokens to burn"""
 
     # Optional
-    sol_withdraw_authority: Optional[PublicKey] = None
+    pay_withdraw_authority: Optional[PublicKey] = None
     """`[s]` (Optional) Stake pool sol withdraw authority."""
 
 
@@ -463,9 +463,9 @@ class InstructionType(IntEnum):
     SET_MANAGER = 11
     SET_FEE = 12
     SET_STAKER = 13
-    DEPOSIT_SOL = 14
+    DEPOSIT_PAY = 14
     SET_FUNDING_AUTHORITY = 15
-    WITHDRAW_SOL = 16
+    WITHDRAW_PAY = 16
 
 
 INITIALIZE_LAYOUT = Struct(
@@ -510,9 +510,9 @@ INSTRUCTIONS_LAYOUT = Struct(
             InstructionType.SET_MANAGER: Pass,  # TODO
             InstructionType.SET_FEE: Pass,  # TODO
             InstructionType.SET_STAKER: Pass,  # TODO
-            InstructionType.DEPOSIT_SOL: AMOUNT_LAYOUT,
+            InstructionType.DEPOSIT_PAY: AMOUNT_LAYOUT,
             InstructionType.SET_FUNDING_AUTHORITY: Pass,  # TODO
-            InstructionType.WITHDRAW_SOL: AMOUNT_LAYOUT,
+            InstructionType.WITHDRAW_PAY: AMOUNT_LAYOUT,
         },
     ),
 )
@@ -672,7 +672,7 @@ def remove_validator_from_pool_with_vote(
 
 
 def deposit_stake(params: DepositStakeParams) -> TransactionInstruction:
-    """Creates a transaction instruction to deposit SOL into a stake pool."""
+    """Creates a transaction instruction to deposit PAY into a stake pool."""
     keys = [
         AccountMeta(pubkey=params.stake_pool, is_signer=False, is_writable=True),
         AccountMeta(pubkey=params.validator_list, is_signer=False, is_writable=True),
@@ -703,7 +703,7 @@ def deposit_stake(params: DepositStakeParams) -> TransactionInstruction:
 
 
 def withdraw_stake(params: WithdrawStakeParams) -> TransactionInstruction:
-    """Creates a transaction instruction to withdraw SOL from a stake pool."""
+    """Creates a transaction instruction to withdraw PAY from a stake pool."""
     return TransactionInstruction(
         keys=[
             AccountMeta(pubkey=params.stake_pool, is_signer=False, is_writable=True),
@@ -730,8 +730,8 @@ def withdraw_stake(params: WithdrawStakeParams) -> TransactionInstruction:
     )
 
 
-def deposit_sol(params: DepositSolParams) -> TransactionInstruction:
-    """Creates a transaction instruction to deposit SOL into a stake pool."""
+def deposit_sol(params: DepositPayParams) -> TransactionInstruction:
+    """Creates a transaction instruction to deposit PAY into a stake pool."""
     keys = [
         AccountMeta(pubkey=params.stake_pool, is_signer=False, is_writable=True),
         AccountMeta(pubkey=params.withdraw_authority, is_signer=False, is_writable=False),
@@ -751,15 +751,15 @@ def deposit_sol(params: DepositSolParams) -> TransactionInstruction:
         program_id=params.program_id,
         data=INSTRUCTIONS_LAYOUT.build(
             dict(
-                instruction_type=InstructionType.DEPOSIT_SOL,
+                instruction_type=InstructionType.DEPOSIT_PAY,
                 args={'amount': params.amount}
             )
         )
     )
 
 
-def withdraw_sol(params: WithdrawSolParams) -> TransactionInstruction:
-    """Creates a transaction instruction to withdraw SOL from a stake pool."""
+def withdraw_sol(params: WithdrawPayParams) -> TransactionInstruction:
+    """Creates a transaction instruction to withdraw PAY from a stake pool."""
     keys = [
         AccountMeta(pubkey=params.stake_pool, is_signer=False, is_writable=True),
         AccountMeta(pubkey=params.withdraw_authority, is_signer=False, is_writable=False),
@@ -775,15 +775,15 @@ def withdraw_sol(params: WithdrawSolParams) -> TransactionInstruction:
         AccountMeta(pubkey=params.token_program_id, is_signer=False, is_writable=False),
     ]
 
-    if params.sol_withdraw_authority:
-        AccountMeta(pubkey=params.sol_withdraw_authority, is_signer=True, is_writable=False)
+    if params.pay_withdraw_authority:
+        AccountMeta(pubkey=params.pay_withdraw_authority, is_signer=True, is_writable=False)
 
     return TransactionInstruction(
         keys=keys,
         program_id=params.program_id,
         data=INSTRUCTIONS_LAYOUT.build(
             dict(
-                instruction_type=InstructionType.WITHDRAW_SOL,
+                instruction_type=InstructionType.WITHDRAW_PAY,
                 args={'amount': params.amount}
             )
         )

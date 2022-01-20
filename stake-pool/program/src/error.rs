@@ -1,7 +1,7 @@
 //! Error types
 
 use num_derive::FromPrimitive;
-use solana_program::{decode_error::DecodeError, program_error::ProgramError};
+use paychains_program::{decode_error::DecodeError, program_error::ProgramError};
 use thiserror::Error;
 
 /// Errors that may be returned by the StakePool program.
@@ -114,8 +114,8 @@ pub enum StakePoolError {
     #[error("InvalidStakeDepositAuthority")]
     InvalidStakeDepositAuthority,
     /// Provided sol deposit authority does not match the program's
-    #[error("InvalidSolDepositAuthority")]
-    InvalidSolDepositAuthority,
+    #[error("InvalidPayDepositAuthority")]
+    InvalidPayDepositAuthority,
     /// Provided preferred validator is invalid
     #[error("InvalidPreferredValidator")]
     InvalidPreferredValidator,
@@ -123,13 +123,13 @@ pub enum StakePoolError {
     #[error("TransientAccountInUse")]
     TransientAccountInUse,
     /// Provided sol withdraw authority does not match the program's
-    #[error("InvalidSolWithdrawAuthority")]
-    InvalidSolWithdrawAuthority,
+    #[error("InvalidPayWithdrawAuthority")]
+    InvalidPayWithdrawAuthority,
 
     // 35.
-    /// Too much SOL withdrawn from the stake pool's reserve account
-    #[error("SolWithdrawalTooLarge")]
-    SolWithdrawalTooLarge,
+    /// Too much PAY withdrawn from the stake pool's reserve account
+    #[error("PayWithdrawalTooLarge")]
+    PayWithdrawalTooLarge,
 }
 impl From<StakePoolError> for ProgramError {
     fn from(e: StakePoolError) -> Self {

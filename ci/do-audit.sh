@@ -12,7 +12,7 @@ cargo_audit_ignores=(
 
   # Potential segfault in the time crate
   #
-  # Blocked on chrono and solana_rbpf updating `time` to >= 0.2.23
+  # Blocked on chrono and paychains_rbpf updating `time` to >= 0.2.23
   --ignore RUSTSEC-2020-0071
 
   # chrono: Potential segfault in `localtime_r` invocations

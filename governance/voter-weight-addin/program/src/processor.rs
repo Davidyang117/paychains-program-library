@@ -6,7 +6,7 @@ use spl_governance::{
     state::token_owner_record::get_token_owner_record_data_for_realm_and_governing_mint,
 };
 
-use solana_program::{
+use paychains_program::{
     account_info::{next_account_info, AccountInfo},
     entrypoint::ProgramResult,
     msg,

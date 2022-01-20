@@ -1,11 +1,11 @@
 #![cfg(feature = "test-bpf")]
 
-use solana_program::{
+use paychains_program::{
     instruction::{AccountMeta, Instruction, InstructionError},
     pubkey::Pubkey,
 };
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program_test::*;
+use paychains_sdk::{
     signature::{Keypair, Signer},
     transaction::{Transaction, TransactionError},
 };

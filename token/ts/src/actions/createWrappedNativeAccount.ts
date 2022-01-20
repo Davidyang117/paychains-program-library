@@ -7,7 +7,7 @@ import {
     Signer,
     SystemProgram,
     Transaction,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import { ASSOCIATED_TOKEN_PROGRAM_ID, NATIVE_MINT, TOKEN_PROGRAM_ID } from '../constants';
 import {
     createAssociatedTokenAccountInstruction,
@@ -18,7 +18,7 @@ import { ACCOUNT_SIZE, getAssociatedTokenAddress, getMinimumBalanceForRentExempt
 import { createAccount } from './createAccount';
 
 /**
- * Create, initialize, and fund a new wrapped native SOL account
+ * Create, initialize, and fund a new wrapped native PAY account
  *
  * @param connection     Connection to use
  * @param payer          Payer of the transaction and initialization fees
@@ -28,7 +28,7 @@ import { createAccount } from './createAccount';
  * @param confirmOptions Options for confirming the transaction
  * @param programId      SPL Token program account
  *
- * @return Address of the new wrapped native SOL account
+ * @return Address of the new wrapped native PAY account
  */
 export async function createWrappedNativeAccount(
     connection: Connection,

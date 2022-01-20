@@ -2,7 +2,7 @@
 
 mod program_test;
 
-use solana_program_test::tokio;
+use paychains_program_test::tokio;
 
 use program_test::*;
 use spl_governance::{

@@ -1,7 +1,7 @@
 {
-  "name": "Solana Token List",
-  "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/solana/info/logo.png",
-  "keywords": ["solana", "spl"],
+  "name": "PayChains Token List",
+  "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/paychains/info/logo.png",
+  "keywords": ["paychains", "spl"],
   "tags": {
     "stablecoin": {
       "name": "stablecoin",
@@ -57,16 +57,16 @@
     {
       "chainId": 101,
       "address": "So11111111111111111111111111111111111111112",
-      "symbol": "SOL",
-      "name": "Wrapped SOL",
+      "symbol": "PAY",
+      "name": "Wrapped PAY",
       "decimals": 9,
-      "logoURI": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png",
+      "logoURI": "https://raw.githubusercontent.com/paychains-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png",
       "tags": [],
       "extensions": {
-        "website": "https://solana.com/",
+        "website": "https://paychains.com/",
         "serumV3Usdc": "9wFFyRfZBsuAha4YcuxcXLKwMxJR43S7fPfQLusDBzvT",
         "serumV3Usdt": "HWHvQhFmJB3NUcu1aihKmrKegfVxBEHzwVX6yZCKEsi1",
-        "coingeckoId": "solana"
+        "coingeckoId": "paychains"
       }
     },
     {
@@ -78,7 +78,7 @@
       "logoURI": "",
       "tags": [],
       "extensions": {
-        "website": "https://solana.com/"
+        "website": "https://paychains.com/"
       }
     },
     {
@@ -90,7 +90,7 @@
       "logoURI": "",
       "tags": [],
       "extensions": {
-        "website": "https://solana.com/"
+        "website": "https://paychains.com/"
       }
     }
   ],

@@ -1,7 +1,7 @@
 #![cfg(feature = "test-bpf")]
 
-use solana_program::pubkey::Pubkey;
-use solana_program_test::*;
+use paychains_program::pubkey::Pubkey;
+use paychains_program_test::*;
 
 mod program_test;
 

@@ -2,32 +2,32 @@
 title: Token Program
 ---
 
-A Token program on the Solana blockchain.
+A Token program on the PayChains blockchain.
 
 This program defines a common implementation for Fungible and Non Fungible tokens.
 
 ## Background
 
-Solana's programming model and the definitions of the Solana terms used in this
+PayChains' programming model and the definitions of the PayChains terms used in this
 document are available at:
 
-- https://docs.solana.com/apps
-- https://docs.solana.com/terminology
+- https://docs.paychains.com/apps
+- https://docs.paychains.com/terminology
 
 ## Source
 
 The Token Program's source is available on
-[github](https://github.com/solana-labs/solana-program-library)
+[github](https://github.com/paychains-labs/paychains-program-library)
 
 ## Interface
 
 The Token Program is written in Rust and available on [crates.io](https://crates.io/crates/spl-token) and [docs.rs](https://docs.rs/spl-token).
 
 Auto-generated C bindings are also available
-[here](https://github.com/solana-labs/solana-program-library/blob/master/token/program/inc/token.h)
+[here](https://github.com/paychains-labs/paychains-program-library/blob/master/token/program/inc/token.h)
 
 [JavaScript
-bindings](https://github.com/solana-labs/solana-program-library/blob/master/token/js/client/token.js)
+bindings](https://github.com/paychains-labs/paychains-program-library/blob/master/token/js/client/token.js)
 are available that support loading the Token Program on to a chain and issue
 instructions.
 
@@ -46,47 +46,47 @@ Run `spl-token --help` for a full description of available commands.
 
 ### Configuration
 
-The `spl-token` configuration is shared with the `solana` command-line tool.
+The `spl-token` configuration is shared with the `paychains` command-line tool.
 
 #### Current Configuration
 
 ```console
-$ solana config get
-Config File: ${HOME}/.config/solana/cli/config.yml
-RPC URL: https://api.mainnet-beta.solana.com
-WebSocket URL: wss://api.mainnet-beta.solana.com/ (computed)
-Keypair Path: ${HOME}/.config/solana/id.json
+$ paychains config get
+Config File: ${HOME}/.config/paychains/cli/config.yml
+RPC URL: https://api.mainnet-beta.paychains.com
+WebSocket URL: wss://api.mainnet-beta.paychains.com/ (computed)
+Keypair Path: ${HOME}/.config/paychains/id.json
 ```
 
 #### Cluster RPC URL
 
-See [Solana clusters](https://docs.solana.com/clusters) for cluster-specific RPC URLs
+See [PayChains clusters](https://docs.paychains.com/clusters) for cluster-specific RPC URLs
 ```console
-$ solana config set --url https://api.devnet.solana.com
+$ paychains config set --url https://api.devnet.paychains.com
 ```
 
 #### Default Keypair
 
-See [Keypair conventions](https://docs.solana.com/cli/conventions#keypair-conventions)
+See [Keypair conventions](https://docs.paychains.com/cli/conventions#keypair-conventions)
 for information on how to setup a keypair if you don't already have one.
 
 Keypair File
 ```console
-$ solana config set --keypair ${HOME}/new-keypair.json
+$ paychains config set --keypair ${HOME}/new-keypair.json
 ```
 
-Hardware Wallet URL (See [URL spec](https://docs.solana.com/wallet-guide/hardware-wallets#specify-a-keypair-url))
+Hardware Wallet URL (See [URL spec](https://docs.paychains.com/wallet-guide/hardware-wallets#specify-a-keypair-url))
 ```console
-$ solana config set --keypair usb://ledger/
+$ paychains config set --keypair usb://ledger/
 ```
 
-#### Airdrop SOL
+#### Airdrop PAY
 
-Creating tokens and accounts requires SOL for account rent deposits and
+Creating tokens and accounts requires PAY for account rent deposits and
 transaction fees. If the cluster you are targeting offers a faucet, you can get
-a little SOL for testing:
+a little PAY for testing:
 ```console
-$ solana airdrop 1
+$ paychains airdrop 1
 ```
 
 ### Example: Creating your own fungible token
@@ -151,19 +151,19 @@ AQoKYV7tYpTrFZN6P5oUufbQKAUr9mNYGe1TTJC9wajM  0    (Aux-1*)
 AQoKYV7tYpTrFZN6P5oUufbQKAUr9mNYGe1TTJC9wajM  1    (Aux-2*)
 ```
 
-### Example: Wrapping SOL in a Token
+### Example: Wrapping PAY in a Token
 
 ```console
 $ spl-token wrap 1
-Wrapping 1 SOL into GJTxcnA5Sydy8YRhqvHxbQ5QNsPyRKvzguodQEaShJje
+Wrapping 1 PAY into GJTxcnA5Sydy8YRhqvHxbQ5QNsPyRKvzguodQEaShJje
 Signature: 4f4s5QVMKisLS6ihZcXXPbiBAzjnvkBcp2A7KKER7k9DwJ4qjbVsQBKv2rAyBumXC1gLn8EJQhwWkybE4yJGnw2Y
 ```
 
-To unwrap the Token back to SOL:
+To unwrap the Token back to PAY:
 ```console
 $ spl-token unwrap GJTxcnA5Sydy8YRhqvHxbQ5QNsPyRKvzguodQEaShJje
 Unwrapping GJTxcnA5Sydy8YRhqvHxbQ5QNsPyRKvzguodQEaShJje
-  Amount: 1 SOL
+  Amount: 1 PAY
   Recipient: vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg
 Signature: f7opZ86ZHKGvkJBQsJ8Pk81v8F3v1VUfyd4kFs4CABmfTnSZK5BffETznUU3tEWvzibgKJASCf7TUpDmwGi8Rmh
 ```
@@ -171,7 +171,7 @@ Signature: f7opZ86ZHKGvkJBQsJ8Pk81v8F3v1VUfyd4kFs4CABmfTnSZK5BffETznUU3tEWvzibgK
 ### Example: Transferring tokens to another user
 First the receiver uses `spl-token create-account` to create their associated
 token account for the Token type.  Then the receiver obtains their wallet
-address by running `solana address` and provides it to the sender.
+address by running `paychains address` and provides it to the sender.
 
 The sender then runs:
 ```console
@@ -188,7 +188,7 @@ Signature: 5a3qbvoJQnTAxGPHCugibZTbSu7xuTgkxvF4EJupRjRXGgZZrnWFmKzfEzcqKF2ogCaF4
 If the receiver does not yet have an associated token account, the sender may
 choose to fund the receiver's account.
 
-The receiver obtains their wallet address by running `solana address` and provides it to the sender.
+The receiver obtains their wallet address by running `paychains address` and provides it to the sender.
 
 The sender then runs to fund the receiver's associated token account, at the
 sender's expense, and then transfers 50 tokens into it:
@@ -198,7 +198,7 @@ Transfer 50 tokens
   Sender: 7UX2i7SucgLMQcfZ75s3VXmZZY4YRUyJN9X1RgfMoDUi
   Recipient: vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg
   Recipient associated token account: F59618aQB8r6asXeMcB9jWuY6NEx1VduT9yFo1GTi1ks
-  Funding recipient: F59618aQB8r6asXeMcB9jWuY6NEx1VduT9yFo1GTi1ks (0.00203928 SOL)
+  Funding recipient: F59618aQB8r6asXeMcB9jWuY6NEx1VduT9yFo1GTi1ks (0.00203928 PAY)
 
 Signature: 5a3qbvoJQnTAxGPHCugibZTbSu7xuTgkxvF4EJupRjRXGgZZrnWFmKzfEzcqKF2ogCaF4QKVbAtuFx7xGwrDUcGd
 ```
@@ -317,7 +317,7 @@ First create keypairs to act as the multisig signer-set. In reality, these can
 be any supported signer, like: a Ledger hardware wallet, a keypair file, or
 a paper wallet. For convenience, keypair files will be used in this example.
 ```console
-$ for i in $(seq 3); do solana-keygen new --no-passphrase -so "signer-${i}.json"; done
+$ for i in $(seq 3); do paychains-keygen new --no-passphrase -so "signer-${i}.json"; done
 Wrote new keypair to signer-1.json
 Wrote new keypair to signer-2.json
 Wrote new keypair to signer-3.json
@@ -326,7 +326,7 @@ Wrote new keypair to signer-3.json
 In order to create the multisig account, the public keys of the signer-set must
 be collected.
 ```console
-$ for i in $(seq 3); do SIGNER="signer-${i}.json"; echo "$SIGNER: $(solana-keygen pubkey "$SIGNER")"; done
+$ for i in $(seq 3); do SIGNER="signer-${i}.json"; echo "$SIGNER: $(paychains-keygen pubkey "$SIGNER")"; done
 signer-1.json: BzWpkuRrwXHq4SSSFHa8FJf6DRQy4TaeoXnkA89vTgHZ
 signer-2.json: DhkUfKgfZ8CF6PAGKwdABRL1VqkeNrTSRx8LZfpPFVNY
 signer-3.json: D7ssXHrZJjfpZXsmDf8RwfPxe1BMMMmP1CtmX3WojPmG
@@ -404,15 +404,15 @@ Signature: 2ubqWqZb3ooDuc8FLaBkqZwzguhtMgQpgMAHhKsWcUzjy61qtJ7cZ1bfmYktKUfnbMYWT
 
 Sometimes online signing is not possible or desireable. Such is the case for example when signers are not in the same geographic location  
 or when they use air-gapped devices not connected to the network.  In this case, we use offline signing which combines the   
-previous examples of [multisig](#example-mint-with-multisig-authority) with [offline signing](https://docs.solana.com/offline-signing)
-and a [nonce account](https://docs.solana.com/offline-signing/durable-nonce).
+previous examples of [multisig](#example-mint-with-multisig-authority) with [offline signing](https://docs.paychains.com/offline-signing)
+and a [nonce account](https://docs.paychains.com/offline-signing/durable-nonce).
 
 This example will use the same mint account, token account, multisig account,
 and multisig signer-set keypair filenames as the online example, as well as a nonce
 account that we create here:
 
 ```console
-$ solana-keygen new -o nonce-keypair.json
+$ paychains-keygen new -o nonce-keypair.json
 ...
 ======================================================================
 pubkey: Fjyud2VXixk2vCs4DkBpfpsq48d81rbEzh6deKt7WvPj
@@ -420,14 +420,14 @@ pubkey: Fjyud2VXixk2vCs4DkBpfpsq48d81rbEzh6deKt7WvPj
 ```
 
 ```console
-$ solana create-nonce-account nonce-keypair.json 1
+$ paychains create-nonce-account nonce-keypair.json 1
 Signature: 3DALwrAAmCDxqeb4qXZ44WjpFcwVtgmJKhV4MW5qLJVtWeZ288j6Pzz1F4BmyPpnGLfx2P8MEJXmqPchX5y2Lf3r
 ```
 
 ```console
-$ solana nonce-account Fjyud2VXixk2vCs4DkBpfpsq48d81rbEzh6deKt7WvPj
-Balance: 0.01 SOL
-Minimum Balance Required: 0.00144768 SOL
+$ paychains nonce-account Fjyud2VXixk2vCs4DkBpfpsq48d81rbEzh6deKt7WvPj
+Balance: 0.01 PAY
+Minimum Balance Required: 0.00144768 PAY
 Nonce blockhash: 6DPt2TfFBG7sR4Hqu16fbMXPj8ddHKkbU4Y3EEEWrC2E
 Fee: 5000 lamports per signature
 Authority: 5hbZyJ3KRuFvdy5QBxvE9KwK17hzkAUkQHZTxPbiWffE
@@ -558,7 +558,7 @@ There is a rich set of JSON RPC methods available for use with SPL Token:
 * `getTokenLargestAccounts`
 * `getTokenSupply`
 
-See https://docs.solana.com/apps/jsonrpc-api for more details.
+See https://docs.paychains.com/apps/jsonrpc-api for more details.
 
 Additionally the versatile `getProgramAccounts` JSON RPC method can be employed in various ways to fetch SPL Token accounts of interest.
 
@@ -566,7 +566,7 @@ Additionally the versatile `getProgramAccounts` JSON RPC method can be employed 
 
 To find all token accounts for the `TESTpKgj42ya3st2SQTKiANjTBmncQSCqLAZGcSPLGM` mint:
 ```
-curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+curl http://api.mainnet-beta.paychains.com -X POST -H "Content-Type: application/json" -d '
   {
     "jsonrpc": "2.0",
     "id": 1,
@@ -593,16 +593,16 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 ```
 
 The `"dataSize": 165` filter selects all [Token
-Account](https://github.com/solana-labs/solana-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L86-L106)s,
+Account](https://github.com/paychains-labs/paychains-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L86-L106)s,
 and then the `"memcmp": ...` filter selects based on the
-[mint](https://github.com/solana-labs/solana-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L88)
+[mint](https://github.com/paychains-labs/paychains-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L88)
 address within each token account.
 
 ### Finding all token accounts for a wallet
 
 Find all token accounts owned by the `vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg` user:
 ```
-curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+curl http://api.mainnet-beta.paychains.com -X POST -H "Content-Type: application/json" -d '
   {
     "jsonrpc": "2.0",
     "id": 1,
@@ -628,9 +628,9 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 ```
 
 The `"dataSize": 165` filter selects all [Token
-Account](https://github.com/solana-labs/solana-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L86-L106)s,
+Account](https://github.com/paychains-labs/paychains-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L86-L106)s,
 and then the `"memcmp": ...` filter selects based on the
-[owner](https://github.com/solana-labs/solana-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L90)
+[owner](https://github.com/paychains-labs/paychains-program-library/blob/08d9999f997a8bf38719679be9d572f119d0d960/token/program/src/state.rs#L90)
 address within each token account.
 
 ## Operational overview
@@ -644,9 +644,9 @@ Account, which means that the total supply of a particular token type is equal
 to the balances of all the associated Accounts.
 
 It's important to note that the `InitializeMint` instruction does not require
-the Solana account being initialized also be a signer. The `InitializeMint`
+the PayChains account being initialized also be a signer. The `InitializeMint`
 instruction should be atomically processed with the system instruction that
-creates the Solana account by including both instructions in the same
+creates the PayChains account by including both instructions in the same
 transaction.
 
 Once a Mint is initialized, the `mint_authority` can create new tokens using the
@@ -669,9 +669,9 @@ An Account's owner may transfer ownership of an account to another using the
 `SetAuthority` instruction.
 
 It's important to note that the `InitializeAccount` instruction does not require
-the Solana account being initialized also be a signer. The `InitializeAccount`
+the PayChains account being initialized also be a signer. The `InitializeAccount`
 instruction should be atomically processed with the system instruction that
-creates the Solana account by including both instructions in the same
+creates the PayChains account by including both instructions in the same
 transaction.
 
 ### Transferring tokens
@@ -713,9 +713,9 @@ the set of N public keys that are valid and the number M of those N that must be
 present as instruction signers for the authority to be legitimate.
 
 It's important to note that the `InitializeMultisig` instruction does not
-require the Solana account being initialized also be a signer. The
+require the PayChains account being initialized also be a signer. The
 `InitializeMultisig` instruction should be atomically processed with the system
-instruction that creates the Solana account by including both instructions in
+instruction that creates the PayChains account by including both instructions in
 the same transaction.
 
 ### Freezing accounts
@@ -728,39 +728,39 @@ to change a Mint's `freeze_authority`.  If a Mint's `freeze_authority` is set to
 `None` then account freezing and thawing is permanently disabled and all
 currently frozen accounts will also stay frozen permanently.
 
-### Wrapping SOL
+### Wrapping PAY
 
-The Token Program can be used to wrap native SOL. Doing so allows native SOL to
+The Token Program can be used to wrap native PAY. Doing so allows native PAY to
 be treated like any other Token program token type and can be useful when being
 called from other programs that interact with the Token Program's interface.
 
-Accounts containing wrapped SOL are associated with a specific Mint called the
+Accounts containing wrapped PAY are associated with a specific Mint called the
 "Native Mint" using the public key
 `So11111111111111111111111111111111111111112`.
 
 These accounts have a few unique behaviors
 
-- `InitializeAccount` sets the balance of the initialized Account to the SOL
-  balance of the Solana account being initialized, resulting in a token balance
-  equal to the SOL balance.
+- `InitializeAccount` sets the balance of the initialized Account to the PAY
+  balance of the PayChains account being initialized, resulting in a token balance
+  equal to the PAY balance.
 - Transfers to and from not only modify the token balance but also transfer an
-  equal amount of SOL from the source account to the destination account.
+  equal amount of PAY from the source account to the destination account.
 - Burning is not supported
 - When closing an Account the balance may be non-zero.
 
-The Native Mint supply will always report 0, regardless of how much SOL is currently wrapped.
+The Native Mint supply will always report 0, regardless of how much PAY is currently wrapped.
 
 ### Rent-exemption
 
 To ensure a reliable calculation of supply, a consistency valid Mint, and
-consistently valid Multisig accounts all Solana accounts holding an Account,
-Mint, or Multisig must contain enough SOL to be considered [rent
-exempt](https://docs.solana.com/implemented-proposals/rent)
+consistently valid Multisig accounts all PayChains accounts holding an Account,
+Mint, or Multisig must contain enough PAY to be considered [rent
+exempt](https://docs.paychains.com/implemented-proposals/rent)
 
 ### Closing accounts
 
 An account may be closed using the `CloseAccount` instruction. When closing an
-Account, all remaining SOL will be transferred to another Solana account
+Account, all remaining PAY will be transferred to another PayChains account
 (doesn't have to be associated with the Token Program). Non-native Accounts must
 have a balance of zero to be closed.
 
@@ -769,8 +769,8 @@ An NFT is simply a token type where only a single token has been minted.
 
 ## Wallet Integration Guide
 This section describes how to integrate SPL Token support into an existing
-wallet supporting native SOL.  It assumes a model whereby the user has a single
-system account as their **main wallet address** that they send and receive SOL
+wallet supporting native PAY.  It assumes a model whereby the user has a single
+system account as their **main wallet address** that they send and receive PAY
 from.
 
 Although all SPL Token accounts do have their own address on-chain, there's no
@@ -783,7 +783,7 @@ There are two programs that are used by the wallet:
   address to the associated token accounts they hold.
 
 ### How to fetch and display token holdings
-The [getTokenAccountsByOwner](https://docs.solana.com/apps/jsonrpc-api#gettokenaccountsbyowner)
+The [getTokenAccountsByOwner](https://docs.paychains.com/apps/jsonrpc-api#gettokenaccountsbyowner)
 JSON RPC method can be used to fetch all token accounts for a wallet address.
 
 For each token mint, the wallet could have multiple token accounts: the
@@ -798,7 +798,7 @@ section for suggestions on how the wallet should clean up ancillary token accoun
 
 ### Associated Token Account
 Before the user can receive tokens, their associated token account must be created
-on-chain, requiring a small amount of SOL to mark the account as rent-exempt.
+on-chain, requiring a small amount of PAY to mark the account as rent-exempt.
 
 There's no restriction on who can create a user's associated token account.  It
 could either be created by the wallet on behalf of the user or funded by a 3rd
@@ -820,7 +820,7 @@ receive SPL Tokens of a certain type to:
 
 The wallet should provide a UI that allow the users to "add a token".
 The user selects the kind of token, and is presented with information about how
-much SOL it will cost to add the token.
+much PAY it will cost to add the token.
 
 Upon confirmation, the wallet creates the associated token type as the described
 [here](associated-token-account.md#creating-an-associated-token-account).
@@ -853,7 +853,7 @@ then:
    wallet should create the recipient's associated token account as described
    [here](associated-token-account.md#creating-an-associated-token-account).
    The sender's wallet may choose to inform the user that as a result of account
-   creation the transfer will require more SOL than normal.
+   creation the transfer will require more PAY than normal.
    However a wallet that chooses to not support creating the recipient's
    associated token account at this time should present a message to the user with enough
    information to permit them to find a workaround (such as transferring the
@@ -868,8 +868,8 @@ hold a balance before allowing the transfer.
 At the moment there exist two solutions for Token Mint registries:
 
 * hard coded addresses in the wallet or dapp
-* [spl-token-registry](https://www.npmjs.com/package/@solana/spl-token-registry)
-package, maintained at [https://github.com/solana-labs/token-list](https://github.com/solana-labs/token-list)
+* [spl-token-registry](https://www.npmjs.com/package/@paychains/spl-token-registry)
+package, maintained at [https://github.com/paychains-labs/token-list](https://github.com/paychains-labs/token-list)
 
 **A decentralized solution is in progress.**
 
@@ -878,9 +878,9 @@ Wallets should empty ancillary token accounts as quickly as practical by
 transferring into the user's associated token account.  This effort serves two
 purposes:
 * If the user is the close authority for the ancillary account, the wallet can
-  reclaim SOL for the user by closing the account.
+  reclaim PAY for the user by closing the account.
 * If the ancillary account was funded by a 3rd party, once the account is
-  emptied that 3rd party may close the account and reclaim the SOL.
+  emptied that 3rd party may close the account and reclaim the PAY.
 
 One natural time to garbage collect ancillary token accounts is when the user
 next sends tokens.  The additional instructions to do so can be added to the

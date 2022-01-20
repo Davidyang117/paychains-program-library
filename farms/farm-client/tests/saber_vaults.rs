@@ -8,7 +8,7 @@ fn test_vault_usdc_usdt() {
         "SBR.STC.USDC-USDT",
         vec![utils::Swap {
             protocol: "RDM",
-            from_token: "SOL",
+            from_token: "PAY",
             to_token: "USDC",
             amount: 0.222,
         }],
@@ -28,7 +28,7 @@ fn test_vault_usdc_wust_v1() {
         "SBR.STC.USDC-WUST_V1",
         vec![utils::Swap {
             protocol: "RDM",
-            from_token: "SOL",
+            from_token: "PAY",
             to_token: "USDC",
             amount: 0.221,
         }],
@@ -48,7 +48,7 @@ fn test_vault_acusd_usdc() {
         "SBR.STC.ACUSD-USDC",
         vec![utils::Swap {
             protocol: "RDM",
-            from_token: "SOL",
+            from_token: "PAY",
             to_token: "USDC",
             amount: 0.223,
         }],
@@ -68,7 +68,7 @@ fn test_vault_wdai_usdc() {
         "SBR.STC.WDAI-USDC",
         vec![utils::Swap {
             protocol: "RDM",
-            from_token: "SOL",
+            from_token: "PAY",
             to_token: "USDC",
             amount: 0.224,
         }],

@@ -1,21 +1,21 @@
 #![allow(dead_code)]
 
 use {
-    solana_program::{
+    paychains_program::{
         borsh::{get_instance_packed_len, get_packed_len, try_from_slice_unchecked},
         hash::Hash,
         program_pack::Pack,
         pubkey::Pubkey,
         stake, system_instruction, system_program,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         account::Account,
         signature::{Keypair, Signer},
         transaction::Transaction,
         transport::TransportError,
     },
-    solana_vote_program::{
+    paychains_vote_program::{
         self, vote_instruction,
         vote_state::{VoteInit, VoteState},
     },
@@ -342,8 +342,8 @@ pub async fn create_stake_pool(
     withdrawal_fee: &state::Fee,
     deposit_fee: &state::Fee,
     referral_fee: u8,
-    sol_deposit_fee: &state::Fee,
-    sol_referral_fee: u8,
+    pay_deposit_fee: &state::Fee,
+    pay_referral_fee: u8,
     max_validators: u32,
 ) -> Result<(), TransportError> {
     let rent = banks_client.get_rent().await.unwrap();
@@ -390,13 +390,13 @@ pub async fn create_stake_pool(
                 &id(),
                 &stake_pool.pubkey(),
                 &manager.pubkey(),
-                FeeType::SolDeposit(*sol_deposit_fee),
+                FeeType::PayDeposit(*pay_deposit_fee),
             ),
             instruction::set_fee(
                 &id(),
                 &stake_pool.pubkey(),
                 &manager.pubkey(),
-                FeeType::SolReferral(sol_referral_fee),
+                FeeType::PayReferral(pay_referral_fee),
             ),
         ],
         Some(&payer.pubkey()),
@@ -638,8 +638,8 @@ pub struct StakePoolAccounts {
     pub withdrawal_fee: state::Fee,
     pub deposit_fee: state::Fee,
     pub referral_fee: u8,
-    pub sol_deposit_fee: state::Fee,
-    pub sol_referral_fee: u8,
+    pub pay_deposit_fee: state::Fee,
+    pub pay_referral_fee: u8,
     pub max_validators: u32,
 }
 
@@ -682,11 +682,11 @@ impl StakePoolAccounts {
                 denominator: 1000,
             },
             referral_fee: 25,
-            sol_deposit_fee: state::Fee {
+            pay_deposit_fee: state::Fee {
                 numerator: 3,
                 denominator: 100,
             },
-            sol_referral_fee: 50,
+            pay_referral_fee: 50,
             max_validators: MAX_TEST_VALIDATORS,
         }
     }
@@ -710,12 +710,12 @@ impl StakePoolAccounts {
         deposit_fee_collected * self.referral_fee as u64 / 100
     }
 
-    pub fn calculate_sol_deposit_fee(&self, pool_tokens: u64) -> u64 {
-        pool_tokens * self.sol_deposit_fee.numerator / self.sol_deposit_fee.denominator
+    pub fn calculate_pay_deposit_fee(&self, pool_tokens: u64) -> u64 {
+        pool_tokens * self.pay_deposit_fee.numerator / self.pay_deposit_fee.denominator
     }
 
-    pub fn calculate_sol_referral_fee(&self, deposit_fee_collected: u64) -> u64 {
-        deposit_fee_collected * self.sol_referral_fee as u64 / 100
+    pub fn calculate_pay_referral_fee(&self, deposit_fee_collected: u64) -> u64 {
+        deposit_fee_collected * self.pay_referral_fee as u64 / 100
     }
 
     pub async fn initialize_stake_pool(
@@ -772,8 +772,8 @@ impl StakePoolAccounts {
             &self.withdrawal_fee,
             &self.deposit_fee,
             self.referral_fee,
-            &self.sol_deposit_fee,
-            self.sol_referral_fee,
+            &self.pay_deposit_fee,
+            self.pay_referral_fee,
             self.max_validators,
         )
         .await?;
@@ -876,15 +876,15 @@ impl StakePoolAccounts {
         recent_blockhash: &Hash,
         pool_account: &Pubkey,
         amount: u64,
-        sol_deposit_authority: Option<&Keypair>,
+        pay_deposit_authority: Option<&Keypair>,
     ) -> Option<TransportError> {
         let mut signers = vec![payer];
-        let instruction = if let Some(sol_deposit_authority) = sol_deposit_authority {
-            signers.push(sol_deposit_authority);
-            instruction::deposit_sol_with_authority(
+        let instruction = if let Some(pay_deposit_authority) = pay_deposit_authority {
+            signers.push(pay_deposit_authority);
+            instruction::deposit_pay_with_authority(
                 &id(),
                 &self.stake_pool.pubkey(),
-                &sol_deposit_authority.pubkey(),
+                &pay_deposit_authority.pubkey(),
                 &self.withdraw_authority,
                 &self.reserve_stake.pubkey(),
                 &payer.pubkey(),
@@ -974,15 +974,15 @@ impl StakePoolAccounts {
         user: &Keypair,
         pool_account: &Pubkey,
         amount: u64,
-        sol_withdraw_authority: Option<&Keypair>,
+        pay_withdraw_authority: Option<&Keypair>,
     ) -> Option<TransportError> {
         let mut signers = vec![payer, user];
-        let instruction = if let Some(sol_withdraw_authority) = sol_withdraw_authority {
-            signers.push(sol_withdraw_authority);
-            instruction::withdraw_sol_with_authority(
+        let instruction = if let Some(pay_withdraw_authority) = pay_withdraw_authority {
+            signers.push(pay_withdraw_authority);
+            instruction::withdraw_pay_with_authority(
                 &id(),
                 &self.stake_pool.pubkey(),
-                &sol_withdraw_authority.pubkey(),
+                &pay_withdraw_authority.pubkey(),
                 &self.withdraw_authority,
                 &user.pubkey(),
                 pool_account,

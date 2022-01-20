@@ -12,7 +12,7 @@ use {
     },
     arrayref::{array_mut_ref, array_ref, mut_array_refs},
     num_enum::TryFromPrimitive,
-    solana_program::program_error::ProgramError,
+    paychains_program::program_error::ProgramError,
 };
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -353,7 +353,7 @@ mod tests {
     use super::*;
     use crate::pool::{PoolRoute, PoolType};
     use crate::string::ArrayString64;
-    use solana_program::pubkey::Pubkey;
+    use paychains_program::pubkey::Pubkey;
 
     #[test]
     fn test_vec_serialization() {

@@ -1,7 +1,7 @@
 //! VoterWeight Addin interface
 
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo,
     clock::{Clock, Slot},
     program_error::ProgramError,

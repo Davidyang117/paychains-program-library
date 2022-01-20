@@ -3,15 +3,15 @@
 use {
     crate::{math, pack::check_data_len, program::account},
     arrayref::{array_ref, array_refs},
-    solana_program::{account_info::AccountInfo, msg, program_error::ProgramError, pubkey::Pubkey},
+    paychains_program::{account_info::AccountInfo, msg, program_error::ProgramError, pubkey::Pubkey},
 };
 
 pub mod orca_swap {
-    solana_program::declare_id!("9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP");
+    paychains_program::declare_id!("9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP");
 }
 
 pub mod orca_stake {
-    solana_program::declare_id!("82yxjeMsvaURa4MbZZ7WZZHfobirZYkH1zF8fmeGtyaQ");
+    paychains_program::declare_id!("82yxjeMsvaURa4MbZZ7WZZHfobirZYkH1zF8fmeGtyaQ");
 }
 
 pub const ORCA_FEE: f64 = 0.003;

@@ -1,8 +1,8 @@
 //! Common helpers.
 
 use {
-    serde_json::Value, solana_farm_client::client::FarmClient,
-    solana_farm_sdk::git_token::GitToken, solana_sdk::pubkey::Pubkey, std::str::FromStr,
+    serde_json::Value, paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::git_token::GitToken, paychains_sdk::pubkey::Pubkey, std::str::FromStr,
 };
 
 pub fn convert_raydium_program_id(client: &FarmClient, program_id: &str) -> Pubkey {

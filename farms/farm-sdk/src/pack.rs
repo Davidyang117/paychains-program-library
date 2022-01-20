@@ -7,7 +7,7 @@ use {
         de::{Error, Visitor},
         Deserialize, Deserializer, Serializer,
     },
-    solana_program::{program_error::ProgramError, pubkey::Pubkey},
+    paychains_program::{program_error::ProgramError, pubkey::Pubkey},
     std::{fmt, str::FromStr},
 };
 

@@ -1,9 +1,9 @@
-//! Solana Farm Client Orca Farms accounts builder
+//! PayChains Farm Client Orca Farms accounts builder
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::farm::FarmRoute,
-    solana_sdk::{instruction::AccountMeta, program_error::ProgramError, pubkey::Pubkey},
+    paychains_farm_sdk::farm::FarmRoute,
+    paychains_sdk::{instruction::AccountMeta, program_error::ProgramError, pubkey::Pubkey},
     std::vec::Vec,
 };
 

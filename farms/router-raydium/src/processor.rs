@@ -5,9 +5,9 @@ use {
         add_liquidity::add_liquidity, remove_liquidity::remove_liquidity, stake::stake, swap::swap,
         unstake::unstake,
     },
-    solana_farm_sdk::{instruction::amm::AmmInstruction, log::sol_log_params_short},
-    solana_program::{
-        account_info::AccountInfo, entrypoint::ProgramResult, log::sol_log_compute_units, msg,
+    paychains_farm_sdk::{instruction::amm::AmmInstruction, log::pay_log_params_short},
+    paychains_program::{
+        account_info::AccountInfo, entrypoint::ProgramResult, log::pay_log_compute_units, msg,
         pubkey::Pubkey,
     },
 };
@@ -25,7 +25,7 @@ pub fn process_instruction(
 ) -> ProgramResult {
     msg!("Raydium router entrypoint");
     if cfg!(feature = "debug") {
-        sol_log_params_short(accounts, instruction_data);
+        pay_log_params_short(accounts, instruction_data);
     }
 
     // Read and unpack instruction data
@@ -53,7 +53,7 @@ pub fn process_instruction(
         _ => {}
     }
 
-    sol_log_compute_units();
+    pay_log_compute_units();
     msg!("Raydium router end of instruction");
     Ok(())
 }

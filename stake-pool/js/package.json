@@ -1,5 +1,5 @@
 {
-  "name": "@solana/spl-stake-pool",
+  "name": "@paychains/spl-stake-pool",
   "version": "0.6.3",
   "description": "SPL Stake Pool Program JS API",
   "scripts": {
@@ -14,14 +14,14 @@
   },
   "keywords": [],
   "authors": [
-    "Solana Maintainers <maintainers@solana.foundation>",
+    "PayChains Maintainers <maintainers@paychains.foundation>",
     "Lieu Zheng Hong",
     "mFactory Team (https://mfactory.ch)"
   ],
-  "homepage": "https://solana.com",
+  "homepage": "https://paychains.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/solana-labs/solana-program-library"
+    "url": "https://github.com/paychains-labs/paychains-program-library"
   },
   "publishConfig": {
     "access": "public"
@@ -34,9 +34,9 @@
   "license": "ISC",
   "dependencies": {
     "@project-serum/borsh": "^0.2.2",
-    "@solana/buffer-layout": "^4.0.0",
-    "@solana/spl-token": "^0.1.8",
-    "@solana/web3.js": "^1.30.2",
+    "@paychains/buffer-layout": "^4.0.0",
+    "@paychains/spl-token": "^0.1.8",
+    "@paychains/web3.js": "^1.30.2",
     "bn.js": "^5.2.0",
     "buffer": "^6.0.3",
     "process": "^0.11.10"

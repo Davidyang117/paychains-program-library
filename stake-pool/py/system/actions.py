@@ -1,6 +1,6 @@
-from solana.publickey import PublicKey
-from solana.rpc.async_api import AsyncClient
-from solana.rpc.commitment import Confirmed
+from paychains.publickey import PublicKey
+from paychains.rpc.async_api import AsyncClient
+from paychains.rpc.commitment import Confirmed
 
 
 async def airdrop(client: AsyncClient, receiver: PublicKey, lamports: int):

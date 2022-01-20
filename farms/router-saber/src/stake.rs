@@ -1,8 +1,8 @@
 //! Stake LP tokens to a Saber farm instruction
 
 use {
-    solana_farm_sdk::program::account,
-    solana_program::{
+    paychains_farm_sdk::program::account,
+    paychains_program::{
         account_info::AccountInfo,
         entrypoint::ProgramResult,
         hash::Hasher,

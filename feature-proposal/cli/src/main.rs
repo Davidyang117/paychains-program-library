@@ -4,12 +4,12 @@ use {
         crate_description, crate_name, crate_version, value_t_or_exit, App, AppSettings, Arg,
         SubCommand,
     },
-    solana_clap_utils::{
+    paychains_clap_utils::{
         input_parsers::{keypair_of, pubkey_of},
         input_validators::{is_keypair, is_url, is_valid_percentage, is_valid_pubkey},
     },
-    solana_client::rpc_client::RpcClient,
-    solana_sdk::{
+    paychains_client::rpc_client::RpcClient,
+    paychains_sdk::{
         clock::UnixTimestamp,
         commitment_config::CommitmentConfig,
         program_pack::Pack,
@@ -45,7 +45,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .takes_value(true)
                 .global(true)
                 .help("Configuration file to use");
-            if let Some(ref config_file) = *solana_cli_config::CONFIG_FILE {
+            if let Some(ref config_file) = *paychains_cli_config::CONFIG_FILE {
                 arg.default_value(config_file)
             } else {
                 arg
@@ -115,7 +115,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         .value_name("FILENAME")
                         .required(true)
                         .default_value("feature-proposal.csv")
-                        .help("Allocations CSV file for use with solana-tokens"),
+                        .help("Allocations CSV file for use with paychains-tokens"),
                 )
                 .arg(
                     Arg::with_name("confirm")
@@ -142,9 +142,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let config = {
         let cli_config = if let Some(config_file) = matches.value_of("config_file") {
-            solana_cli_config::Config::load(config_file).unwrap_or_default()
+            paychains_cli_config::Config::load(config_file).unwrap_or_default()
         } else {
-            solana_cli_config::Config::default()
+            paychains_cli_config::Config::default()
         };
 
         Config {
@@ -160,7 +160,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             verbose: matches.is_present("verbose"),
         }
     };
-    solana_logger::setup_with_default("solana=info");
+    paychains_logger::setup_with_default("paychains=info");
     let rpc_client =
         RpcClient::new_with_commitment(config.json_rpc_url.clone(), CommitmentConfig::confirmed());
 
@@ -336,18 +336,18 @@ fn process_propose(
     println!();
     println!("Distribute the proposal tokens to all validators by running:");
     println!(
-        "    $ solana-tokens distribute-spl-tokens \
+        "    $ paychains-tokens distribute-spl-tokens \
                   --from {} \
                   --input-csv {} \
                   --db-path db.{} \
-                  --fee-payer ~/.config/solana/id.json \
+                  --fee-payer ~/.config/paychains/id.json \
                   --owner <FEATURE_PROPOSAL_KEYPAIR>",
         distributor_token_address,
         distribution_file,
         &feature_proposal_keypair.pubkey().to_string()[..8]
     );
     println!(
-        "    $ solana-tokens spl-token-balances \
+        "    $ paychains-tokens spl-token-balances \
                  --mint {} --input-csv {}",
         mint_address, distribution_file
     );

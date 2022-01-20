@@ -5,15 +5,15 @@ use {
     log::info,
     serde::Deserialize,
     serde_json::{json, Value},
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{
         git_token::GitToken,
         pack::{optional_pubkey_deserialize, pubkey_deserialize},
         pool::{Pool, PoolRoute, PoolType},
         refdb::StorageType,
         string::str_to_as64,
     },
-    solana_sdk::pubkey::Pubkey,
+    paychains_sdk::pubkey::Pubkey,
     std::collections::HashMap,
     std::str::FromStr,
 };

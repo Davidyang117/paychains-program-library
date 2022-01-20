@@ -1,13 +1,13 @@
-import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { createMint, getOrCreateAssociatedTokenAccount, mintTo, transfer } from '../src'; // @FIXME: replace with @solana/spl-token
+import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_PAY } from '@paychains/web3.js';
+import { createMint, getOrCreateAssociatedTokenAccount, mintTo, transfer } from '../src'; // @FIXME: replace with @paychains/spl-token
 
 (async () => {
     // Connect to cluster
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
-    // Generate a new wallet keypair and airdrop SOL
+    // Generate a new wallet keypair and airdrop PAY
     const fromWallet = Keypair.generate();
-    const fromAirdropSignature = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_SOL);
+    const fromAirdropSignature = await connection.requestAirdrop(fromWallet.publicKey, LAMPORTS_PER_PAY);
 
     // Wait for airdrop confirmation
     await connection.confirmTransaction(fromAirdropSignature);

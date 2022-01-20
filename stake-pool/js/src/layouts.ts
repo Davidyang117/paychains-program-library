@@ -7,8 +7,8 @@ import {
   option,
   vec,
 } from '@project-serum/borsh';
-import {Lockup, PublicKey} from '@solana/web3.js';
-import {AccountInfo} from '@solana/spl-token';
+import {Lockup, PublicKey} from '@paychains/web3.js';
+import {AccountInfo} from '@paychains/spl-token';
 import BN from 'bn.js';
 
 export interface Fee {
@@ -19,7 +19,7 @@ export interface Fee {
 const feeFields = [u64('denominator'), u64('numerator')];
 
 /**
- * AccountLayout.encode from "@solana/spl-token" doesn't work
+ * AccountLayout.encode from "@paychains/spl-token" doesn't work
  */
 export const AccountLayout = struct<AccountInfo>([
   publicKey('mint'),
@@ -69,7 +69,7 @@ export interface StakePool {
   solReferralFee: number;
   solWithdrawAuthority?: PublicKey | undefined;
   solWithdrawalFee: Fee;
-  nextSolWithdrawalFee?: Fee | undefined;
+  nextPayWithdrawalFee?: Fee | undefined;
   lastEpochPoolTokenSupply: BN;
   lastEpochTotalLamports: BN;
 }
@@ -105,7 +105,7 @@ export const StakePoolLayout = struct<StakePool>([
   u8('solReferralFee'),
   option(publicKey(), 'solWithdrawAuthority'),
   struct(feeFields, 'solWithdrawalFee'),
-  option(struct(feeFields), 'nextSolWithdrawalFee'),
+  option(struct(feeFields), 'nextPayWithdrawalFee'),
   u64('lastEpochPoolTokenSupply'),
   u64('lastEpochTotalLamports'),
 ]);

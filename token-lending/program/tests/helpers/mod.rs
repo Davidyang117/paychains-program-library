@@ -4,9 +4,9 @@ pub mod flash_loan_receiver;
 pub mod genesis;
 
 use assert_matches::*;
-use solana_program::{program_option::COption, program_pack::Pack, pubkey::Pubkey};
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program::{program_option::COption, program_pack::Pack, pubkey::Pubkey};
+use paychains_program_test::*;
+use paychains_sdk::{
     account::Account,
     signature::{read_keypair_file, Keypair, Signer},
     system_instruction::create_account,
@@ -35,7 +35,7 @@ use std::{convert::TryInto, str::FromStr};
 pub const QUOTE_CURRENCY: [u8; 32] =
     *b"USD\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 
-pub const LAMPORTS_TO_SOL: u64 = 1_000_000_000;
+pub const LAMPORTS_TO_PAY: u64 = 1_000_000_000;
 pub const FRACTIONAL_TO_USDC: u64 = 1_000_000;
 
 pub const TEST_RESERVE_CONFIG: ReserveConfig = ReserveConfig {
@@ -55,8 +55,8 @@ pub const TEST_RESERVE_CONFIG: ReserveConfig = ReserveConfig {
     },
 };
 
-pub const SOL_PYTH_PRODUCT: &str = "3Mnn2fX6rQyUsyELYms1sBJyChWofzSNRoqYzvgMVz5E";
-pub const SOL_PYTH_PRICE: &str = "J83w4HKfqxwcq3BEMMkPFSppX3gqekLyLJBexebFVkix";
+pub const PAY_PYTH_PRODUCT: &str = "3Mnn2fX6rQyUsyELYms1sBJyChWofzSNRoqYzvgMVz5E";
+pub const PAY_PYTH_PRICE: &str = "J83w4HKfqxwcq3BEMMkPFSppX3gqekLyLJBexebFVkix";
 
 pub const SRM_PYTH_PRODUCT: &str = "6MEwdxe4g1NeAF9u6KDG14anJpFsVEa2cvr5H6iriFZ8";
 pub const SRM_PYTH_PRICE: &str = "992moaMQKs32GKZ9dxi8keyM2bUmbrwBZpK4p2K6X5Vs";
@@ -1067,12 +1067,12 @@ pub struct TestOracle {
     pub price: Decimal,
 }
 
-pub fn add_sol_oracle(test: &mut ProgramTest) -> TestOracle {
+pub fn add_pay_oracle(test: &mut ProgramTest) -> TestOracle {
     add_oracle(
         test,
-        Pubkey::from_str(SOL_PYTH_PRODUCT).unwrap(),
-        Pubkey::from_str(SOL_PYTH_PRICE).unwrap(),
-        // Set SOL price to $20
+        Pubkey::from_str(PAY_PYTH_PRODUCT).unwrap(),
+        Pubkey::from_str(PAY_PYTH_PRICE).unwrap(),
+        // Set PAY price to $20
         Decimal::from(20u64),
     )
 }

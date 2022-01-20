@@ -1,6 +1,6 @@
 #[cfg(not(target_arch = "bpf"))]
-use solana_zk_token_sdk::encryption::{auth_encryption::AeCiphertext, elgamal::ElGamalPubkey};
-pub use solana_zk_token_sdk::zk_token_proof_instruction::*;
+use paychains_zk_token_sdk::encryption::{auth_encryption::AeCiphertext, elgamal::ElGamalPubkey};
+pub use paychains_zk_token_sdk::zk_token_proof_instruction::*;
 use {
     crate::{
         extension::confidential_transfer::ConfidentialTransferMint, id,
@@ -9,13 +9,13 @@ use {
     bytemuck::{Pod, Zeroable},
     num_derive::{FromPrimitive, ToPrimitive},
     num_traits::{FromPrimitive, ToPrimitive},
-    solana_program::{
+    paychains_program::{
         instruction::{AccountMeta, Instruction},
         program_error::ProgramError,
         pubkey::Pubkey,
         sysvar,
     },
-    solana_zk_token_sdk::zk_token_elgamal::pod,
+    paychains_zk_token_sdk::zk_token_elgamal::pod,
 };
 
 /// Confidential Transfer extension instructions

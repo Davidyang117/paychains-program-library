@@ -1,11 +1,11 @@
 //! Native treasury account
 
 use borsh::{BorshDeserialize, BorshSchema, BorshSerialize};
-use solana_program::pubkey::Pubkey;
+use paychains_program::pubkey::Pubkey;
 use spl_governance_tools::account::AccountMaxSize;
 
 /// Treasury account
-/// The account has no data and can be used as a payer for instruction signed by Governance PDAs or as a native SOL treasury
+/// The account has no data and can be used as a payer for instruction signed by Governance PDAs or as a native PAY treasury
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
 pub struct NativeTreasury {}
 

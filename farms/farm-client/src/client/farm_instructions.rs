@@ -1,9 +1,9 @@
-//! Solana Farm Client Farm Instructions
+//! PayChains Farm Client Farm Instructions
 
 use {
     crate::error::FarmClientError,
-    solana_farm_sdk::{farm::FarmRoute, instruction::amm::AmmInstruction},
-    solana_sdk::{instruction::Instruction, pubkey::Pubkey},
+    paychains_farm_sdk::{farm::FarmRoute, instruction::amm::AmmInstruction},
+    paychains_sdk::{instruction::Instruction, pubkey::Pubkey},
 };
 
 use super::FarmClient;

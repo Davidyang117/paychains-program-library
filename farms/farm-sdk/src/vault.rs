@@ -1,4 +1,4 @@
-//! Solana Vault
+//! PayChains Vault
 
 use {
     crate::{pack::*, string::ArrayString64, traits::*},
@@ -6,7 +6,7 @@ use {
     num_enum::TryFromPrimitive,
     serde::{Deserialize, Serialize},
     serde_json::to_string,
-    solana_program::{clock::UnixTimestamp, program_error::ProgramError, pubkey::Pubkey},
+    paychains_program::{clock::UnixTimestamp, program_error::ProgramError, pubkey::Pubkey},
 };
 
 #[repr(u8)]

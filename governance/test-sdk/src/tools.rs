@@ -1,9 +1,9 @@
 use std::convert::TryFrom;
 
-use solana_program::{instruction::InstructionError, program_error::ProgramError};
-use solana_sdk::{signature::Keypair, transaction::TransactionError, transport::TransportError};
+use paychains_program::{instruction::InstructionError, program_error::ProgramError};
+use paychains_sdk::{signature::Keypair, transaction::TransactionError, transport::TransportError};
 
-/// TODO: Add to Solana SDK
+/// TODO: Add to PayChains SDK
 /// Instruction errors not mapped in the sdk
 pub enum ProgramInstructionError {
     /// Incorrect authority provided

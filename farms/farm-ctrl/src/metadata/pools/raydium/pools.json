@@ -25,10 +25,10 @@
       "official": true
     },
     {
-      "name": "RAY-SOL",
+      "name": "RAY-PAY",
       "coin": "RAY",
-      "pc": "SOL",
-      "lp": "LP.RDM.RAY-SOL",
+      "pc": "PAY",
+      "lp": "LP.RDM.RAY-PAY",
       "version": 2,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V2",
       "ammId": "5Ytcen7ZQRWA8Dt4EGyVJngyqDL36ZKAGSTVKxbDGZPN",
@@ -209,10 +209,10 @@
       "official": true
     },
     {
-      "name": "RAY-SOL",
+      "name": "RAY-PAY",
       "coin": "RAY",
-      "pc": "SOL",
-      "lp": "LP.RDM.RAY-SOL-V3",
+      "pc": "PAY",
+      "lp": "LP.RDM.RAY-PAY-V3",
       "version": 3,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V3",
       "ammId": "HeRUVkQyPuJAPFXUkTaJaWzimBopWbJ54q5DCMuPpBY4",
@@ -385,10 +385,10 @@
       "official": true
     },
     {
-      "name": "SOL-USDC",
-      "coin": "SOL",
+      "name": "PAY-USDC",
+      "coin": "PAY",
       "pc": "USDC",
-      "lp": "LP.RDM.SOL-USDC-V4",
+      "lp": "LP.RDM.PAY-USDC-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2",
@@ -645,10 +645,10 @@
       "official": true
     },
     {
-      "name": "SOL-USDT",
-      "coin": "SOL",
+      "name": "PAY-USDT",
+      "coin": "PAY",
       "pc": "USDT",
-      "lp": "LP.RDM.SOL-USDT-V4",
+      "lp": "LP.RDM.PAY-USDT-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "7XawhbbxtsRcQA8KTkHT9f9nc6d69UwqCDh6U5EEbEmX",
@@ -1061,10 +1061,10 @@
       "official": true
     },
     {
-      "name": "SRM-SOL",
+      "name": "SRM-PAY",
       "coin": "SRM",
-      "pc": "SOL",
-      "lp": "LP.RDM.SRM-SOL-V4",
+      "pc": "PAY",
+      "lp": "LP.RDM.SRM-PAY-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "EvWJC2mnmu9C9aQrsJLXw8FhUcwBzFEUQsP1E5Y6a5N7",
@@ -1529,10 +1529,10 @@
       "official": true
     },
     {
-      "name": "RAY-SOL",
+      "name": "RAY-PAY",
       "coin": "RAY",
-      "pc": "SOL",
-      "lp": "LP.RDM.RAY-SOL-V4",
+      "pc": "PAY",
+      "lp": "LP.RDM.RAY-PAY-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "AVs9TA4nWDzfPJE9gGVNJMVhcQy3V9PGazuz33BfG2RA",
@@ -1607,10 +1607,10 @@
       "official": true
     },
     {
-      "name": "mSOL-USDC",
-      "coin": "mSOL",
+      "name": "mPAY-USDC",
+      "coin": "mPAY",
       "pc": "USDC",
-      "lp": "LP.RDM.mSOL-USDC-V4",
+      "lp": "LP.RDM.mPAY-USDC-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "ZfvDXXUhZDzDVsapffUyXHj9ByCoPjP4thL6YXcZ9ix",
@@ -1633,10 +1633,10 @@
       "official": true
     },
     {
-      "name": "mSOL-SOL",
-      "coin": "mSOL",
-      "pc": "SOL",
-      "lp": "LP.RDM.mSOL-SOL-V4",
+      "name": "mPAY-PAY",
+      "coin": "mPAY",
+      "pc": "PAY",
+      "lp": "LP.RDM.mPAY-PAY-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "EGyhb2uLAsRUbRx9dNFBjMVYnFaASWMvD6RE1aEf2LxL",
@@ -2049,10 +2049,10 @@
       "official": true
     },
     {
-      "name": "ETH-SOL",
+      "name": "ETH-PAY",
       "coin": "ETH",
-      "pc": "SOL",
-      "lp": "LP.RDM.ETH-SOL-V4",
+      "pc": "PAY",
+      "lp": "LP.RDM.ETH-PAY-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "9Hm8QX7ZhE9uB8L2arChmmagZZBtBmnzBbpfxzkQp85D",
@@ -2075,10 +2075,10 @@
       "official": true
     },
     {
-      "name": "stSOL-USDC",
-      "coin": "stSOL",
+      "name": "stPAY-USDC",
+      "coin": "stPAY",
       "pc": "USDC",
-      "lp": "LP.RDM.stSOL-USDC-V4",
+      "lp": "LP.RDM.stPAY-USDC-V4",
       "version": 4,
       "programId": "LIQUIDITY_POOL_PROGRAM_ID_V4",
       "ammId": "6a1CsrpeZubDjEJE9s1CMVheB6HWM5d7m1cj2jkhyXhj",

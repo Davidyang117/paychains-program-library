@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
-use solana_program::bpf_loader_upgradeable;
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program::bpf_loader_upgradeable;
+use paychains_program_test::*;
+use paychains_sdk::{
     account::Account,
     bpf_loader_upgradeable::UpgradeableLoaderState,
     pubkey::Pubkey,

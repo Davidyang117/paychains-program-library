@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Solana Farms RPC Service
-  description: RPC service for interaction with pools, farms and vaults built on Solana
+  title: PayChains Farms RPC Service
+  description: RPC service for interaction with pools, farms and vaults built on PayChains
   version: "0.1"
 servers:
   - url: "http://127.0.0.1:9090"
@@ -408,7 +408,7 @@ paths:
           description: Json object or error string
   /api/v1/account_balance:
     get:
-      description: Returns native SOL balance
+      description: Returns native PAY balance
       parameters:
         - name: wallet_address
           in: query
@@ -543,7 +543,7 @@ paths:
           description: Json object or error string
   /api/v1/new_instruction_transfer:
     get:
-      description: Creates the native SOL transfer instruction
+      description: Creates the native PAY transfer instruction
       parameters:
         - name: wallet_address
           in: query
@@ -553,7 +553,7 @@ paths:
           in: query
           schema:
             type: string
-        - name: sol_ui_amount
+        - name: pay_ui_amount
           in: query
           schema:
             type: number
@@ -912,7 +912,7 @@ paths:
           description: Json object or error string
   /api/v1/transfer:
     post:
-      description: Transfers native SOL from the wallet to the destination
+      description: Transfers native PAY from the wallet to the destination
       parameters:
         - name: wallet_keypair
           in: query
@@ -922,22 +922,22 @@ paths:
           in: query
           schema:
             type: string
-        - name: sol_ui_amount
+        - name: pay_ui_amount
           in: query
           schema:
             type: number
       responses:
         default:
           description: Json object or error string
-  /api/v1/transfer_sol_to_wsol:
+  /api/v1/transfer_pay_to_wsol:
     post:
-      description: Transfers native SOL from the wallet to the associated Wrapped SOL account.
+      description: Transfers native PAY from the wallet to the associated Wrapped PAY account.
       parameters:
         - name: wallet_keypair
           in: query
           schema:
             type: string
-        - name: sol_ui_amount
+        - name: pay_ui_amount
           in: query
           schema:
             type: number
@@ -969,7 +969,7 @@ paths:
           description: Json object or error string
   /api/v1/sync_token_balance:
     post:
-      description: Updates token balance of the account, usefull after transfer SOL to WSOL account
+      description: Updates token balance of the account, usefull after transfer PAY to WPAY account
       parameters:
         - name: wallet_keypair
           in: query

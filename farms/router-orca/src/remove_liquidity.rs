@@ -1,8 +1,8 @@
 //! Remove liquidity from the Orca pool instruction
 
 use {
-    solana_farm_sdk::program::{account, protocol::orca},
-    solana_program::{
+    paychains_farm_sdk::program::{account, protocol::orca},
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, msg, program::invoke,
         program_error::ProgramError,
     },

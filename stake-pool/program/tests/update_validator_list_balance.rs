@@ -4,9 +4,9 @@ mod helpers;
 
 use {
     helpers::*,
-    solana_program::{borsh::try_from_slice_unchecked, program_pack::Pack, pubkey::Pubkey, stake},
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program::{borsh::try_from_slice_unchecked, program_pack::Pack, pubkey::Pubkey, stake},
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         system_instruction,
         transaction::Transaction,

@@ -5,8 +5,8 @@ use {
     log::info,
     serde::Deserialize,
     serde_json::{json, Value},
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{
         farm::{Farm, FarmRoute, FarmType},
         git_token::GitToken,
         pack::{optional_pubkey_deserialize, pubkey_deserialize},
@@ -14,7 +14,7 @@ use {
         refdb::StorageType,
         string::str_to_as64,
     },
-    solana_sdk::{hash::Hasher, pubkey::Pubkey},
+    paychains_sdk::{hash::Hasher, pubkey::Pubkey},
 };
 
 #[derive(Deserialize, Debug)]

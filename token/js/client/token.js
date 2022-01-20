@@ -5,7 +5,7 @@
 import {Buffer} from 'buffer';
 import assert from 'assert';
 import BN from 'bn.js';
-import * as BufferLayout from '@solana/buffer-layout';
+import * as BufferLayout from '@paychains/buffer-layout';
 import {
   Keypair,
   PublicKey,
@@ -13,13 +13,13 @@ import {
   Transaction,
   TransactionInstruction,
   SYSVAR_RENT_PUBKEY,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 import type {
   Connection,
   Commitment,
   Signer,
   TransactionSignature,
-} from '@solana/web3.js';
+} from '@paychains/web3.js';
 
 import * as Layout from './layout';
 import {sendAndConfirmTransaction} from './util/send-and-confirm-transaction';
@@ -38,7 +38,7 @@ const INVALID_ACCOUNT_OWNER = 'Invalid account owner';
 /**
  * Unfortunately, BufferLayout.encode uses an `instanceof` check for `Buffer`
  * which fails when using `publicKey.toBuffer()` directly because the bundled `Buffer`
- * class in `@solana/web3.js` is different from the bundled `Buffer` class in this package
+ * class in `@paychains/web3.js` is different from the bundled `Buffer` class in this package
  */
 function pubkeyToBuffer(publicKey: PublicKey): typeof Buffer {
   return Buffer.from(publicKey.toBuffer());
@@ -586,7 +586,7 @@ export class Token {
    *
    * This function sends lamports to the new account before initializing it.
    *
-   * @param connection A solana web3 connection
+   * @param connection A paychains web3 connection
    * @param programId The token program ID
    * @param owner The owner of the new token account
    * @param payer The source of the lamports to initialize, and payer of the initialization fees.

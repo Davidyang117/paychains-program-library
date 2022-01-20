@@ -3,10 +3,10 @@
 use borsh::maybestd::io::Write;
 use std::cmp::Ordering;
 
-use solana_program::borsh::try_from_slice_unchecked;
-use solana_program::clock::{Slot, UnixTimestamp};
+use paychains_program::borsh::try_from_slice_unchecked;
+use paychains_program::clock::{Slot, UnixTimestamp};
 
-use solana_program::{
+use paychains_program::{
     account_info::AccountInfo, program_error::ProgramError, program_pack::IsInitialized,
     pubkey::Pubkey,
 };
@@ -847,7 +847,7 @@ pub fn assert_valid_proposal_options(
 #[cfg(test)]
 mod test {
     use super::*;
-    use solana_program::clock::Epoch;
+    use paychains_program::clock::Epoch;
 
     use crate::state::{
         enums::{MintMaxVoteWeightSource, VoteThresholdPercentage, VoteWeightSource},

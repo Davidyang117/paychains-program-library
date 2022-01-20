@@ -1,16 +1,16 @@
 {
-  "name": "@solana/spl-token",
+  "name": "@paychains/spl-token",
   "version": "0.1.8",
   "description": "SPL Token JavaScript API",
   "license": "MIT",
-  "author": "Solana Maintainers <maintainers@solana.com>",
-  "homepage": "https://solana.com/",
+  "author": "PayChains Maintainers <maintainers@paychains.com>",
+  "homepage": "https://paychains.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/solana-labs/solana-program-library"
+    "url": "https://github.com/paychains-labs/paychains-program-library"
   },
   "bugs": {
-    "url": "https://github.com/solana-labs/solana-program-library/issues"
+    "url": "https://github.com/paychains-labs/paychains-program-library/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -36,7 +36,7 @@
     "build": "rollup -c",
     "build:browser-test": "rollup -c test/rollup.config.js",
     "start": "babel-node cli/main.js",
-    "start-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health start",
+    "start-with-test-validator": "start-server-and-test 'paychains-test-validator --reset --quiet' http://localhost:8899/health start",
     "lint": "npm run pretty && eslint .",
     "lint:fix": "npm run pretty:fix && eslint . --fix",
     "flow": "flow check-contents < module.flow.js",
@@ -56,10 +56,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
-    "@solana/web3.js": "^1.21.0",
+    "@paychains/web3.js": "^1.21.0",
     "bn.js": "^5.1.0",
     "buffer": "6.0.3",
-    "@solana/buffer-layout": "^3.0.0",
+    "@paychains/buffer-layout": "^3.0.0",
     "dotenv": "10.0.0"
   },
   "devDependencies": {

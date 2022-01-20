@@ -32,8 +32,8 @@
       "poolRewardTokenAccount": "FW7omPaCCvgBgUFKwvwU2jf1w1wJGjDrJqurr3SeXn14"
     },
     {
-      "name": "RAY-SOL",
-      "lp": "LP.RDM.RAY-SOL-V3",
+      "name": "RAY-PAY",
+      "lp": "LP.RDM.RAY-PAY-V3",
       "reward": "RAY",
       "isStake": false,
       "fusion": false,
@@ -441,8 +441,8 @@
       "poolRewardTokenAccountB": "2Ks41qfN2GZffbd1cqrNGuXJYJbShHhz6aHQvq8SaYYr"
     },
     {
-      "name": "RAY-SOL",
-      "lp": "LP.RDM.RAY-SOL-V4",
+      "name": "RAY-PAY",
+      "lp": "LP.RDM.RAY-PAY-V4",
       "reward": "RAY",
       "isStake": false,
       "fusion": false,

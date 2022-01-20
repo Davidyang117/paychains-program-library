@@ -7,10 +7,10 @@ import time
 from typing import Iterator, List, Tuple
 from subprocess import Popen
 
-from solana.keypair import Keypair
-from solana.publickey import PublicKey
-from solana.rpc.async_api import AsyncClient
-from solana.rpc.commitment import Confirmed
+from paychains.keypair import Keypair
+from paychains.publickey import PublicKey
+from paychains.rpc.async_api import AsyncClient
+from paychains.rpc.commitment import Confirmed
 
 from vote.actions import create_vote
 from system.actions import airdrop
@@ -21,12 +21,12 @@ NUM_SLOTS_PER_EPOCH: int = 32
 
 
 @pytest.fixture(scope="session")
-def solana_test_validator():
+def paychains_test_validator():
     old_cwd = os.getcwd()
     newpath = tempfile.mkdtemp()
     os.chdir(newpath)
     validator = Popen([
-        "solana-test-validator",
+        "paychains-test-validator",
         "--reset", "--quiet",
         "--bpf-program", "SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy",
         f"{old_cwd}/../../target/deploy/spl_stake_pool.so",
@@ -75,7 +75,7 @@ def event_loop():
 
 
 @pytest.fixture
-def async_client(event_loop, solana_test_validator) -> Iterator[AsyncClient]:
+def async_client(event_loop, paychains_test_validator) -> Iterator[AsyncClient]:
     async_client = AsyncClient(commitment=Confirmed)
     total_attempts = 10
     current_attempt = 0

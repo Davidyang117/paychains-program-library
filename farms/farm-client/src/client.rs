@@ -1,14 +1,14 @@
-//! Solana Farm Client
+//! PayChains Farm Client
 //!
-//! Solana Farm Client provides an easy way to interact with pools, farms, and vaults,
+//! PayChains Farm Client provides an easy way to interact with pools, farms, and vaults,
 //! query on-chain objects metadata, and perform common operations with accounts.
 //!
 //! Client's methods accept human readable names (tokens, polls, etc.) and UI (decimal)
-//! amounts, so you can simply call client.swap(&keypair, "RDM", "SOL", "RAY", 0.1, 0.0)
-//! to swap 0.1 SOL for RAY in a Raydium pool. All metadata required to lookup account
+//! amounts, so you can simply call client.swap(&keypair, "RDM", "PAY", "RAY", 0.1, 0.0)
+//! to swap 0.1 PAY for RAY in a Raydium pool. All metadata required to lookup account
 //! addresses, decimals, etc. is stored on-chain.
 //!
-//! Under the hood it leverages the official Solana RPC Client which can be accessed with
+//! Under the hood it leverages the official PayChains RPC Client which can be accessed with
 //! client.rpc_client, for example: client.rpc_client.get_latest_blockhash().
 //!
 //! Naming convention for Pools and Farms is [PROTOCOL].[TOKEN_A]-[TOKEN_B]-[VERSION]
@@ -18,17 +18,17 @@
 //!
 //! A few examples:
 //! #  use {
-//! #      solana_farm_client::client::FarmClient,
-//! #      solana_sdk::{pubkey::Pubkey, signer::Signer},
+//! #      paychains_farm_client::client::FarmClient,
+//! #      paychains_sdk::{pubkey::Pubkey, signer::Signer},
 //! #  };
 //! #
-//! #  let client = FarmClient::new("https://api.mainnet-beta.solana.com");
+//! #  let client = FarmClient::new("https://api.mainnet-beta.paychains.com");
 //! #  let keypair = FarmClient::read_keypair_from_file(
-//! #      &(std::env::var("HOME").unwrap().to_string() + "/.config/solana/id.json"),
+//! #      &(std::env::var("HOME").unwrap().to_string() + "/.config/paychains/id.json"),
 //! #  )
 //! #  .unwrap();
 //! #
-//! #  // get SOL account balance
+//! #  // get PAY account balance
 //! #  client.get_account_balance(&keypair.pubkey()).unwrap();
 //! #
 //! #  // get SPL token account balance
@@ -72,7 +72,7 @@
 //! #  client.get_program_ids().unwrap();
 //! #
 //! #  // swap in the Raydium pool
-//! #  client.swap(&keypair, "RDM", "SOL", "RAY", 0.01, 0.0).unwrap();
+//! #  client.swap(&keypair, "RDM", "PAY", "RAY", 0.01, 0.0).unwrap();
 //! #
 //! #  // swap in the Saber pool
 //! #  client.swap(&keypair, "SBR", "USDC", "USDT", 0.01, 0.0).unwrap();
@@ -106,7 +106,7 @@
 //! #      .remove_liquidity_vault(&keypair, "RDM.STC.RAY-SRM", 0.0)
 //! #      .unwrap();
 //! #
-//! #  // transfer SOL to another wallet
+//! #  // transfer PAY to another wallet
 //! #  client
 //! #      .transfer(&keypair, &Pubkey::new_unique(), 0.001)
 //! #      .unwrap();
@@ -136,17 +136,17 @@
 use {
     crate::{cache::Cache, error::FarmClientError},
     arrayref::array_ref,
-    solana_account_decoder::parse_token::{
+    paychains_account_decoder::parse_token::{
         parse_token, TokenAccountType, UiAccountState, UiTokenAccount,
     },
-    solana_client::{
+    paychains_client::{
         client_error::ClientErrorKind,
         rpc_client::RpcClient,
         rpc_config::RpcProgramAccountsConfig,
         rpc_custom_error, rpc_filter,
         rpc_request::{RpcError, TokenAccountsFilter},
     },
-    solana_farm_sdk::{
+    paychains_farm_sdk::{
         farm::{Farm, FarmRoute},
         id::{
             main_router, main_router_admin, zero, ProgramIDType, DAO_CUSTODY_NAME, DAO_MINT_NAME,
@@ -165,7 +165,7 @@ use {
         token::{Token, TokenSelector, TokenType},
         vault::{UserInfo, Vault, VaultInfo, VaultStrategy},
     },
-    solana_sdk::{
+    paychains_sdk::{
         borsh::try_from_slice_unchecked,
         clock::UnixTimestamp,
         commitment_config::CommitmentConfig,
@@ -250,9 +250,9 @@ impl Default for FarmClient {
 impl FarmClient {
     /// Creates a new FarmClient object
     /// RPC URLs:
-    /// Devnet: https://api.devnet.solana.com
-    /// Testnet: https://api.testnet.solana.com
-    /// Mainnet-beta: https://api.mainnet-beta.solana.com
+    /// Devnet: https://api.devnet.paychains.com
+    /// Testnet: https://api.testnet.paychains.com
+    /// Mainnet-beta: https://api.mainnet-beta.paychains.com
     /// local node: http://localhost:8899
     pub fn new(url: &str) -> Self {
         Self {
@@ -976,33 +976,33 @@ impl FarmClient {
         self.sign_and_send_instructions(&[signer], &[inst])
     }
 
-    /// Transfers native SOL from the wallet to the destination
+    /// Transfers native PAY from the wallet to the destination
     pub fn transfer(
         &self,
         signer: &dyn Signer,
         destination_wallet: &Pubkey,
-        sol_ui_amount: f64,
+        pay_ui_amount: f64,
     ) -> Result<Signature, FarmClientError> {
         let inst =
-            self.new_instruction_transfer(&signer.pubkey(), destination_wallet, sol_ui_amount)?;
+            self.new_instruction_transfer(&signer.pubkey(), destination_wallet, pay_ui_amount)?;
         self.sign_and_send_instructions(&[signer], &[inst])
     }
 
-    /// Transfers native SOL from the wallet to the associated Wrapped SOL account.
-    pub fn transfer_sol_to_wsol(
+    /// Transfers native PAY from the wallet to the associated Wrapped PAY account.
+    pub fn transfer_pay_to_wsol(
         &self,
         signer: &dyn Signer,
-        sol_ui_amount: f64,
+        pay_ui_amount: f64,
     ) -> Result<Signature, FarmClientError> {
-        let target_account = self.get_associated_token_address(&signer.pubkey(), "SOL")?;
+        let target_account = self.get_associated_token_address(&signer.pubkey(), "PAY")?;
         let mut inst = Vec::<Instruction>::new();
-        if !self.has_active_token_account(&signer.pubkey(), "SOL") {
-            inst.push(self.new_instruction_create_token_account(&signer.pubkey(), "SOL")?);
+        if !self.has_active_token_account(&signer.pubkey(), "PAY") {
+            inst.push(self.new_instruction_create_token_account(&signer.pubkey(), "PAY")?);
         }
         inst.push(self.new_instruction_transfer(
             &signer.pubkey(),
             &target_account,
-            sol_ui_amount,
+            pay_ui_amount,
         )?);
         self.sign_and_send_instructions(&[signer], inst.as_slice())
     }
@@ -1039,7 +1039,7 @@ impl FarmClient {
         self.sign_and_send_instructions(&[signer], inst.as_slice())
     }
 
-    /// Updates token balance of the account, usefull after transfer SOL to WSOL account
+    /// Updates token balance of the account, usefull after transfer PAY to WPAY account
     pub fn sync_token_balance(
         &self,
         signer: &dyn Signer,
@@ -1143,7 +1143,7 @@ impl FarmClient {
         }
     }
 
-    /// Returns native SOL balance
+    /// Returns native PAY balance
     pub fn get_account_balance(&self, wallet_address: &Pubkey) -> Result<f64, FarmClientError> {
         Ok(self.tokens_to_ui_amount_with_decimals(
             self.rpc_client.get_balance(wallet_address)?,
@@ -1157,8 +1157,8 @@ impl FarmClient {
         wallet_address: &Pubkey,
         token_name: &str,
     ) -> Result<f64, FarmClientError> {
-        let token_name = if token_name == "WSOL" {
-            "SOL"
+        let token_name = if token_name == "WPAY" {
+            "PAY"
         } else {
             token_name
         };
@@ -1415,10 +1415,10 @@ impl FarmClient {
                 max_token_a_ui_amount, max_token_b_ui_amount, vault_name
             )));
         }
-        // if one of the tokens is SOL and amount is zero, we need to estimate that
-        // amount to get it transfered to WSOL
+        // if one of the tokens is PAY and amount is zero, we need to estimate that
+        // amount to get it transfered to WPAY
         let is_saber_vault = vault_name.starts_with("SBR.");
-        let (is_token_a_sol, is_token_b_sol) = self.vault_has_sol_tokens(vault_name)?;
+        let (is_token_a_sol, is_token_b_sol) = self.vault_has_pay_tokens(vault_name)?;
         let token_a_ui_amount = if max_token_a_ui_amount == 0.0 && is_token_a_sol && !is_saber_vault
         {
             let pool_price = self.get_vault_price(vault_name)?;
@@ -1486,7 +1486,7 @@ impl FarmClient {
             max_token_b_ui_amount,
         )?);
         if is_token_a_sol || is_token_b_sol {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
 
         // lock liquidity if required by the vault
@@ -1614,7 +1614,7 @@ impl FarmClient {
         )?);
 
         // check if tokens need to be unwrapped
-        let (is_token_a_sol, is_token_b_sol) = self.vault_has_sol_tokens(vault_name)?;
+        let (is_token_a_sol, is_token_b_sol) = self.vault_has_pay_tokens(vault_name)?;
         let pool_name = self.get_underlying_pool(vault_name)?.name.to_string();
         let (is_token_a_wrapped, is_token_b_wrapped) =
             self.pool_has_saber_wrapped_tokens(&pool_name)?;
@@ -1636,7 +1636,7 @@ impl FarmClient {
             )?);
         }
         if is_token_a_sol || is_token_b_sol {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
 
         self.sign_and_send_instructions(&[signer], inst.as_slice())
@@ -1678,7 +1678,7 @@ impl FarmClient {
         )?);
 
         // check if tokens need to be unwrapped
-        let (is_token_a_sol, is_token_b_sol) = self.vault_has_sol_tokens(vault_name)?;
+        let (is_token_a_sol, is_token_b_sol) = self.vault_has_pay_tokens(vault_name)?;
         let pool_name = self.get_underlying_pool(vault_name)?.name.to_string();
         let (is_token_a_wrapped, is_token_b_wrapped) =
             self.pool_has_saber_wrapped_tokens(&pool_name)?;
@@ -1700,7 +1700,7 @@ impl FarmClient {
             )?);
         }
         if is_token_a_sol || is_token_b_sol {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
 
         self.sign_and_send_instructions(&[signer], inst.as_slice())
@@ -1725,10 +1725,10 @@ impl FarmClient {
                 max_token_a_ui_amount, max_token_b_ui_amount, pool_name
             )));
         }
-        // if one of the tokens is SOL and amount is zero, we need to estimate that
-        // amount to get it transfered to WSOL
+        // if one of the tokens is PAY and amount is zero, we need to estimate that
+        // amount to get it transfered to WPAY
         let is_saber_pool = pool_name.starts_with("SBR.");
-        let (is_token_a_sol, is_token_b_sol) = self.pool_has_sol_tokens(pool_name)?;
+        let (is_token_a_sol, is_token_b_sol) = self.pool_has_pay_tokens(pool_name)?;
         let token_a_ui_amount = if max_token_a_ui_amount == 0.0 && is_token_a_sol && !is_saber_pool
         {
             let pool_price = self.get_pool_price(pool_name)?;
@@ -1788,7 +1788,7 @@ impl FarmClient {
             max_token_b_ui_amount,
         )?);
         if is_token_a_sol || is_token_b_sol {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
         self.sign_and_send_instructions(&[signer], inst.as_slice())
     }
@@ -1812,7 +1812,7 @@ impl FarmClient {
         )?);
 
         // check if tokens need to be unwrapped
-        let (is_token_a_sol, is_token_b_sol) = self.pool_has_sol_tokens(pool_name)?;
+        let (is_token_a_sol, is_token_b_sol) = self.pool_has_pay_tokens(pool_name)?;
         let (is_token_a_wrapped, is_token_b_wrapped) =
             self.pool_has_saber_wrapped_tokens(pool_name)?;
 
@@ -1833,7 +1833,7 @@ impl FarmClient {
             )?);
         }
         if is_token_a_sol || is_token_b_sol {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
 
         self.sign_and_send_instructions(&[signer], inst.as_slice())
@@ -1863,9 +1863,9 @@ impl FarmClient {
 
         // if amount is zero use entire balance
         let ui_amount_in = if ui_amount_in == 0.0 {
-            if from_token == "SOL" {
+            if from_token == "PAY" {
                 return Err(FarmClientError::ValueError(format!(
-                    "Invalid SOL amount {} specified for pool {}: Must be greater than zero.",
+                    "Invalid PAY amount {} specified for pool {}: Must be greater than zero.",
                     ui_amount_in,
                     pool.name.as_str()
                 )));
@@ -1949,8 +1949,8 @@ impl FarmClient {
                 0.0,
             )?);
         }
-        if to_token == "SOL" {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+        if to_token == "PAY" {
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
         self.sign_and_send_instructions(&[signer], inst.as_slice())
     }
@@ -2811,19 +2811,19 @@ impl FarmClient {
         amount as f64 / divisor as f64
     }
 
-    pub fn pool_has_sol_tokens(&self, pool_name: &str) -> Result<(bool, bool), FarmClientError> {
+    pub fn pool_has_pay_tokens(&self, pool_name: &str) -> Result<(bool, bool), FarmClientError> {
         let pool = self.get_pool(pool_name)?;
         let mut is_token_a_sol = false;
         let mut is_token_b_sol = false;
         if let Some(token_a_ref) = pool.token_a_ref {
             let token_a = self.get_token_by_ref(&token_a_ref)?;
-            if token_a.token_type == TokenType::WrappedSol {
+            if token_a.token_type == TokenType::WrappedPay {
                 is_token_a_sol = true;
             }
         }
         if let Some(token_b_ref) = pool.token_b_ref {
             let token_b = self.get_token_by_ref(&token_b_ref)?;
-            if token_b.token_type == TokenType::WrappedSol {
+            if token_b.token_type == TokenType::WrappedPay {
                 is_token_b_sol = true;
             }
         }
@@ -2846,9 +2846,9 @@ impl FarmClient {
         }
     }
 
-    pub fn vault_has_sol_tokens(&self, vault_name: &str) -> Result<(bool, bool), FarmClientError> {
+    pub fn vault_has_pay_tokens(&self, vault_name: &str) -> Result<(bool, bool), FarmClientError> {
         let pool_name = self.get_underlying_pool(vault_name)?.name.to_string();
-        self.pool_has_sol_tokens(&pool_name)
+        self.pool_has_pay_tokens(&pool_name)
     }
 
     pub fn get_pool_token_names(
@@ -2948,7 +2948,7 @@ impl FarmClient {
     ) -> Result<Signature, FarmClientError> {
         let mut inst = Vec::<Instruction>::new();
 
-        let (is_token_a_sol, is_token_b_sol) = self.pool_has_sol_tokens(pool_name)?;
+        let (is_token_a_sol, is_token_b_sol) = self.pool_has_pay_tokens(pool_name)?;
         let (is_token_a_wrapped, is_token_b_wrapped) =
             self.pool_has_saber_wrapped_tokens(pool_name)?;
 
@@ -2969,7 +2969,7 @@ impl FarmClient {
             )?);
         }
         if is_token_a_sol || is_token_b_sol {
-            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "SOL")?);
+            inst.push(self.new_instruction_close_token_account(&signer.pubkey(), "PAY")?);
         }
 
         self.sign_and_send_instructions(&[signer], inst.as_slice())
@@ -3725,19 +3725,19 @@ impl FarmClient {
         }
     }
 
-    fn send_sol_to_wsol(
+    fn send_pay_to_wsol(
         &self,
         wallet_address: &Pubkey,
         ui_amount: f64,
         instruction_vec: &mut Vec<Instruction>,
     ) -> Result<(), FarmClientError> {
-        let token_addr = self.get_associated_token_address(wallet_address, "SOL")?;
+        let token_addr = self.get_associated_token_address(wallet_address, "PAY")?;
         instruction_vec.push(self.new_instruction_transfer(
             wallet_address,
             &token_addr,
             ui_amount,
         )?);
-        instruction_vec.push(self.new_instruction_sync_token_balance(wallet_address, "SOL")?);
+        instruction_vec.push(self.new_instruction_sync_token_balance(wallet_address, "PAY")?);
         Ok(())
     }
 
@@ -3753,9 +3753,9 @@ impl FarmClient {
                 instruction_vec
                     .push(self.new_instruction_create_token_account(wallet_address, &tkn.name)?);
                 if ui_amount > 0.0 {
-                    if tkn.token_type == TokenType::WrappedSol {
+                    if tkn.token_type == TokenType::WrappedPay {
                         let _ =
-                            self.send_sol_to_wsol(wallet_address, ui_amount, instruction_vec)?;
+                            self.send_pay_to_wsol(wallet_address, ui_amount, instruction_vec)?;
                     } else {
                         return Err(FarmClientError::InsufficientBalance(tkn.name.to_string()));
                     }
@@ -3763,8 +3763,8 @@ impl FarmClient {
             } else if ui_amount > 0.0 {
                 let balance = self.get_token_account_balance(wallet_address, &tkn.name)?;
                 if balance < ui_amount {
-                    if tkn.token_type == TokenType::WrappedSol {
-                        let _ = self.send_sol_to_wsol(
+                    if tkn.token_type == TokenType::WrappedPay {
+                        let _ = self.send_pay_to_wsol(
                             wallet_address,
                             ui_amount - balance,
                             instruction_vec,
@@ -4048,7 +4048,7 @@ mod vault_stc_accounts_saber;
 
 #[cfg(test)]
 mod test {
-    use solana_farm_sdk::string::{str_to_as64, ArrayString64};
+    use paychains_farm_sdk::string::{str_to_as64, ArrayString64};
 
     #[test]
     fn test_to_array_string() {

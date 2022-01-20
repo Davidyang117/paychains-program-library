@@ -3,19 +3,19 @@ mod utils;
 
 #[test]
 #[ignore]
-fn test_pool_xsol_sol_v1() {
+fn test_pool_xpay_pay_v1() {
     pool_actions::run_test(
-        "SBR.XSOL-SOL-V1",
+        "SBR.XPAY-PAY-V1",
         vec![utils::Swap {
             protocol: "SBR",
-            from_token: "SOL",
-            to_token: "XSOL",
+            from_token: "PAY",
+            to_token: "XPAY",
             amount: 0.111,
         }],
         vec![utils::Swap {
             protocol: "SBR",
-            from_token: "XSOL",
-            to_token: "SOL",
+            from_token: "XPAY",
+            to_token: "PAY",
             amount: 0.0,
         }],
         false,
@@ -24,19 +24,19 @@ fn test_pool_xsol_sol_v1() {
 
 #[test]
 #[ignore]
-fn test_pool_xsol_sol_latest() {
+fn test_pool_xpay_pay_latest() {
     pool_actions::run_test(
-        "SBR.XSOL-SOL",
+        "SBR.XPAY-PAY",
         vec![utils::Swap {
             protocol: "SBR",
-            from_token: "SOL",
-            to_token: "XSOL",
+            from_token: "PAY",
+            to_token: "XPAY",
             amount: 0.111,
         }],
         vec![utils::Swap {
             protocol: "SBR",
-            from_token: "XSOL",
-            to_token: "SOL",
+            from_token: "XPAY",
+            to_token: "PAY",
             amount: 0.0,
         }],
         false,
@@ -51,7 +51,7 @@ fn test_pool_renbtc_btc_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "USDC",
                 amount: 0.111,
             },
@@ -94,7 +94,7 @@ fn test_pool_usdc_wust_v1_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "USDC",
                 amount: 0.111,
             },
@@ -123,7 +123,7 @@ fn test_pool_wust_usdc_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "USDC",
                 amount: 0.111,
             },
@@ -152,7 +152,7 @@ fn test_pool_whusd_v1_usdc_latest() {
         vec![
             utils::Swap {
                 protocol: "RDM",
-                from_token: "SOL",
+                from_token: "PAY",
                 to_token: "USDC",
                 amount: 0.111,
             },

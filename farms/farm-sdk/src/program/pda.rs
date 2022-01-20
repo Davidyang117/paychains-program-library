@@ -6,7 +6,7 @@ use {
         refdb,
         string::ArrayString64,
     },
-    solana_program::{
+    paychains_program::{
         account_info::AccountInfo, entrypoint::ProgramResult, program, program_error::ProgramError,
         program_pack::Pack, pubkey::Pubkey, rent::Rent, system_instruction, sysvar, sysvar::Sysvar,
     },
@@ -274,7 +274,7 @@ pub fn mint_to_with_seeds<'a, 'b>(
     seeds: &[&[&[u8]]],
     amount: u64,
 ) -> ProgramResult {
-    solana_program::program::invoke_signed(
+    paychains_program::program::invoke_signed(
         &spl_token::instruction::mint_to(
             &spl_token::id(),
             mint_account.key,

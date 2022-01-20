@@ -1,7 +1,7 @@
-//! Solana program utilities for Plain Old Data types
+//! PayChains program utilities for Plain Old Data types
 use {
     bytemuck::{Pod, Zeroable},
-    solana_program::{program_error::ProgramError, program_option::COption, pubkey::Pubkey},
+    paychains_program::{program_error::ProgramError, program_option::COption, pubkey::Pubkey},
     std::convert::TryFrom,
 };
 

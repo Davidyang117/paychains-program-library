@@ -1,9 +1,9 @@
 #![cfg(feature = "test-bpf")]
 
 use borsh::de::BorshDeserialize;
-use solana_program::{hash::Hash, program_pack::Pack, pubkey::Pubkey, system_instruction};
-use solana_program_test::*;
-use solana_sdk::{
+use paychains_program::{hash::Hash, program_pack::Pack, pubkey::Pubkey, system_instruction};
+use paychains_program_test::*;
+use paychains_sdk::{
     account::Account,
     signature::{Keypair, Signer},
     transaction::Transaction,

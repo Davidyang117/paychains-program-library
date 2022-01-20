@@ -5,12 +5,12 @@ import base64
 import base58
 import struct
 
-from solana.publickey import PublicKey 
-from solana.transaction import Transaction, AccountMeta, TransactionInstruction
-from solana.account import Account 
-from solana.rpc.api import Client
-import solana.rpc.types as types
-from solana.system_program import transfer, TransferParams
+from paychains.publickey import PublicKey 
+from paychains.transaction import Transaction, AccountMeta, TransactionInstruction
+from paychains.account import Account 
+from paychains.rpc.api import Client
+import paychains.rpc.types as types
+from paychains.system_program import transfer, TransferParams
 from spl.token._layouts import MINT_LAYOUT, ACCOUNT_LAYOUT
 from spl.token.instructions import (
     get_associated_token_address, create_associated_token_account,
@@ -438,7 +438,7 @@ class BinaryOption():
                     lamports = min_rent_reseponse["result"]
                 else:
                     lamports = int(amount)
-                msg += f" | Fetched lamports: {lamports * 1e-9} SOL"
+                msg += f" | Fetched lamports: {lamports * 1e-9} PAY"
             except Exception as e:
                 msg += " | ERROR: couldn't process lamports" 
                 raise(e)
@@ -452,7 +452,7 @@ class BinaryOption():
                 return json.dumps(
                     {
                         'status': HTTPStatus.OK,
-                        'msg': f"Successfully sent {lamports * 1e-9} SOL to {to}",
+                        'msg': f"Successfully sent {lamports * 1e-9} PAY to {to}",
                         'tx': response.get('result') if skip_confirmation else response['result']['transaction']['signatures'],
                     }
                 )

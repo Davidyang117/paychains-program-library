@@ -4,9 +4,9 @@ use {
     crate::config::Config,
     log::info,
     serde::Serialize,
-    solana_farm_client::client::FarmClient,
-    solana_farm_sdk::{refdb::StorageType, string::to_pretty_json},
-    solana_sdk::pubkey::Pubkey,
+    paychains_farm_client::client::FarmClient,
+    paychains_farm_sdk::{refdb::StorageType, string::to_pretty_json},
+    paychains_sdk::pubkey::Pubkey,
     std::str::FromStr,
 };
 

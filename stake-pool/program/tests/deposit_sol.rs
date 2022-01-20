@@ -4,11 +4,11 @@ mod helpers;
 
 use {
     helpers::*,
-    solana_program::{
+    paychains_program::{
         borsh::try_from_slice_unchecked, instruction::InstructionError, pubkey::Pubkey,
     },
-    solana_program_test::*,
-    solana_sdk::{
+    paychains_program_test::*,
+    paychains_sdk::{
         signature::{Keypair, Signer},
         transaction::Transaction,
         transaction::TransactionError,
@@ -115,7 +115,7 @@ async fn success() {
     let user_token_balance =
         get_token_balance(&mut context.banks_client, &pool_token_account).await;
     let tokens_issued_user =
-        tokens_issued - stake_pool_accounts.calculate_sol_deposit_fee(tokens_issued);
+        tokens_issued - stake_pool_accounts.calculate_pay_deposit_fee(tokens_issued);
     assert_eq!(user_token_balance, tokens_issued_user);
 
     // Check reserve
@@ -254,7 +254,7 @@ async fn fail_with_wrong_mint_for_receiver_acc() {
 }
 
 #[tokio::test]
-async fn success_with_sol_deposit_authority() {
+async fn success_with_pay_deposit_authority() {
     let (mut banks_client, payer, recent_blockhash) = program_test().start().await;
     let stake_pool_accounts = StakePoolAccounts::new();
     stake_pool_accounts
@@ -289,15 +289,15 @@ async fn success_with_sol_deposit_authority() {
         .await;
     assert!(error.is_none());
 
-    let sol_deposit_authority = Keypair::new();
+    let pay_deposit_authority = Keypair::new();
 
     let mut transaction = Transaction::new_with_payer(
         &[instruction::set_funding_authority(
             &id(),
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
-            Some(&sol_deposit_authority.pubkey()),
-            FundingType::SolDeposit,
+            Some(&pay_deposit_authority.pubkey()),
+            FundingType::PayDeposit,
         )],
         Some(&payer.pubkey()),
     );
@@ -311,16 +311,16 @@ async fn success_with_sol_deposit_authority() {
             &recent_blockhash,
             &user_pool_account.pubkey(),
             TEST_STAKE_AMOUNT,
-            Some(&sol_deposit_authority),
+            Some(&pay_deposit_authority),
         )
         .await;
     assert!(error.is_none());
 }
 
 #[tokio::test]
-async fn fail_without_sol_deposit_authority_signature() {
+async fn fail_without_pay_deposit_authority_signature() {
     let (mut banks_client, payer, recent_blockhash) = program_test().start().await;
-    let sol_deposit_authority = Keypair::new();
+    let pay_deposit_authority = Keypair::new();
     let stake_pool_accounts = StakePoolAccounts::new();
     stake_pool_accounts
         .initialize_stake_pool(&mut banks_client, &payer, &recent_blockhash, 1)
@@ -347,8 +347,8 @@ async fn fail_without_sol_deposit_authority_signature() {
             &id(),
             &stake_pool_accounts.stake_pool.pubkey(),
             &stake_pool_accounts.manager.pubkey(),
-            Some(&sol_deposit_authority.pubkey()),
-            FundingType::SolDeposit,
+            Some(&pay_deposit_authority.pubkey()),
+            FundingType::PayDeposit,
         )],
         Some(&payer.pubkey()),
     );
@@ -374,10 +374,10 @@ async fn fail_without_sol_deposit_authority_signature() {
         TransactionError::InstructionError(_, InstructionError::Custom(error_index)) => {
             assert_eq!(
                 error_index,
-                error::StakePoolError::InvalidSolDepositAuthority as u32
+                error::StakePoolError::InvalidPayDepositAuthority as u32
             );
         }
-        _ => panic!("Wrong error occurs while trying to make a deposit without SOL deposit authority signature"),
+        _ => panic!("Wrong error occurs while trying to make a deposit without PAY deposit authority signature"),
     }
 }
 
@@ -426,8 +426,8 @@ async fn success_with_referral_fee() {
 
     let referrer_balance_post =
         get_token_balance(&mut context.banks_client, &referrer_token_account.pubkey()).await;
-    let referral_fee = stake_pool_accounts.calculate_sol_referral_fee(
-        stake_pool_accounts.calculate_sol_deposit_fee(TEST_STAKE_AMOUNT),
+    let referral_fee = stake_pool_accounts.calculate_pay_referral_fee(
+        stake_pool_accounts.calculate_pay_deposit_fee(TEST_STAKE_AMOUNT),
     );
     assert!(referral_fee > 0);
     assert_eq!(referrer_balance_pre + referral_fee, referrer_balance_post);
