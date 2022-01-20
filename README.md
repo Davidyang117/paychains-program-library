@@ -6,7 +6,7 @@ https://travis-ci.org/paychains-labs/paychains-program-library.svg?branch=master
 
 # PayChains Program Library
 
-The PayChains Program Library (SPL) is a collection of on-chain programs targeting
+The PayChains Program Library (PPL) is a collection of on-chain programs targeting
 the [Sealevel parallel
 runtime](https://medium.com/paychains-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192).
 These programs are tested against PayChains's implementation of Sealevel,
